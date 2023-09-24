@@ -1,0 +1,197 @@
+.container {
+    padding: 30px;
+
+}
+.detailproduct {
+    display: flex;  
+    justify-content: center;   
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto  ;
+  }
+.product_splide, .overview{
+    display: inline-block;
+    width: 50%;
+    
+    
+}
+.product_splide .mainSplide{
+    background-color: #f1f1f1;
+    padding: 20px;
+}
+.product_splide .optionSplide{
+    margin-top: 5px;
+    background-color: white; 
+    border: 1px solid rgb(231, 231, 231);
+}
+.product_splide .optionSplide div{
+    border-radius: 3px;
+    
+}
+
+
+
+.overview {
+    padding-left: 30px;
+    justify-content: center;
+}
+
+.wrapped_info {
+    margin-top: 15px;
+}
+.wrapped_info h1 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 25px;
+    font-weight: bold;
+}
+.wrapped_info .wrapped_info_content {
+    display: flex;      
+}
+.wrapped_info .wrapped_info_content .rating {
+    margin-right: 26px;
+}
+.wrapped_info .wrapped_info_content a{
+    color: #0066CC;
+    margin-right: 26px;  
+    box-sizing: border-box;  
+    font-family: Arial, Helvetica, sans-serif;  
+    font-size: 15px;
+}
+
+
+
+
+
+.price .currentPrice {
+    font-size: 24px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: blue;
+}
+.detail_info {
+    display: flex;
+    flex-direction: column;
+    
+    
+}
+ .detail_info label {
+    margin-top: 20px;
+    padding-bottom: 10px;
+    font-size: 14px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(85, 85, 85);
+}
+.detail_info ul {
+    display: flex;
+    margin-bottom: 10px;
+}
+.detail_info ul li {
+    display: flex;
+    border: 1px solid rgb(214, 214, 214);
+    border-radius: 4px;
+    width: 70px;
+    height: 38px;
+    margin-right: 20px;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    color: #777;
+    cursor: pointer;
+}
+
+.detail_info ul .active {
+    border: 2px solid rgb(0, 102, 204);
+}
+
+.itemColor ul {
+    display: flex;
+    margin-bottom: 10px;
+}
+.itemColor ul li {
+    border: 1px solid rgb(214, 214, 214);
+    border-radius: 100%;
+    width: 30px;
+    height: 30px;
+    margin-top: 5px;
+    margin-right: 20px;
+    box-shadow: inset 1px 1px 2px rgb(0 0 0 / 10%);
+    cursor: pointer;
+}
+
+.itemColor ul .active {
+    box-shadow: inset 1px 1px 2px rgb(0 0 0 / 30%);
+
+}
+
+.black {
+    background-color: rgb(31 41 55);
+}
+
+.white {
+    background-color: rgb(255 255 255);
+}
+
+.gray {
+    background-color: rgb(209 213 219);
+}
+
+.silver {
+    background-color: rgb(243 244 246);
+}
+
+.purple {
+    background-color: rgb(192 132 252);
+}
+
+.pink {
+    background-color: rgb(251 207 232);
+}
+.blue {
+    background-color: rgb(125 211 252);
+}
+.gold, .yellow {
+    background-color: rgb(234 179 8);
+}
+
+.green {
+    background-color: rgb(74 222 128);
+}
+
+.black_outline {
+    background-color: #aaa;
+    outline: 2px #1059e1cc;
+}
+
+
+
+.detail_info div {
+    display: flex;
+    
+}
+.detail_info span {
+    height: 40px;
+    width: 70px;
+    border-radius: 10px;
+    border-width: 1px;
+}
+.detail_info div span{
+    height: 40px;
+    width: 90px;
+    border-radius: 10px;
+    border-width: 1px;
+    
+}
+.confirm {
+    margin-top: 100px;
+}
+
+.confirm button {
+    margin-top: 30px;
+    width: 100%;
+    height: 50px;
+    border-radius: 8px;
+    background-color: #0066CC;
+    color: #E8E8E8;
+    font-size: 20px;
+}

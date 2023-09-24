@@ -1,0 +1,96 @@
+.container {
+    background-color: #1d1d1f;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footerUpper {
+    padding: 64px 0 21px 0;
+    border-bottom: 1px solid #515154;
+    width: 1200px;
+}
+
+.network {
+    padding: 0 0 30px;
+    font-size: 0;
+    display: flex;
+}
+
+.networkIcon {
+    margin: 0 10px 0 0;
+    display: inline-block;
+}
+
+.logo {
+    height: 48px;
+    width: 184px;
+}
+
+.gioiThieu {
+    margin: 10px 0;
+    padding: 8px 0;
+    color: #fff;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 24px;
+    color: #D2D2D7;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.information {
+    padding: 0 0 0 60px;
+}
+
+.title {
+    color: #d2d2d7;
+    font-size: 15px;
+    line-height: 21px;
+    font-weight: 700;
+    margin: 0 0 15px
+}
+
+.listItem {
+    color: #86868b;
+    font-size: 13px;
+    line-height: 28px;
+}
+
+.listItemLocation {
+    padding-left: 15px;
+    display: flex;
+    line-height: 20px;
+}
+
+.phone {
+    color: #06c;
+}
+
+.customerService {}
+
+.myAccount {}
+
+.footerLower {
+    width: 1200px;
+    padding: 20px 0px 32px 0px;
+}
+
+.footerInfo {
+    float: left;
+    text-align: left;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.footerDisclaimer {
+    font-size: 13px;
+    line-height: 20px;
+    color: #515154;
+}
+
+.footerImg {
+    float: right;
+    width: 139px;
+}

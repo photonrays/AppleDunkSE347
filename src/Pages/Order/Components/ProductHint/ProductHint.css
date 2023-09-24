@@ -1,0 +1,49 @@
+/* Slider */
+.splide__arrow {
+    background-color: transparent;
+    border: 1px solid #0066cc;
+    /* background-color: #0066cc !important; */
+    width: 3.2rem;
+    height: 3.2rem;
+}
+
+.splide__arrow svg {
+    fill: #000;
+    width: 1.6rem;
+    height: 1.6rem;
+}
+
+.splide__arrow--next {
+    right: -1em;
+}
+
+.splide__arrow--prev {
+    left: -1em;
+}
+
+/* .splide__slide.is-active {
+    opacity: 1;
+}
+*/
+
+.ProductHint__slide .splide__slide {
+    outline: none !important;
+    border: none !important;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 1px 9px 0 rgb(0 0 0 / 0.05);
+    width: 190px !important;
+    margin: 5px !important;
+} 
+
+/* .ProductHint__slide .splide__pagination {
+    bottom: -3rem !important;
+}
+
+.splide__pagination__page.is-active {
+    background: #0066cc !important;
+}
+
+.splide__pagination__page {
+    background: #fff !important;
+} */
