@@ -6,7 +6,7 @@ const getAllStore = async () => {
 };
 
 const getAllStoreCached = async () => {
-    return await axiosInstance.get(`api/store/cached`);
+    return await axiosInstance.get(`api/store`); // add cached
 };
 
 const getStoreByDistrict = async (code) => {

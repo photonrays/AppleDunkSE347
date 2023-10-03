@@ -47,10 +47,10 @@ function Header() {
     };
 
     const formatUserName = (tenUser) =>{
-        if (tenUser.length <= 8) {
+        if (tenUser?.length <= 8) {
             return tenUser;
           } else {
-            return tenUser.substring(0, 8) + "...";
+            return tenUser?.substring(0, 8) + "...";
           }
     }
 
@@ -195,8 +195,8 @@ function Header() {
                         />*/}
                         
                         <div className={styles.userr}>
-                            <img src={user.image.length !== 0?user.image[0].url:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkNjtjpEZtAtYMoeDfg6PO5DoGrpAhCA79Jg&usqp=CAU"} alt="User Image" className={styles.userr_image} />
-                            <p className={styles.menuItemLink} style={{ color: "white"}}>{formatUserName(user.hoten)}</p>
+                            <img src={user?.image.length !== 0?user?.image[0].url:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkNjtjpEZtAtYMoeDfg6PO5DoGrpAhCA79Jg&usqp=CAU"} alt="User Image" className={styles.userr_image} />
+                            <p className={styles.menuItemLink} style={{ color: "white"}}>{formatUserName(user?.hoten)}</p>
                         </div>
                         
                     </IconButton>:

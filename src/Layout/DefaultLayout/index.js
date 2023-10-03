@@ -3,6 +3,7 @@ import Footer from "../../Components/Footer";
 import { useEffect, useState } from "react";
 import NorthIcon from "@mui/icons-material/North";
 import styles from "./DefaultLayout.module.css";
+import NavigationMobile from "../../Components/NavigationMobile";
 
 function DefaultLayout({ children }) {
     const [backToTopButton, setBackToTopButton] = useState(false);
@@ -35,6 +36,8 @@ function DefaultLayout({ children }) {
                     <NorthIcon className={styles.btnIcon} />
                 </button>
             )}
+            {/* Navigation bottom on mobile */}
+            {/* <NavigationMobile /> */}
         </div>
     );
 }

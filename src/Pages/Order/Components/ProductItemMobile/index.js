@@ -1,4 +1,4 @@
-import styles from "./ProductItem.module.css";
+import styles from "./ProductItemMobile.module.css";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import HandleApiCart from "../../../../Apis/HandleApiCart";
@@ -6,7 +6,7 @@ import HandleApiCart from "../../../../Apis/HandleApiCart";
 import { DeleteOutline, ReceiptOutlined } from "@mui/icons-material";
 import { IconButton } from "@mui/material";
 
-function ProductItem({
+function ProductItemMobile({
     item,
     index,
     setData,
@@ -132,37 +132,46 @@ function ProductItem({
             e.preventDefault();
         }
     };
-
     return (
-        <tr className="border-solid border-t border-t-[#d9d9d9]" key={index}>
-            <td className="md:p-[12px] py-[12px]">
-                <a href={`/detailproduct/${item.masp}`}>
+        <div className="bg-white mb-5 rounded-xl">
+            <div className={styles.tablet + " flex"}>
+                <a
+                    href={`/detailproduct/${item.masp}`}
+                    className={styles.pt24 + " py-[12px]"}
+                >
                     <img
-                        className="w-[80px] h-[80px] m-[auto] object-cover"
+                        className={
+                            styles.scale +
+                            " w-[80px] h-[80px] m-[auto] object-cover"
+                        }
                         src={item.hinh}
                         alt={item.tensp}
                     ></img>
                 </a>
-            </td>
-            <td className="text-left md:pl-[24px] p-[12px]">
-                <a href="/" className="font-semibold">
-                    {item.tensp}
-                </a>
-                <div className="text-[#86868B] font-normal mt-1">
-                    Hình thức: Mua thẳng
-                    <br />
-                    Màu sắc: {item.mausac}
-                    <br />
-                    {item.dungluong && <div>Dung lượng: {item?.dungluong}</div>}
+                <div className="text-left md:pl-[24px] md:p-[20px] p-[12px]">
+                    <a href="/" className="font-semibold">
+                        {item.tensp}
+                    </a>
+                    <div className="text-[#86868B] font-normal mt-1">
+                        Hình thức: Mua thẳng
+                        <br />
+                        Màu sắc: {item.mausac}
+                        <br />
+                        {item.dungluong && (
+                            <div>Dung lượng: {item?.dungluong}</div>
+                        )}
+                    </div>
+                    <div
+                        className={
+                            styles.displayBlock +
+                            " hidden text-[#0066cc] font-semibold pt-2"
+                        }
+                    >
+                        Giá bán: {Number(item.gia).toLocaleString() + "đ"}
+                    </div>
                 </div>
-                {/* <div className={styles.displayBlock + " hidden text-[#0066cc] font-semibold pt-2"}>
-                    Giá bán: {Number(item.gia).toLocaleString() + "đ"}
-                </div> */}
-            </td>
-            <td className={styles.displayNone + " p-[12px] align-top"}>
-                {Number(item.gia).toLocaleString() + "đ"}
-            </td>
-            <td className={styles.displayNone + " p-[12px] align-top"}>
+            </div>
+            <div className="flex items-center justify-end pb-2">
                 <div className={styles.quantity}>
                     <button
                         className={addClass + " text-[16px]"}
@@ -189,25 +198,22 @@ function ProductItem({
                         &#43;
                     </button>
                 </div>
-            </td>
-            <td className="p-[12px] align-top">
-                <IconButton
-                    size="medium"
-                    color="error"
-                    onClick={() => HandleDeleteSp(item)}
-                >
-                    <DeleteOutline
-                        sx={{
-                            fontSize: "24px",
-                        }}
-                    />
-                </IconButton>
-            </td>
-            <div>
-                
+                <div className="lg:p-[12px] p-[8px] align-top">
+                    <IconButton
+                        size="medium"
+                        color="error"
+                        onClick={() => HandleDeleteSp(item)}
+                    >
+                        <DeleteOutline
+                            sx={{
+                                fontSize: "24px",
+                            }}
+                        />
+                    </IconButton>
+                </div>
             </div>
-        </tr>
+        </div>
     );
 }
 
-export default ProductItem;
+export default ProductItemMobile;
