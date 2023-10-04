@@ -3,17 +3,17 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import { BrowserRouter as Router } from "react-router-dom";
 import GlobalStyles from "./Components/GlobalStyles";
-import { ThemeContextProvider } from "./contexts/themeContext";
+import { MultiContextProvider } from "./contexts/multiContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
     <Router>
         <React.StrictMode>
-           <ThemeContextProvider>
+           <MultiContextProvider>
                 <GlobalStyles>
                     <App />
                 </GlobalStyles>
-           </ThemeContextProvider>
+           </MultiContextProvider>
         </React.StrictMode>
     </Router>
 );

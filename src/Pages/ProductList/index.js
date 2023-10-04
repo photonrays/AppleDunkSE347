@@ -3,11 +3,11 @@ import Banner from './Components/Banner';
 import DetailSection from './Components/DetailSection';
 import ProductSection from './Components/ProductSection';
 import TopSection from './Components/TopSection';
-import { useThemeContext } from '../../contexts/themeContext';
 import { useEffect } from 'react';
+import { useMultiContext } from '../../contexts/multiContext';
 
 export default function ProductList({ type }) {
-    const {theme, setTheme} = useThemeContext()
+    const {theme, setTheme} = useMultiContext()
 
     console.log(theme)
 

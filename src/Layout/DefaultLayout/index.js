@@ -3,6 +3,7 @@ import Footer from "../../Components/Footer";
 import { useEffect, useState } from "react";
 import NorthIcon from "@mui/icons-material/North";
 import styles from "./DefaultLayout.module.css";
+import Sidebar from "../../Components/Sidebar";
 
 function DefaultLayout({ children }) {
     const [backToTopButton, setBackToTopButton] = useState(false);
@@ -26,15 +27,18 @@ function DefaultLayout({ children }) {
         });
     };
     return (
-        <div>
-            <Header />
-            <div>{children}</div>
-            <Footer />
-            {backToTopButton && (
-                <button className={styles.btn} onClick={scrollUp}>
-                    <NorthIcon className={styles.btnIcon} />
-                </button>
-            )}
+        <div className="max-h-full min-h-screen max-w-full flex overflow-hidden">
+            <Sidebar />
+            <div className="grow w-full">
+                <Header />
+                <div className="mt-[64px]">{children}</div>
+                <Footer />
+                {backToTopButton && (
+                    <button className={styles.btn} onClick={scrollUp}>
+                        <NorthIcon className={styles.btnIcon} />
+                    </button>
+                )}
+            </div>
         </div>
     );
 }
