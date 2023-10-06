@@ -21,3 +21,26 @@
     margin: 0;
     appearance: none;
 }
+
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .displayNone {
+        display: none;
+    }
+
+    .displayBlock {
+        display: block !important;
+    }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+    .displayNone {
+        display: none;
+    }
+
+    .displayBlock {
+        display: block !important;
+    }
+}

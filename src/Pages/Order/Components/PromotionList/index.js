@@ -19,12 +19,12 @@ function PromotionList({
     const handleDisplayOff = () => {
         setDisplay(!display);
     };
-    console.log("Money " + totalMoney);
-    
+    // console.log("Money: " + totalMoney);
+
     useEffect(() => {
         HandleApiKM.getKMByApdung(Number(totalMoney))
             .then((data) => {
-                // console.log(data);
+                // console.log("Click: " + data);
                 setData(data);
             })
             .catch((err) => console.log(err));
@@ -63,10 +63,10 @@ function PromotionList({
                             }}
                             onClick={handleDisplayOff}
                         />
-                        <div className="text-center text-[32px] font-semibold mb-4">
+                        <div className="text-center md:text-[32px] text-[22px] font-semibold mb-4">
                             Danh sách khuyến mãi khả dụng
                         </div>
-                        <div className="max-h-[400px] min-h-[150px] overflow-y-auto">
+                        <div className="lg:max-h-[300px] min-h-[150px] max-h-[500px] overflow-y-auto">
                             <div>
                                 {data.map((item, index) => (
                                     <PromotionItem
@@ -79,8 +79,8 @@ function PromotionList({
                                         setPromotion={setPromotion}
                                         styles={
                                             selected === item._id
-                                                ? "w-[102px] ml-[50px] border border-solid p-[10px] text-[14px] cursor-not-allowed border-[#777] text-[#777] rounded-[8px]"
-                                                : "w-[102px] ml-[50px] border border-solid border-[#0066cc] p-[10px] text-[14px] text-[#0066cc] rounded-[8px] hover:bg-sky-200"
+                                                ? "w-[102px] lg:ml-[50px] border border-solid p-[10px] text-[14px] cursor-not-allowed border-[#777] text-[#777] rounded-[8px]"
+                                                : "w-[102px] lg:ml-[50px] border border-solid border-[#0066cc] p-[10px] text-[14px] text-[#0066cc] rounded-[8px] hover:bg-sky-200"
                                         }
                                         text={
                                             selected === item._id

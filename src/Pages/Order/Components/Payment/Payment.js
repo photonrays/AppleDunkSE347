@@ -229,7 +229,7 @@ function Payment(props) {
                          outline-none border border-[#ddd] rounded-[8px] focus:border-[#0066cc] focus:text-black"
                         />
                     </div>
-                    <div>
+                    <div className="col-span-2 lg:col-auto">
                         <div className="text-[14px] font-light mb-[8px]">
                             Số điện thoại:
                         </div>
@@ -247,7 +247,7 @@ function Payment(props) {
                             }
                         />
                     </div>
-                    <div>
+                    <div className="col-span-2 lg:col-auto">
                         <div className="text-[14px] font-light mb-[8px]">
                             Email:
                         </div>
@@ -300,8 +300,8 @@ function Payment(props) {
                         Giao hàng tận nơi
                     </label>
                 </div>
-                <div className="grid grid-cols-2 gap-6">
-                    <div>
+                <div className="grid lg:grid-cols-2 gap-6">
+                    <div className="lg:col-auto col-span-2">
                         <div className="text-[14px] font-light my-[8px]">
                             Tỉnh, thành phố:
                         </div>
@@ -317,8 +317,8 @@ function Payment(props) {
                             onChange={handleChangeProvince}
                         />
                     </div>
-                    <div>
-                        <div className="text-[14px] font-light my-[8px]">
+                    <div className="lg:col-auto col-span-2">
+                        <div className="text-[14px] font-light lg:my-[8px] mb-[8px]">
                             Quận, huyện:
                         </div>
                         <Select
@@ -401,7 +401,7 @@ function Payment(props) {
                     <label
                         htmlFor="momo"
                         className="flex border border-solid border-[#ddd] rounded-[8px] py-5 px-10 
-                        items-center cursor-pointer focus-within:border-[#0066cc]"
+                        items-center cursor-pointer focus-within:border-[#0066cc] md:col-auto col-span-2"
                     >
                         <input
                             type="radio"
@@ -420,7 +420,7 @@ function Payment(props) {
                     <label
                         htmlFor="zalopay"
                         className="flex border border-solid border-[#ddd] rounded-[8px] py-5 px-10 
-                        items-center cursor-pointer focus-within:border-[#0066cc]"
+                        items-center cursor-pointer focus-within:border-[#0066cc] md:col-auto col-span-2"
                     >
                         <input
                             type="radio"
@@ -441,7 +441,7 @@ function Payment(props) {
                     <label
                         htmlFor="shipcod"
                         className="flex border border-solid border-[#ddd] rounded-[8px] py-5 px-10 
-                        items-center cursor-pointer focus-within:border-[#0066cc]"
+                        items-center cursor-pointer focus-within:border-[#0066cc] md:col-auto col-span-2"
                     >
                         <input
                             type="radio"
