@@ -49,12 +49,12 @@ function Header() {
         //Cookies.remove('token')
     };
 
-    const formatUserName = (tenUser) => {
-        if (tenUser.length <= 8) {
+    const formatUserName = (tenUser) =>{
+        if (tenUser?.length <= 8) {
             return tenUser;
-        } else {
-            return tenUser.substring(0, 8) + "...";
-        }
+          } else {
+            return tenUser?.substring(0, 8) + "...";
+          }
     }
 
     const inputRef = useRef(null);

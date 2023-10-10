@@ -50,7 +50,7 @@ function Store() {
                 `https://provinces.open-api.vn/api/p/${selectedOption.code}?depth=2`
             )
             .then((response) => {
-                console.log(response.data);
+                // console.log(response.data);
                 const options = response.data.districts.map((item) => ({
                     value: item.code,
                     label: item.name,
@@ -59,7 +59,7 @@ function Store() {
             });
         HandleApiStore.getStoreByProvince(selectedOption.code)
             .then((data) => {
-                console.log(data);
+                // console.log(data);
                 setStores(data);
                 setShowStore(true);
                 if (data.length > 0) {
@@ -78,6 +78,9 @@ function Store() {
             .then((data) => {
                 console.log(data);
                 setStores(data);
+                if (data.length > 0) {
+                    setLabel("Địa chỉ chi nhánh phù hợp");
+                } else setLabel("Không có chi nhánh ở địa điểm này");
             })
             .catch((err) => console.log(err));
     };
@@ -91,13 +94,13 @@ function Store() {
     };
 
     return (
-        <div className="bg-[#F5F5F7] py-14 min-h-full">
-            <h1 className="text-center text-5xl font-semibold py-10">
+        <div className="bg-[#F5F5F7] py-14 lg:px-0 px-6 min-h-full">
+            <h1 className="text-center lg:text-5xl text-4xl font-semibold py-10">
                 Xem các chi nhánh cửa hàng
             </h1>
-            <div className="bg-white rounded-[8px] py-8 px-6 w-[1180px] mx-auto shadow-sm">
+            <div className="bg-white rounded-[8px] py-8 px-6 lg:w-[1180px] w-full mx-auto shadow-sm">
                 <div className="grid grid-cols-2 gap-6">
-                    <div>
+                    <div className="lg:col-auto col-span-2">
                         <div className="text-2xl font-light my-[8px]">
                             Tỉnh, thành phố:
                         </div>
@@ -113,7 +116,7 @@ function Store() {
                             onChange={handleChangeProvince}
                         />
                     </div>
-                    <div>
+                    <div className="lg:col-auto col-span-2">
                         <div className="text-2xl font-light my-[8px]">
                             Quận, huyện:
                         </div>
@@ -133,16 +136,16 @@ function Store() {
                 </div>
                 {showStore && (
                     <div>
-                        <div className="text-center text-[20px] font-medium py-8">
+                        <div className="text-center lg:text-[20px] text-[16px] font-medium py-8">
                             {label}
                         </div>
-                        <div>
+                        <ol className="list-decimal">
                             {stores.map((store) => (
-                                <div className="text-[#4a90e2] text-2xl mx-[250px] mb-2">
+                                <li className="text-[#4a90e2] text-2xl lg:mx-[250px] mx-8 mb-2">
                                     {store.name}
-                                </div>
+                                </li>
                             ))}
-                        </div>
+                        </ol>
                     </div>
                 )}
             </div>

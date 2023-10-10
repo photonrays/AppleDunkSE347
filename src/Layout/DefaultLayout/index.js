@@ -5,6 +5,7 @@ import NorthIcon from "@mui/icons-material/North";
 import styles from "./DefaultLayout.module.css";
 import Sidebar from "../../Components/Sidebar";
 
+
 function DefaultLayout({ children }) {
     const [backToTopButton, setBackToTopButton] = useState(false);
     const scrollHeight = document.documentElement.scrollHeight;
