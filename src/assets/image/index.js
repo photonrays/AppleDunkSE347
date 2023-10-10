@@ -71,7 +71,8 @@ const images = {
     sacCap: require('./accessoryCategories/sac-cap.png'),
     sacDuPhong: require('./accessoryCategories/sac-du-phong.png'),
     sale: require("./sale.jpg"),
-    logo: require("./logo2.png")
+    logo: require("./logo2.png"),
+    logo512: require("./logo512.png")
 };
 
 export default images;

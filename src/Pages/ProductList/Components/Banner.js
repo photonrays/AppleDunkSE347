@@ -67,7 +67,7 @@ function Banner({ type }) {
         paginationKeyboard: true,
     };
     return (
-        <div className="w-full">
+        <div className="w-full hidden sm:block mt-[16px]">
             <Splide hasTrack={false} options={options} aria-label="Slider Product">
                 <div className="mainSlider">
                     <SplideTrack>
@@ -116,8 +116,8 @@ function Banner({ type }) {
                     </SplideTrack>
                 </div>
                 <div className="paginationSlider">
-                    <div className="splide__arrows advertisement">
-                        <button className="splide__arrow splide__arrow--prev  ">
+                    <div className="splide__arrows">
+                        <button className="splide__arrow splide__arrow--prev">
                             <NavigateNextIcon />
                         </button>
                         <button className="splide__arrow splide__arrow--next  ">

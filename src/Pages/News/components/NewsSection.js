@@ -4,8 +4,8 @@ import NewsCard from './NewsCard'
 export default function NewsSection({data, title, url, category}) {
   return (
     <div>
-        <h2 className='text-[32px] text-[#1D1D1F]'>{title}</h2>
-                <div className='mt-[20px] grid grid-cols-2 gap-[20px] gap-y-[40px] mb-[20px]'>
+        <h2 className='text-4xl md:text-[32px] text-[#1D1D1F]'>{title}</h2>
+                <div className='mt-[20px] grid grid-cols-1 md:grid-cols-2 gap-[20px] gap-y-[40px] mb-[20px]'>
                     {data?.map((obj, index) => {
                         if (obj.category === category)
                             return <NewsCard key={index} data={obj} />

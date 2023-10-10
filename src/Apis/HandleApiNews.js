@@ -10,7 +10,7 @@ const getAllNews = async (page = 1, pageSize = 10, category = null) => {
 };
 
 const getNewsById = async (id) => {
-    let query = `/api/tin-tuc/cached/${id}`;
+    let query = `/api/tin-tuc/${id}`;
     return await axiosInstance.get(query);
 };
 
