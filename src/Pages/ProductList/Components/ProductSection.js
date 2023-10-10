@@ -263,7 +263,7 @@ export default function ProductSection({ type, currentCategory = null }) {
                     <div className={`px-2 py-1 border-2 cursor-pointer  rounded-r-xl ${itemsViewType === -1 ? 'bg-[#086ecf] border-[#086ecf]' : 'border-gray-300 hover:bg-gray-300'}`} onClick={() => setItemsViewType(-1)}><ViewAgendaOutlined sx={{ fontSize: '32px', color: `${itemsViewType === -1 ? '#ffffff' : '#666666'}` }} /></div>
                 </div>
             </div>
-            <div className='grid grid-cols-3 md:grid-cols-4 place-items-center gap-[20px] mb-[35px] mx-auto'>
+            <div className='grid grid-cols-2 min-[470px]:grid-cols-3 md:grid-cols-4 place-items-center gap-[20px] mb-[35px] mx-auto'>
                 {data?.map((item, index) => <Layout key={index} item={item} />)}
             </div>
             <div className="flex items-center space-x-1 justify-center gap-[10px] pb-10">

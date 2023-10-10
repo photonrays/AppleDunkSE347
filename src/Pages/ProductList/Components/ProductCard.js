@@ -3,7 +3,7 @@ import {convertToSlug} from '../../../utils'
 
 export default function ProductCard({ item }) {
     return (
-        <div className='w-[100px] h-[200px] min-[400px]:w-[130px] min-[400px]:h-[240px] sm:w-[180px] sm:h-[280px] lg:w-[240px] lg:h-[360px] xl:w-[285px] xl:h-[412px] bg-white p-[7px] rounded-[8px] drop-shadow-[0_1px_8px_rgba(0,0,0,0.025)] cursor-pointer hover:drop-shadow-2xl'>
+        <div className='w-[150px] h-[250px] min-[580px]:w-[180px] min-[580px]:h-[280px] lg:w-[240px] lg:h-[360px] xl:w-[285px] xl:h-[412px] bg-white p-[7px] rounded-[8px] drop-shadow-[0_1px_8px_rgba(0,0,0,0.025)] cursor-pointer hover:drop-shadow-2xl'>
             <a href={`/detailproduct/${item._id}`}>
                 <div className='flex justify-end mb-[5px] lg:mb-[12px] h-[20px] lg:h-[30px]'>
                     {item.soluong > 0 && <img src="https://shopdunk.com/images/uploaded/icon/san-hang-n.png" alt='' />}

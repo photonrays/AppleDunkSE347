@@ -3,7 +3,7 @@ import React from 'react'
 export default function NewsCard({data}) {    
     return (
         <div className='flex border-b-2 pb-3'>
-            <a href={`/tin-tuc/${data?.slug}`} className='block w-[170px] h-[170px] shrink-0'>
+            <a href={`/tin-tuc/${data?.slug}`} className='block w-[120px] h-[120px] md:w-[170px] md:h-[170px] shrink-0'>
                 <img src={data?.image} alt={data?.title} className='w-full h-full object-cover rounded-[8px]' />
             </a>
             <div className='mx-[35px] mt-[30px] mb-[10px] flex flex-col	justify-between'>
