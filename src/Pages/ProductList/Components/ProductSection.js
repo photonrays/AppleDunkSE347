@@ -6,7 +6,11 @@ import { useLocation } from 'react-router-dom'
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import api from '../../../Apis/HandleApiProduct'
 import { convertToSlug } from '../../../utils'
-import { KeyboardArrowLeft, KeyboardArrowRight, KeyboardDoubleArrowLeft, KeyboardDoubleArrowRight } from "@mui/icons-material";
+import { KeyboardArrowLeft, KeyboardArrowRight, KeyboardDoubleArrowLeft, KeyboardDoubleArrowRight, GridViewOutlined, ViewAgendaOutlined } from "@mui/icons-material";
+import ProductCardList from './ProductCardList';
+import { IconButton } from '@mui/material';
+
+
 
 
 const accessoryNavigation = [
@@ -39,17 +43,17 @@ const accessoryNavigation = [
         name: "Chuột/ Bàn phím",
         image: images.chuot,
         path: "/phu-kien/chuot-ban-phim",
-    }, 
+    },
     {
         name: "Bút Apple Pencil",
         image: images.applePencil,
         path: "/phu-kien/but-apple-pencil",
-    }, 
+    },
     {
         name: "Dây đeo Apple Watch",
         image: images.dayDeo,
         path: "/phu-kien/day-deo-apple-watch",
-    }, 
+    },
     {
         name: "AirTags",
         image: images.airtags,
@@ -87,6 +91,7 @@ export default function ProductSection({ type, currentCategory = null }) {
     const [pageRange, setPageRange] = useState([1]);
     const [isLeftMost, setIsLeftMost] = useState(false);
     const [isRightMost, setIsRightMost] = useState(false);
+    const [itemsViewType, setItemsViewType] = useState(1);
 
     const options = [
         { label: "Giá cao đến thấp", value: "desc" },
@@ -131,16 +136,6 @@ export default function ProductSection({ type, currentCategory = null }) {
         console.log(sort)
         api.getAllProduct(type, currentPage, 12, currentCategory, sort).then(result => { console.log(result); setData(result.listProducts); setTotalPage(result.totalPages); })
     }, [currentCategory, type, currentPage, sort])
-
-    // useEffect(() => {
-    //     const newArray = structuredClone(data);
-    //     if (!sort) setSortedData(newArray);
-    //     else if (sort === 1) setSortedData(newArray.sort((a, b) => b.gia - a.gia));
-    //     else if (sort === 2) setSortedData(newArray);
-    //     else if (sort === 3) setSortedData(newArray);
-    //     else if (sort === 4) setSortedData(newArray);
-    //     else setSortedData(newArray.sort((a, b) => a.gia - b.gia));
-    // }, [sort, data])
 
     const changePage = (index) => {
         if (index !== currentPage) {
@@ -190,13 +185,21 @@ export default function ProductSection({ type, currentCategory = null }) {
         setPageRange(arr);
     }, [currentPage, totalPage, type, currentCategory]);
 
+    let Layout = ProductCard;
+
+    if (itemsViewType === 1) {
+        Layout = ProductCard;
+    } else if (itemsViewType === -1) {
+        Layout = ProductCardList;
+    }
+
     return (
-        <div className='w-[1200px] mx-auto'>
-            <div className='w-full my-[36px] py-[6px]'>
-                <div className='flex justify-between'>
+        <div className='w-full max-w-[1280px] mx-auto px-2 sm:px-10'>
+            <div className='w-full mt-14 mb-5 py-[6px]'>
+                <div className='flex justify-between flex-wrap gap-5 md:flex-nowrap'>
                     {type !== "Phụ kiện" ?
                         <>
-                            <div className='flex gap-x-[40px] items-center overflow-x-scroll mr-[40px] pb-[20px]'>
+                            <div className='flex gap-x-[40px] items-center overflow-x-scroll mr-[40px] pb-[10px]'>
                                 <a href={initPath} className={`text-[15px] ${currentCategory === null ? 'text-[#0066cc]' : 'text-[#515154]'} shrink-0`}>Tất cả</a>
                                 {subCategories?.map((item, index) => (
                                     <a key={index} href={`${initPath}/${convertToSlug(item)}`} className={`text-[15px] ${currentCategory === item ? 'text-[#0066cc]' : 'text-[#515154]'} hover:text-[#0066cc] shrink-0	`}>{item}</a>
@@ -204,7 +207,7 @@ export default function ProductSection({ type, currentCategory = null }) {
                             </div>
                             <Select
                                 options={options}
-                                className="text-[16px] shrink-0"
+                                className="text-[16px] shrink-0 hidden md:block"
                                 isClearable={true}
                                 closeMenuOnSelect={true}
                                 placeholder="Thứ tự hiển thị"
@@ -212,9 +215,24 @@ export default function ProductSection({ type, currentCategory = null }) {
                             />
                         </>
                         :
-                        <Splide className='w-[1200px]' options={{
+                        <Splide className='w-full max-w-[1280px]' options={{
                             rewind: true,
-                            perPage: 7
+                            perPage: 7,
+                            pagination: false,
+                            breakpoints: {
+                                450: {
+                                    perPage: 2
+                                },
+                                640: {
+                                    perPage: 4
+                                },
+                                768: {
+                                    perPage: 5
+                                },
+                                1024: {
+                                    perPage: 6
+                                }
+                            }
                         }}>
                             {accessoryNavigation.filter((item) => subCategories?.includes(item.name)).map((item, index) => (
                                 <SplideSlide key={index}>
@@ -231,11 +249,24 @@ export default function ProductSection({ type, currentCategory = null }) {
 
                 </div>
             </div>
-
-            <div className='flex gap-[20px] flex-wrap mb-[35px]'>
-                {data?.map((item, index) => <ProductCard key={index} item={item} />)}
+            <div className='flex w-full justify-between items-center mb-5'>
+                {type !== "Phụ kiện" && <Select
+                    options={options}
+                    className="text-[16px] shrink-0 block md:hidden"
+                    isClearable={true}
+                    closeMenuOnSelect={true}
+                    placeholder="Thứ tự hiển thị"
+                    onChange={onChangeSort}
+                />}
+                <div className='flex mb-5 ml-auto'>
+                    <div className={`px-2 py-1 border-2 cursor-pointer  rounded-l-xl ${itemsViewType === 1 ? 'bg-[#086ecf] border-[#086ecf]' : 'border-gray-300 hover:bg-gray-300'}`} onClick={() => setItemsViewType(1)}><GridViewOutlined sx={{ fontSize: '32px', color: `${itemsViewType === 1 ? '#ffffff' : '#666666'}` }} /></div>
+                    <div className={`px-2 py-1 border-2 cursor-pointer  rounded-r-xl ${itemsViewType === -1 ? 'bg-[#086ecf] border-[#086ecf]' : 'border-gray-300 hover:bg-gray-300'}`} onClick={() => setItemsViewType(-1)}><ViewAgendaOutlined sx={{ fontSize: '32px', color: `${itemsViewType === -1 ? '#ffffff' : '#666666'}` }} /></div>
+                </div>
             </div>
-            <div className="flex items-center space-x-1 justify-center gap-[10px]">
+            <div className='grid grid-cols-3 md:grid-cols-4 place-items-center gap-[20px] mb-[35px] mx-auto'>
+                {data?.map((item, index) => <Layout key={index} item={item} />)}
+            </div>
+            <div className="flex items-center space-x-1 justify-center gap-[10px] pb-10">
                 {!isLeftMost && (
                     <>
                         <div onClick={goToFirstPage} className="flex items-center justify-center bg-white rounded-md hover:bg-blue-400 text-[15px] text-gray-700 hover:text-white w-[35px] h-[35px] cursor-pointer select-none">

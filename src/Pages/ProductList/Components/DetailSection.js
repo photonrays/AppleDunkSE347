@@ -323,19 +323,19 @@ export default function DetailSection({ type }) {
     }, [type])
 
     return (
-        <div className='w-[1200px] mx-auto'>
-            {detail && <div className='flex gap-[20px] mt-[32px]'>
-                <div className='w-[590px] h-[215px] bg-white flex py-[38px] cursor-pointer rounded-[8px] drop-shadow-[1px_1px_28px_0rgba(0,0,0,0.12)]'>
-                    <img src={detail.image1} alt='compare iphone' className='h-[139px] ml-[20px] px-[48px] bg-white ' />
+        <div className='w-full max-w-[1200px] mx-auto'>
+            {detail && <div className='flex gap-[20px] mt-[32px] lg:flex-nowrap flex-wrap justify-center'>
+                <div className='mx-5 sm:mx-0 w-full max-w-[590px] max-h-[215px] bg-white flex py-5 sm:py-[38px] cursor-pointer rounded-[8px] drop-shadow-[1px_1px_28px_0rgba(0,0,0,0.12)]'>
+                    <img src={detail.image1} alt='compare iphone' className='h-full max-h-[139px] ml-[20px] px-2 sm:px-[48px] bg-white ' />
                     <div className='flex justify-around flex-col w-[200px]'>
-                        <h4 className='text-[24px] text-[#1D1D1F] font-bold'>{detail.heading1}</h4>
+                        <h4 className='text-3xl sm:text-[24px] text-[#1D1D1F] font-bold'>{detail.heading1}</h4>
                         <a href='/phu-kien' className='text-[#0066CC] text-[15px]'>{detail.text1} &gt;</a>
                     </div>
                 </div>
-                <div className='w-[590px] h-[215px] bg-white flex py-[38px] cursor-pointer rounded-[8px] drop-shadow-[1px_1px_28px_0rgba(0,0,0,0.12)]'>
-                    <img src={detail.image2} alt='accessory' className='h-[139px] ml-[20px] px-[48px] bg-white' />
+                <div className='mx-5 sm:mx-0 w-full max-w-[590px] max-h-[215px] bg-white flex py-5 sm:py-[38px] cursor-pointer rounded-[8px] drop-shadow-[1px_1px_28px_0rgba(0,0,0,0.12)]'>
+                    <img src={detail.image2} alt='accessory' className='h-full max-h-[139px] ml-[20px] px-2 sm:px-[48px] bg-white' />
                     <div className='flex justify-around flex-col w-[200px]'>
-                        <h4 className='text-[24px] text-[#1D1D1F] font-bold'>{detail.heading2}</h4>
+                        <h4 className='text-3xl sm:text-[24px] text-[#1D1D1F] font-bold'>{detail.heading2}</h4>
                         <a href='/phu-kien' className='text-[#0066CC] text-[15px]'>{detail.text2} &gt;</a>
                     </div>
                 </div>

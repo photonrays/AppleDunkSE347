@@ -95,8 +95,8 @@ function Header() {
 
     return (
         <>
-            {/* Day la thanh header khi man hinh nho hon md */}
-            <div className="z-10 h-[64px] w-full bg-white flex fixed top-0 md:hidden items-center justify-between">
+            {/* Day la thanh header khi man hinh nho hon lg */}
+            <div className="z-10 h-[64px] w-full bg-white flex fixed top-0 lg:hidden items-center justify-between">
                 <div className="ml-5"><IconButton onClick={() => setIsSidebarOpen(true)} className={`${isSidebarOpen ? 'hidden' : 'block'}`}><MenuIcon sx={{ fontSize: "30px" }} /></IconButton></div>
 
                 <a href="/" className={styles.logo}>
@@ -141,8 +141,8 @@ function Header() {
                 </div>
             </div>
 
-            {/* Day la thanh header khi man hinh lon hon md */}
-            <div className="z-10 h-[64px] w-full bg-[#515154] hidden justify-center fixed top-0 md:flex">
+            {/* Day la thanh header khi man hinh lon hon lg */}
+            <div className="z-10 h-[64px] w-full bg-[#515154] hidden justify-center fixed top-0 lg:flex">
                 {/* Đây là thanh search trên Header khi nào click icon search thì xuất hiện */}
                 <div
                     onClick={() => setSearch(1)}

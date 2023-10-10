@@ -83,3 +83,12 @@
     object-fit: cover;
     margin-right: 0px;
 }
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1023px) {
+    
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+
+}

@@ -10,7 +10,7 @@ export default function Sidebar() {
   const { isSidebarOpen, setIsSidebarOpen } = useMultiContext();
 
   return (
-    <aside className={`fixed z-50 left-0 top-0 h-screen bg-gray-50 shrink-0 grow-0 w-full transition-all ease-in-out duration-400 block md:hidden ${isSidebarOpen ? 'ml-0 shadow-2xl' : 'ml-[-250px]'} max-w-[250px] basis-[250px]`}>
+    <aside className={`fixed z-50 left-0 top-0 h-screen bg-gray-50 shrink-0 grow-0 w-full transition-all ease-in-out duration-400 block lg:hidden ${isSidebarOpen ? 'ml-0 shadow-2xl' : 'ml-[-250px]'} max-w-[250px] basis-[250px]  overflow-y-auto`}>
       <div className="flex items-center w-full justify-between p-5">
         <Link to={"/"} className="flex items-center text-4xl font-bold tracking-widest ">
           <img
@@ -24,7 +24,7 @@ export default function Sidebar() {
           <Close sx={{ fontSize: "30px" }} />
         </IconButton>
       </div>
-      <div className="p-5 h-full overflow-y-auto">
+      <div className="p-5 h-full">
         <ul className="text-2xl">
           <li>
             <a href="/iphone" className={`w-full hover:bg-gray-200 ${location.pathname === '/iphone' && 'bg-gray-200'} p-6 rounded-2xl mb-4 block`}>
