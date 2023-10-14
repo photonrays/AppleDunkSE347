@@ -180,7 +180,6 @@ const accessoryNavigation = [
 ]
 
 export default function TopSection({ type, currentCategory = null, slug = null }) {
-    const [detail, setDetail] = useState();
     const [typeLink, setTypeLink] = useState();
     const location = useLocation();
 
@@ -240,7 +239,7 @@ export default function TopSection({ type, currentCategory = null, slug = null }
                     }
                 </div>
             </div>
-            <h1 className='text-[36px] text-center font-bold py-[16px] w-full bg-[#f5f5f7] m-auto'>{currentCategory ? currentCategory : type}</h1>
+            <h1 className='text-[24px] md:text-[30px] lg:text-[36px] text-center font-bold pt-[16px] w-full bg-[#f5f5f7] m-auto'>{currentCategory ? currentCategory : type}</h1>
         </div >
     )
 }
