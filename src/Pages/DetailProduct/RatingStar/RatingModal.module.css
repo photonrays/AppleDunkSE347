@@ -12,7 +12,7 @@
 }
 .modal {
     width: 36%;
-    height: 60%;
+    height: 65%;
     background-color: white;
     border-radius: 6px;
     margin: 120px auto;
@@ -21,7 +21,7 @@
 
 .modal1 {
     width: 36%;
-    height: 40%;
+    height: 50%;
     background-color: white;
     border-radius: 6px;
     margin: 180px auto;
@@ -30,4 +30,22 @@
 
 textarea {
     resize: none;
+}
+
+.item-img {
+    max-width: 96px;
+}
+
+@media (max-width: 1023px){
+    .modal {
+        /* display: none; */
+        width: 80%;
+        max-height: 50%;
+        margin: 25% auto;
+
+    }
+
+    .item-img {
+        max-width: 70px;
+    }
 }

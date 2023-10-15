@@ -82,7 +82,7 @@ const RatingModal = (props) => {
             onClick={()=>props.setCloseRatingModal(1)}>
             <div onClick={handleChildeElementClick} className={classes.modal}>
                 {/* Header của modal */}
-                <div className="flex text-[22px] items-center justify-between text-slate-600 
+                <div className="flex lg:text-[22px] text-[32px] items-center justify-between text-slate-600 
                 px-[20px] py-[10px] border-b-[1px] border-b-slate-300">
                     <div className="">Đánh giá sản phẩm</div>
                     <div onClick={()=>props.setCloseRatingModal(1)} className="h-20px cursor-pointer">
@@ -93,9 +93,8 @@ const RatingModal = (props) => {
                 <div className="px-[20px] py-[16px]">
                     {/* Phần trên của body */}
                     <div className="text-center text-slate-600">
-                        <img src={product.image}
-                        className="w-[96px] block mx-auto"/>
-                        <div className="text-[18px] my-[10px]">{product.name}</div>
+                        <img className="item-img lg:w-[120px] w-[280px] block mx-auto" src={props.sp.imageList[0]}/>
+                        <div className="lg:text-[18px] text-[36px] my-[10px]">{props.sp.tensanpham}</div>
                         <div className="h-[64px]">
                             <StarRating
                                 size={28}
@@ -110,7 +109,7 @@ const RatingModal = (props) => {
 
                         <div className="">
                             <textarea className="border-[1px] border-slate-300 outline-none rounded-[4px] 
-                            block h-[72px] w-full text-[14px] py-[6px] px-[12px]" 
+                            block lg:h-[72px] h-[90px] w-full lg:text-[14px] text-[28px] py-[6px] px-[12px]" 
                             placeholder="Hãy chia sẻ cảm nhận của bạn về sản phẩm..." rows={4}
                             onChange={handleGetBinhluanOnchange}></textarea>
                         </div>
@@ -139,8 +138,8 @@ const RatingModal = (props) => {
                 </div>
                 {/* footer modal */}
                 <div className="h-[50px] text-center">
-                <button className="text-[16px] text-white bg-blue-600 w-[160px]
-                                    rounded-[5px] font-extralight p-[10px]"
+                <button className="lg:text-[16px] text-[30px] text-white bg-blue-600 lg:w-[160px] w-[200px]
+                                    rounded-[5px] font-extralight p-[10px] mt-[20px]"
                         onClick={()=>{handleSubmitClick()}}>HOÀN TẤT</button>
                 </div>
 
@@ -153,7 +152,7 @@ const RatingModal = (props) => {
         <div className="flex text-[22px] items-center justify-between text-slate-600 
         px-[20px] py-[10px] border-b-[1px] border-b-slate-300">
             <div className="">Đánh giá sản phẩm</div>
-            <div onClick={()=>props.setCloseRatingModal(1)} className="h-20px cursor-pointer">
+            <div onClick={()=>(props.setCloseRatingModal(1),console.log("hehe"))} className="h-20px cursor-pointer">
                 <CloseIcon fontSize="20px"/>
             </div>
         </div>

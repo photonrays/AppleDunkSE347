@@ -9,8 +9,8 @@ export default function ProductCard(prop) {
     return (
         <Link to={{pathname:`/detailproduct/${prop._id}`}}>
             <div id = "product-card"
-                className="h-[410px] p-[20px] bg-white rounded-[10px] hover:shadow-2xl hover:cursor-pointer">
-                <div id="product-tag" className="h-[40px]"></div>
+                className="lg:h-[410px] md:h-[390px] p-[20px] bg-white rounded-[10px] hover:shadow-2xl hover:cursor-pointer">
+                <div id="product-tag" className="lg:h-[40px] h-[20px]"></div>
                 <img className="w-full h-[232px] self-center" src={prop.hinh}/>
                 <div id="product-title" className="h-[54px] mt-[20px] text-[18px]">{prop.tensanpham}</div>
                 <div id="price" className="h-[24px]">
