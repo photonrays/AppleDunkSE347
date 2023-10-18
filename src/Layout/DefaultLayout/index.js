@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import NorthIcon from "@mui/icons-material/North";
 import styles from "./DefaultLayout.module.css";
 import Sidebar from "../../Components/Sidebar";
+import NavigationMobile from "../../Components/NavigationMobile";
+import HeaderSecond from "../../SecondTemplate/HeaderSecond";
 
 
 function DefaultLayout({ children }) {
@@ -32,6 +34,7 @@ function DefaultLayout({ children }) {
             <Sidebar />
             <div className="grow w-full">
                 <Header />
+                {/* <HeaderSecond /> */}
                 <div className="mt-[64px]">{children}</div>
                 <Footer />
                 {backToTopButton && (
@@ -40,6 +43,8 @@ function DefaultLayout({ children }) {
                     </button>
                 )}
             </div>
+            {/* Navigation Mobile */}
+            <NavigationMobile />
         </div>
     );
 }
