@@ -1,0 +1,15 @@
+.buttonMore{
+    display: flex;
+    align-items: center;
+    border: #0066cc solid;
+    border-radius: 8px ;
+    border-width: 1px ;
+    color: #0066cc;
+    padding: 12px 40px;
+    font-size: 13px;
+    line-height: 27px;
+}
+.buttonMore:hover{
+    background-color:  #0066cc ;
+    color: white;
+}

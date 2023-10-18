@@ -21,7 +21,7 @@ function NavigationMobile() {
                 />
                 <div className="text-xl">Trang chủ</div>
             </a>
-            <div className="text-center active:text-[#0066cc] p-2">
+            <a href="/tin-tuc" className="text-center active:text-[#0066cc] p-2">
                 <FeedOutlined
                     sx={{
                         fontSize: "20px",
@@ -32,8 +32,8 @@ function NavigationMobile() {
                     }}
                 />
                 <div className="text-xl">Tin tức</div>
-            </div>
-            <div className="text-center active:text-[#0066cc] p-2">
+            </a>
+            <a href="/khuyenmai" className="text-center active:text-[#0066cc] p-2">
                 <MonetizationOnOutlined
                     sx={{
                         fontSize: "20px",
@@ -44,8 +44,8 @@ function NavigationMobile() {
                     }}
                 />
                 <div className="text-xl">Khuyến mãi</div>
-            </div>
-            <div className="text-center active:text-[#0066cc] p-2">
+            </a>
+            <a href="/customer/info" className="text-center active:text-[#0066cc] p-2">
                 <AccountCircleOutlined
                     sx={{
                         fontSize: "20px",
@@ -56,7 +56,7 @@ function NavigationMobile() {
                     }}
                 />
                 <div className="text-xl">Tài khoản</div>
-            </div>
+            </a>
         </div>
     );
 }
