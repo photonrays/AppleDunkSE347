@@ -44,3 +44,15 @@
     margin: 0 8px;
     bottom: 0.8em !important;
 }
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .SecondCarouselPagination .splide__arrow.splide__arrow--next {
+        right: 21rem;
+    }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+
+}
