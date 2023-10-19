@@ -63,6 +63,15 @@ function AdvertisementSlide() {
         arrows: true,
         fixedHeight: 280,
         gap: "2rem",
+        mediaQuery: "min",
+        breakpoints: {
+            1024: {
+                fixedHeight: 280,
+            },
+            768: {
+                fixedHeight: 190,
+            },
+        },
         onMove: () => {
             thumbnailCarouselRef.current.go(mainCarouselRef.current.index);
         },
@@ -83,24 +92,32 @@ function AdvertisementSlide() {
         fixedWidth: 130,
         fixedHeight: 80,
         // gap: "12px",
-        marginRight: "12px",
-        // cover: true,
-        pagination: false,
-        // arrows: true,
+        // marginRight: "12px",
         focus: "center",
         updateOnMove: true,
+        pagination: false,
         arrows: false,
         perPage: 6,
         perMove: 1,
         breakpoints: {
+            1024: {
+                perPage: 6,
+                perMove: 1,
+                fixedWidth: 130,
+                fixedHeight: 80,
+            },
             768: {
                 fixedWidth: 80,
                 fixedHeight: 60,
                 perPage: 3,
+                perMove: 1,
             },
-            1024: {
-                // fixedWidth: 80,
-                // fixedHeight: 60,
+            640: {
+                perMove: 1,
+
+                perPage: 3,
+                fixedWidth: 80,
+                fixedHeight: 60,
             },
         },
         onMove: () => {
@@ -138,7 +155,8 @@ function AdvertisementSlide() {
                     <MenuItems />
                     <div
                         className={
-                            styles.Carousel + " lg:flex-1 mt-[16px] mx-[12px]"
+                            styles.Carousel +
+                            " md:w-full md:max-w-[810px] lg:flex-1 mt-[16px] mx-[12px]"
                         }
                     >
                         <Splide
@@ -151,7 +169,7 @@ function AdvertisementSlide() {
                             <SplideTrack>
                                 {data.map((product, index) => (
                                     <SplideSlide key={index}>
-                                        <div className="cursor-pointer h-full w-full">
+                                        <div className="cursor-pointer lg:h-full w-full">
                                             <img
                                                 className="lg:h-full rounded-t-[12px] object-cover"
                                                 src={product.image}
@@ -183,6 +201,7 @@ function AdvertisementSlide() {
                             </div>
                             {/* border-none bg-slate-400 opacity-50 ml-[80px] w-[60px] h-[60px] */}
                         </Splide>
+
                         <Splide
                             options={thumbnailCarouselOptions}
                             ref={thumbnailCarouselRef}

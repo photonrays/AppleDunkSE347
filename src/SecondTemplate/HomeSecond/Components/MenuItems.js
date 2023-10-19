@@ -13,7 +13,7 @@ import {
 function MenuItems() {
     return (
         <div
-            className="md:w-[175px] lg:w-[200px] mt-[16px] shadow-[0_1px_9px_1px_rgba(0,0,0,0.08)] 
+            className="md:w-[175px] lg:w-[300px] mt-[16px] shadow-[0_1px_9px_1px_rgba(0,0,0,0.08)] 
         rounded-[12px] bg-gray-100"
         >
             <a
