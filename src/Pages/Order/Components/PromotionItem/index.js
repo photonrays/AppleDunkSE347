@@ -45,7 +45,7 @@ function PromotionItem({
                     className="md:w-[70px] md:h-[70px] w-[50px] h-[50px] object-cover rounded-[8px]"
                 />
             </div>
-            <div className="lg:w-[450px] flex-1 lg:flex-auto">
+            <div className="lg:w-[450px] flex-1 lg:flex-auto pr-10">
                 <div className="md:text-[18px] text-[16px] text-[#1D1D1F] font-semibold">
                     {item?.title}
                 </div>
