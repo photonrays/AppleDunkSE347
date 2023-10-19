@@ -36,13 +36,15 @@
 
  /* Tablet */
 @media (min-width: 768px) and (max-width: 1023px) {
-    
+    .bPopup {
+        min-width: 680px;
+    }
 }
 
 /* Mobile */
 @media (max-width: 767px) {
     .bPopup {
-        width: 100%;
+        min-width: 390px;
         padding: 20px;
     }
 }

@@ -63,7 +63,7 @@ function PromotionList({
                             }}
                             onClick={handleDisplayOff}
                         />
-                        <div className="text-center md:text-[32px] text-[22px] font-semibold mb-4">
+                        <div className="text-center md:text-[32px] text-[22px] font-semibold mb-4 mt-8 md:mt-0">
                             Danh sách khuyến mãi khả dụng
                         </div>
                         <div className="lg:max-h-[300px] min-h-[150px] max-h-[500px] overflow-y-auto">
