@@ -1,4 +1,4 @@
-import "./Home.module.css";
+import styles from "./Home.module.css";
 import AdvertisementSlide from "./Components/AdvertisementSlide";
 import AdvertisementItem from "./Components/AdvertisementItem";
 import ItemComponent from "./Components/ItemComponent";
@@ -174,8 +174,8 @@ const tintucUI={
         ))
        }
        <div className="flex justify-center">
-            <a  href="/tin-tuc" className="block h-[432px] m-8">
-                    <img  className="" src={images.BannerBottom} alt={images.BannerBottom}></img>
+            <a  href="/tin-tuc" className={`block m-8 + ${styles.bannerBottom}`}>
+                    <img  className={`${styles.imageBannerBottom}`} src={images.BannerBottom} alt={images.BannerBottom}></img>
             </a>
        </div>
        <ItemComponent data={tintucUI}/>

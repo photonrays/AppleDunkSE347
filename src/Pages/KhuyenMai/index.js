@@ -92,16 +92,16 @@ function KhuyenMai () {
       
     return (
         <div className={styles.bg_primary}>
-            <div className={" text-3xl text-center py-8 w-[1200px] mx-auto"}>
-                <h1 className="text-4xl py-4">Các Voucher khuyến mãi của AppleDunk</h1>
-                <div className=" pl-8 py-4 text-left mt-8">
-                    <label htmlFor="mucapdung" className="mr-4">Mức áp dụng: </label>
-                    <input type="number" name="mucapdung" className="text-center border-2 border-black mr-4 rounded-lg py-3" min={10000} step={10000} 
+            <div className={" lg:text-3xl py-8  mx-auto"}>
+                <h1 className="text-4xl  text-center py-4">Các Voucher khuyến mãi của AppleDunk</h1>
+                <label htmlFor="mucapdung" className=" text-2xl ml-8 mt-12  pl-8">Mức áp dụng: </label>
+                <div className="flex  items-center pl-8 py-4 ml-8 text-left">
+                    <input type="number" name="mucapdung" className=" text-2xl text-center border-2 border-black mr-4 rounded-lg py-3" min={10000} step={10000} 
                         value={Mucapdung} onChange={handleMucapdungChange} style={{width: 200}}/>
-                    <button className="border-2 rounded-lg px-8 py-3 mb-5 bg-sky-600 text-white" onClick={handleSearch}>Tìm</button>
+                    <button className="border-2 rounded-lg px-8 py-3 ml-[20px]  bg-sky-600 text-white" onClick={handleSearch}>Tìm</button>
                 </div>
             </div>
-            <div className=" grid grid-cols-2 gap-4 text-2xl justify-items-center px-8 pl-8 pr-8 pb-16 w-[1200px] mx-auto">
+            <div className=" grid lg:grid-cols-2 sm:grid-cols-1 md:grid-cols-2 place-items-center gap-4 text-2xl  pb-16  mx-auto">
                 {khuyenmais.map((khuyenmai) => {
                     return <KhuyenmaiItem khuyenmai={khuyenmai} key={khuyenmai._id}/>
                 })}

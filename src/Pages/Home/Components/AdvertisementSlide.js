@@ -45,7 +45,7 @@ function AdvertisementSlide(){
                 <SplideTrack>
                     {data.map((product, index) => (
                         <SplideSlide key={index}>
-                            <div className="min-h-[400px] cursor-pointer">
+                            <div className="mobile cursor-pointer">
                                 <img  className="h-full" src={product.image} alt={product.image}></img>
                             </div>
                         </SplideSlide>
