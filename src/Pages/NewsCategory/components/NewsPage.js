@@ -11,20 +11,20 @@ export default function NewsPage() {
     const [data, setData] = useState(null)
 
     useEffect(() => {
-        api.getNewsById(id).then(result => setData(result.data))
+        api.getNewsById(id).then(result => setData(result))
     }, [id])
 
     return (
         <div className='w-full'>
-            <div className='w-[1200px] m-auto min-h-[600px] flex pt-[30px] gap-[12px] pb-[30px] justify-center	'>
+            <div className='max-w-[1200px] m-auto min-h-[600px] flex pt-[30px] gap-[12px] pb-[30px] justify-center	'>
                 <NewsSidebar type={data?.category} />
-                <div className='flex flex-col'>
+                <div className='w-full'>
                     <Breadcrumb data={{url: data?.slug, name: data?.title}}/>
-                    <img src={data?.image} alt={data?.title} className='w-[784px] h-[315px] rounded-3xl object-cover' />
-                    <div className='mt-[24px] border-2 w-[784px] px-[25px] py-[21px] bg-white'>
-                        <h1 className='text-[24px] text-[#393939] font-bold'>{data?.title}</h1>
-                        <p className='text-[13px] text-[#86868B] mt-[6px]'>{data?.dateSource}</p>
-                        {data && <div className='text-center w-full'>{parse(data.detail)}</div>}
+                    <img src={data?.image} alt={data?.title} className='max-w-[800px] w-full h-auto rounded-3xl object-cover mx-auto ' />
+                    <div className='w-full mt-[24px] border-2 rounded-3xl max-w-[800px] px-[25px] py-[21px] bg-white mx-auto '>
+                        <h1 className='text-5xl text-[#393939] font-bold mb-5'>{data?.title}</h1>
+                        <p className='text-[13px] text-[#86868B] mt-[6px] mb-10'>{data?.dateSource}</p>
+                        {data && <div className='w-full'>{parse(data.detail)}</div>}
                     </div>
                 </div>
             </div>
