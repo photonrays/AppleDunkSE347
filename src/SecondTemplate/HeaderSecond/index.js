@@ -194,18 +194,18 @@ function HeaderSecond() {
                     />
                 </a>
                 {/* Danh mục sp */}
-                <div className="flex items-center cursor-pointer ml-2 mr-8 relative">
+                <div
+                    className="flex items-center cursor-pointer ml-2 mr-8 relative"
+                    onClick={() => {
+                        setCategoryActive(true);
+                        setSearch(2);
+                    }}
+                >
                     <div className="flex items-center rounded-[8px] bg-stone-300 bg-opacity-10 p-3">
                         <FeaturedPlayListOutlinedIcon
                             style={{ color: "#fff", fontSize: "28px" }}
                         />
-                        <div
-                            className="text-[12px] w-[62px] text-white ml-2"
-                            onClick={() => {
-                                setCategoryActive(true);
-                                setSearch(2);
-                            }}
-                        >
+                        <div className="text-[12px] w-[62px] text-white ml-2">
                             Danh mục
                         </div>
                     </div>
