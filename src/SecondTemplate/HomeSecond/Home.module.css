@@ -1,0 +1,22 @@
+
+.bannerBottom {
+    height: 432px;
+}
+@media  (max-width: 767px) {
+    .bannerBottom{
+        height: 150px;
+    }
+    .imageBannerBottom{
+        width: 100%;
+        height: 150px;
+        object-fit: fill;
+    }
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+    .bannerBottom{
+        height: 300px;
+    }
+    .imageBannerBottom{
+        height: 300px;
+    }
+}
