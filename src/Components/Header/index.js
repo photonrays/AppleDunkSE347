@@ -18,7 +18,8 @@ import { Login, Logout, Settings, Menu as MenuIcon } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import HandleApiCart from "../../Apis/HandleApiCart";
-import { useMultiContext } from "../../contexts/multiContext";
+import { useSideBarContext } from "../../contexts/sidebarContext";
+import { useTemplateContext } from "../../contexts/templateContext";
 
 
 function Header() {
@@ -29,7 +30,8 @@ function Header() {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const user = JSON.parse(localStorage.getItem("user"));
     var number = 0;
-    const { isSidebarOpen, setIsSidebarOpen } = useMultiContext();
+    const { isSidebarOpen, setIsSidebarOpen } = useSideBarContext();
+    const { template, setTemplate } = useTemplateContext();
 
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
@@ -318,6 +320,10 @@ function Header() {
                                 Đăng xuất
                             </MenuItem>}
                     </Menu>
+                    <div className="text-white">
+                        <button className={`border-2 p-1  mr-4 w-9 h-9 hover:text-blue-600 hover:border-blue-600 ${template === 1 ? 'border-blue-600 text-blue-600' : 'border-white'}`} onClick={() => setTemplate(1)}>1</button>
+                        <button className={`border-2 p-1 w-9 h-9 hover:text-blue-600 hover:border-blue-600 ${template === 2 ? 'border-blue-600 text-blue-600' : 'border-white'}`} onClick={() => setTemplate(2)}>2</button>
+                    </div>
                 </div>
             </div>
         </>

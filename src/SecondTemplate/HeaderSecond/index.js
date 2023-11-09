@@ -25,7 +25,7 @@ import {
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import HandleApiCart from "../../Apis/HandleApiCart";
-import { useMultiContext } from "../../contexts/multiContext";
+import { useSideBarContext } from "../../contexts/sidebarContext";
 
 import HandleApiProduct from "../../Apis/HandleApiProduct";
 import MenuItems from "../HomeSecond/Components/MenuItems";
@@ -44,7 +44,7 @@ function HeaderSecond() {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const user = JSON.parse(localStorage.getItem("user"));
     var number = 0;
-    const { isSidebarOpen, setIsSidebarOpen } = useMultiContext();
+    const { isSidebarOpen, setIsSidebarOpen } = useSideBarContext();
 
     const open = Boolean(anchorEl);
     const handleClick = (event) => {

@@ -2,12 +2,12 @@ import { Close } from "@mui/icons-material";
 import { Link, useLocation } from "react-router-dom";
 import image from "../assets/image";
 import { IconButton } from '@mui/material';
-import { useMultiContext } from "../contexts/multiContext";
+import { useSideBarContext } from "../contexts/sidebarContext";
 
 
 export default function Sidebar() {
   let location = useLocation();
-  const { isSidebarOpen, setIsSidebarOpen } = useMultiContext();
+  const { isSidebarOpen, setIsSidebarOpen } = useSideBarContext();
 
   return (
     <aside className={`fixed z-50 left-0 top-0 h-screen bg-gray-50 shrink-0 grow-0 w-full transition-all ease-in-out duration-400 block lg:hidden ${isSidebarOpen ? 'ml-0 shadow-2xl' : 'ml-[-250px]'} max-w-[250px] basis-[250px]  overflow-y-auto`}>
