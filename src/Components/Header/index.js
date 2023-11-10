@@ -231,7 +231,7 @@ function Header() {
                         />
                         <div className={styles.cartNumber}>{dataNumber}</div>
                     </a>
-                    {/*<Tooltip title="Account settings">*/}
+
                     {(document.cookie.indexOf('token') !== -1) ?
                         <IconButton
                             onClick={handleClick}
@@ -241,9 +241,6 @@ function Header() {
                             aria-haspopup="true"
                             aria-expanded={open ? "true" : undefined}
                         >
-                            {/*<PersonOutlinedIcon
-                                    style={{ color: "#fff", fontSize: "28px" }}
-                                />*/}
 
                             <div className={styles.userr}>
                                 <img src={user.image.length !== 0 ? user.image[0].url : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkNjtjpEZtAtYMoeDfg6PO5DoGrpAhCA79Jg&usqp=CAU"} alt="User Image" className={styles.userr_image} />
@@ -255,7 +252,7 @@ function Header() {
                             <p className={styles.menuItemLink} style={{ color: "white" }}>Đăng nhập</p>
                         </Link>
                     }
-                    {/*</Tooltip>*/}
+
                     <Menu
                         anchorEl={anchorEl}
                         id="account-menu"

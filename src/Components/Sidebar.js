@@ -1,12 +1,34 @@
 import { Close } from "@mui/icons-material";
+import * as React from "react";
 import { Link, useLocation } from "react-router-dom";
 import image from "../assets/image";
 import { IconButton } from '@mui/material';
 import { useMultiContext } from "../contexts/multiContext";
-
+import styles from "../Components/Header/Header.module.css";
+import {  useRef,useState } from "react";
+import Cookies from 'js-cookie';
+import { useNavigate } from "react-router-dom";
 
 export default function Sidebar() {
+  const navigate = useNavigate();
   let location = useLocation();
+  const user = JSON.parse(localStorage.getItem("user"));
+  const formatUserName = (tenUser) =>{
+    if (tenUser?.length <= 8) {
+        return tenUser;
+      } else {
+        return tenUser?.substring(0, 8) + "...";
+      }
+}
+const handleClose2 = () => {
+  //setAnchorEl(null);
+  localStorage.removeItem("user");
+  //localStorage.removeItem("token");
+  Cookies.remove('token')
+  navigate("/");
+};
+
+const inputRef = useRef(null);
   const { isSidebarOpen, setIsSidebarOpen } = useMultiContext();
 
   return (
@@ -66,10 +88,33 @@ export default function Sidebar() {
               Khuyến mãi
             </a>
           </li>
+          
         </ul>
-
+        <div className="relative w-full lg:max-w-sm">
+            <select
+                enabled
+                className="w-full p-2.5 text-gray-500 bg-white border rounded-md shadow-sm outline-none appearance-none focus:border-indigo-600"
+            >
+                <option>ReactJS Dropdown</option>
+                <option>Laravel 9 with React</option>
+                <option>React with Tailwind CSS</option>
+                <option>React With Headless UI</option>
+            </select>
+        </div>
         <hr />
-        <button className="w-full p-5 rounded-3xl mb-4 border-2 border-gray-200 cursor-pointer text-2xl mt-10 hover:bg-gray-200">Đăng nhập</button>
+        {(document.cookie.indexOf('token') != -1) ?
+        <div className={styles.userr}>
+                                <img src={user.image.length !== 0 ? user.image[0].url : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkNjtjpEZtAtYMoeDfg6PO5DoGrpAhCA79Jg&usqp=CAU"} alt="User Image" className={styles.userr_image} />
+                                <p className={styles.menuItemLink} style={{ color: "black" }}>{formatUserName(user.hoten)}</p>
+                                <hr />
+                            </div>:<></>}
+
+        {(document.cookie.indexOf('token') == -1) ?
+                            <Link to="/login">
+                                <button className="w-full p-5 rounded-3xl mb-4 border-2 border-gray-200 cursor-pointer text-2xl mt-10 hover:bg-gray-200" onClick={setIsSidebarOpen(false)}>Đăng nhập</button>
+                            </Link>
+                            :
+                            <button className="w-full p-5 rounded-3xl mb-4 border-2 border-gray-200 cursor-pointer text-2xl mt-10 hover:bg-gray-200" onClick={handleClose2}>Đăng Xuất</button>}
       </div>
     </aside>
   );
