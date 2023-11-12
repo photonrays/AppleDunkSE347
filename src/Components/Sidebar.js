@@ -8,8 +8,67 @@ import styles from "../Components/Header/Header.module.css";
 import {  useRef,useState } from "react";
 import Cookies from 'js-cookie';
 import { useNavigate } from "react-router-dom";
+import {
+  BsChevronDown,
+  BsChatLeftText,
+  BsCalendarCheck,
+  BsFiles,
+  BsServer,
+} from 'react-icons/bs';
+import {
+  MdOutlineDashboard,
+  MdAccountCircle,
+  MdAnalytics,
+  MdOutlineSettings,
+  MdLogout,
+} from 'react-icons/md';
 
 export default function Sidebar() {
+  const Menus = [
+
+    {
+      title: 'Services',
+      src: 'Services',
+      subMenus: [
+        {
+          title: 'Service 1',
+          src: '/customer/info',
+  
+          cName: 'sub-nav',
+        },
+        {
+          title: 'Service 2',
+          src: '/customer/history',
+  
+          cName: 'sub-nav',
+        },
+        {
+          title: 'Service 3',
+          src: '/services/services3',
+        },
+        {
+          title: 'Service 1',
+          src: '/services/services1',
+  
+          cName: 'sub-nav',
+        },
+        {
+          title: 'Service 2',
+          src: '/services/services2',
+  
+          cName: 'sub-nav',
+        },
+        {
+          title: 'Service 3',
+          src: '/services/services3',
+        }
+      ],
+    }
+
+  ];
+  const [open, setOpen] = useState(true);
+  const [subMenuOpen, setSubMenuOpen] = useState(false);
+  
   const navigate = useNavigate();
   let location = useLocation();
   const user = JSON.parse(localStorage.getItem("user"));
@@ -89,33 +148,59 @@ const inputRef = useRef(null);
             </a>
           </li>
           
-        </ul>
-        <div className="relative w-full lg:max-w-sm">
-            <select
-                enabled
-                className="w-full p-2.5 text-gray-500 bg-white border rounded-md shadow-sm outline-none appearance-none focus:border-indigo-600"
-            >
-                <option>ReactJS Dropdown</option>
-                <option>Laravel 9 with React</option>
-                <option>React with Tailwind CSS</option>
-                <option>React With Headless UI</option>
-            </select>
-        </div>
+        </ul>      
+        
+    
         <hr />
+
         {(document.cookie.indexOf('token') != -1) ?
+        <ul className="pt-0">
+          {Menus.map((Menu, index) => (
+            <>
+              <li
+                key={index}
+                className={`flex  rounded-md p-2 cursor-pointer-full hover:bg-gray-200  text-black text-sm items-center gap-x-4 
+              ${Menu.gap ? 'mt-0' : 'mt-0'}  `}
+              >
+                
+                {(document.cookie.indexOf('token') != -1) ?
         <div className={styles.userr}>
                                 <img src={user.image.length !== 0 ? user.image[0].url : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkNjtjpEZtAtYMoeDfg6PO5DoGrpAhCA79Jg&usqp=CAU"} alt="User Image" className={styles.userr_image} />
                                 <p className={styles.menuItemLink} style={{ color: "black" }}>{formatUserName(user.hoten)}</p>
                                 <hr />
                             </div>:<></>}
-
-        {(document.cookie.indexOf('token') == -1) ?
-                            <Link to="/login">
-                                <button className="w-full p-5 rounded-3xl mb-4 border-2 border-gray-200 cursor-pointer text-2xl mt-10 hover:bg-gray-200" onClick={setIsSidebarOpen(false)}>Đăng nhập</button>
-                            </Link>
-                            :
-                            <button className="w-full p-5 rounded-3xl mb-4 border-2 border-gray-200 cursor-pointer text-2xl mt-10 hover:bg-gray-200" onClick={handleClose2}>Đăng Xuất</button>}
-      </div>
+                {Menu.subMenus && (
+                  <BsChevronDown
+                    onClick={() => setSubMenuOpen(!subMenuOpen)}
+                    className={`${subMenuOpen && 'rotate-180'}`}
+                  />
+                )}
+              </li>
+              {Menu.subMenus && subMenuOpen && open && (
+                <ul>
+                  {Menu.subMenus.map((subMenuItem, idx) => (
+                    <li
+                      key={idx}
+                      className={`w-full text-2xl hover:bg-gray-200 ${location.pathname === 'khuyenmai' && 'bg-gray-200'} p-6 rounded-2xl mb-4 block`}
+                    >
+                      <a href={subMenuItem.src}>
+                      {subMenuItem.title}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </>
+          ))}
+        </ul>
+       :<></>}
+{(document.cookie.indexOf('token') == -1) ?
+                            
+                            <button onClick={()=>{navigate("/login");setIsSidebarOpen(false);}} className="w-full p-5 rounded-3xl mb-4 border-2 border-gray-200 cursor-pointer text-2xl mt-10 hover:bg-gray-200">Đăng nhập</button>
+                        
+                        :
+                        <button className="w-full p-5 rounded-3xl mb-4 border-2 border-gray-200 cursor-pointer text-2xl mt-10 hover:bg-gray-200" onClick={handleClose2}>Đăng Xuất</button>}
+              </div>
     </aside>
   );
 }
