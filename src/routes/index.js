@@ -6,6 +6,7 @@ import News from "../Pages/News";
 import NewsPage from '../Pages/NewsCategory/components/NewsPage'
 
 import Info from "../Pages/Customer/Info";
+import Info2 from "../SecondTemplate/Customer/Info";
 import Addresses from "../Pages/Customer/Addresses";
 import History from "../Pages/Customer/History";
 import ChangePassword from "../Pages/Customer/ChangePassword";
@@ -64,6 +65,7 @@ const publicRoutes = [
     { path: "/tin-khac", component: <NewsCategory /> },
 
     { path: "/customer/info", component: <Info /> },
+    { path: "/customer/info2", component: <Info2 /> },
     { path: "/customer/addresses", component: <Addresses /> },
     { path: "/customer/addAddress", component: <Addaddress /> },
     { path: "/customer/history", component: <History /> },
