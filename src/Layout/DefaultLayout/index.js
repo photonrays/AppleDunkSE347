@@ -33,8 +33,8 @@ function DefaultLayout({ children }) {
         <div className="max-h-full min-h-screen max-w-full flex overflow-hidden">
             <Sidebar />
             <div className="grow w-full">
-                <Header />
-                {/* <HeaderSecond /> */}
+                {/* <Header /> */}
+                <HeaderSecond />
                 <div className="mt-[64px]">{children}</div>
                 <Footer />
                 {backToTopButton && (

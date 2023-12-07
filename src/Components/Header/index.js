@@ -251,10 +251,11 @@ function Header() {
                                     style={{ color: "#fff", fontSize: "28px" }}
                                 />*/}
 
-                                <div className={styles.userr}>
-                                    <img src={user.image.length !== 0 ? user.image[0].url : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkNjtjpEZtAtYMoeDfg6PO5DoGrpAhCA79Jg&usqp=CAU"} alt="User Image" className={styles.userr_image} />
-                                    <p className={styles.menuItemLink} style={{ color: "white" }}>{formatUserName(user.hoten)}</p>
-                                </div>
+
+                            <div className={styles.userr}>
+                                <img src={user?.image?.length !== 0 ? user?.image[0]?.url : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkNjtjpEZtAtYMoeDfg6PO5DoGrpAhCA79Jg&usqp=CAU"} alt="User Image" className={styles.userr_image} />
+                                <p className={styles.menuItemLink} style={{ color: "white" }}>{formatUserName(user?.hoten)}</p>
+                            </div>
 
                             </IconButton> :
                             <Link to="/login">
