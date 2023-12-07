@@ -1,4 +1,4 @@
-import styles from "./Home.module.css";
+import styles from "./HomeSecond.module.css";
 import AdvertisementSlide from "./Components/AdvertisementSlide";
 import AdvertisementItem from "./Components/AdvertisementItem";
 import ItemComponent from "./Components/ItemComponent";
@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import HandleApiProduct from "../../Apis/HandleApiProduct.js";
 import HandleApiNews from "../../Apis/HandleApiNews";
 
-function Home() {
+function HomeSecond() {
     const [dataIphoneProduct, setDataIphoneProduct] = useState([]);
     const [dataIpadProduct, setDataIpadProduct] = useState([]);
     const [dataMacProduct, setDataMacProduct] = useState([]);
@@ -189,4 +189,4 @@ function Home() {
     );
 }
 
-export default Home;
+export default HomeSecond;
