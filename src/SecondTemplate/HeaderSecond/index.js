@@ -150,18 +150,32 @@ function HeaderSecond() {
 
                 {/* Đây là thanh search trên Header khi nào click icon search thì xuất hiện */}
                 <div
-                    onClick={() => {
-                        setSearch(1);
-                        setSuggestionsActive(false);
-                        setCategoryActive(false);
-                    }}
+                    onClick={() => setSearch(1)}
                     className={
                         search === 2
-                            ? "fixed top-[64px] left-0 bottom-0 right-0 grow bg-black opacity-70 z-10011"
+                            ? "fixed top-0 left-0 w-full h-screen grow bg-black opacity-70 z-10011"
                             : "hidden"
                     }
                 ></div>
-
+                <div
+                    className={
+                        search === 2
+                            ? "fixed h-[64px] text-center leading-[64px] w-full bg-black z-10012"
+                            : "hidden"
+                    }
+                >
+                    {inputIsVisible && (
+                        <input
+                            onKeyDown={handleEnter}
+                            ref={inputRef}
+                            placeholder="Tìm kiếm"
+                            id="search-box"
+                            className={
+                                "w-1/2 h-3/5 px-[16px] rounded-[3px] text-[16px] text-black-700 outline-none"
+                            }
+                        />
+                    )}
+                </div>
                 {/* //------------------------------------------------ */}
                 <div
                     onClick={handleClickSearch}
