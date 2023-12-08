@@ -30,6 +30,7 @@ import { useTemplateContext } from "../../contexts/templateContext";
 
 import HandleApiProduct from "../../Apis/HandleApiProduct";
 import MenuItems from "../HomeSecond/Components/MenuItems";
+import Header from "../../Components/Header";
 
 function HeaderSecond() {
     const [suggestions, setSuggestions] = useState([]);
@@ -283,8 +284,8 @@ function HeaderSecond() {
                 </div>
                 <div className={styles.utilities}>
                     {/* <div onClick={handleClickSearch} className="cursor-pointer">
-                        <SearchIcon style={{ color: "#fff", fontSize: "28px" }} />
-                    </div> */}
+                            <SearchIcon style={{ color: "#fff", fontSize: "28px" }} />
+                        </div> */}
                     <a href="/store" className="flex items-center">
                         <LocationOnOutlinedIcon
                             style={{ color: "#fff", fontSize: "32px" }}
@@ -318,8 +319,8 @@ function HeaderSecond() {
                             aria-expanded={open ? "true" : undefined}
                         >
                             {/*<PersonOutlinedIcon
-                                    style={{ color: "#fff", fontSize: "28px" }}
-                                />*/}
+                                        style={{ color: "#fff", fontSize: "28px" }}
+                                    />*/}
 
                             <div className={styles.userr}>
                                 <img

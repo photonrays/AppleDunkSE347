@@ -34,8 +34,6 @@ function Header() {
     // const { template, setTemplate } = useTemplateContext();
     const { template, setTemplate } = useTemplateContext();
 
-    console.log("template: ", template);
-
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
