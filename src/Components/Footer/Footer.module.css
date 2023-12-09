@@ -6,9 +6,9 @@
 }
 
 .footerUpper {
-    padding: 64px 0 21px 0;
+    padding: 64px 20px 21px 20px;
     border-bottom: 1px solid #515154;
-    width: 1200px;
+    width: 100%;
 }
 
 .network {
@@ -39,10 +39,6 @@
     padding-bottom: 8px;
 }
 
-.information {
-    padding: 0 0 0 60px;
-}
-
 .title {
     color: #d2d2d7;
     font-size: 15px;
@@ -66,10 +62,6 @@
 .phone {
     color: #06c;
 }
-
-.customerService {}
-
-.myAccount {}
 
 .footerLower {
     width: 1200px;

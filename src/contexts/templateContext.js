@@ -6,12 +6,11 @@ export const TemplateContext = createContext(null);
 
 export function TemplateContextProvider({ children }) {
   const [template, setTemplate] = useState(() => {
-    const template = sessionStorage.getItem("template");
-    return JSON.parse(template) || "1"
+    return sessionStorage.getItem("template") || 1
   });
 
   useEffect(() => {
-    sessionStorage.setItem("template", JSON.stringify(template))
+    sessionStorage.setItem("template", template)
   }, [template])
 
   return (
