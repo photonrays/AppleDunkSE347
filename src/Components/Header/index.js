@@ -1,12 +1,12 @@
 import styles from "./Header.module.css";
 import SearchIcon from "@mui/icons-material/Search";
-import PersonIcon from '@mui/icons-material/Person';
+import PersonIcon from "@mui/icons-material/Person";
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import { useState, useEffect, useRef } from "react";
 import image from "../../assets/image";
 import * as React from "react";
-import Cookies from 'js-cookie';
+import Cookies from "js-cookie";
 import Avatar from "@mui/material/Avatar";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
@@ -22,7 +22,6 @@ import { useSideBarContext } from "../../contexts/sidebarContext";
 import { useTemplateContext } from "../../contexts/templateContext";
 import HeaderSecond from "../../SecondTemplate/HeaderSecond";
 
-
 function Header() {
     const navigate = useNavigate();
     const [search, setSearch] = useState(1);
@@ -33,9 +32,7 @@ function Header() {
     var number = 0;
     const { isSidebarOpen, setIsSidebarOpen } = useSideBarContext();
     // const { template, setTemplate } = useTemplateContext();
-    const { template, setTemplate } = useTemplateContext()
-
-    console.log("template: ", template)
+    const { template, setTemplate } = useTemplateContext();
 
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
@@ -45,7 +42,7 @@ function Header() {
         setAnchorEl(null);
         localStorage.removeItem("user");
         //localStorage.removeItem("token");
-        Cookies.remove('token')
+        Cookies.remove("token");
         navigate("/");
     };
     const handleClose1 = () => {
@@ -61,7 +58,7 @@ function Header() {
         } else {
             return tenUser?.substring(0, 8) + "...";
         }
-    }
+    };
 
     const inputRef = useRef(null);
 
@@ -98,12 +95,19 @@ function Header() {
             inputRef.current.focus();
         }
     }, [inputIsVisible]);
-    if (template == 1) {
+    if (template === 1) {
         return (
             <>
                 {/* Day la thanh header khi man hinh nho hon lg */}
                 <div className="z-10 h-[64px] w-full bg-white flex fixed top-0 lg:hidden items-center justify-between">
-                    <div className="ml-5"><IconButton onClick={() => setIsSidebarOpen(true)} className={`${isSidebarOpen ? 'hidden' : 'block'}`}><MenuIcon sx={{ fontSize: "30px" }} /></IconButton></div>
+                    <div className="ml-5">
+                        <IconButton
+                            onClick={() => setIsSidebarOpen(true)}
+                            className={`${isSidebarOpen ? "hidden" : "block"}`}
+                        >
+                            <MenuIcon sx={{ fontSize: "30px" }} />
+                        </IconButton>
+                    </div>
 
                     <a href="/" className={styles.logo}>
                         <img
@@ -142,7 +146,10 @@ function Header() {
                         )}
                     </div>
                     {/* //------------------------------------------------ */}
-                    <div onClick={handleClickSearch} className="cursor-pointer mr-5">
+                    <div
+                        onClick={handleClickSearch}
+                        className="cursor-pointer mr-5"
+                    >
                         <SearchIcon style={{ fontSize: "28px" }} />
                     </div>
                 </div>
@@ -222,28 +229,40 @@ function Header() {
                             </a>
                         </li>
                         <li className={styles.menuItem}>
-                            <a href="/khuyenmai" className={styles.menuItemLink}>
+                            <a
+                                href="/khuyenmai"
+                                className={styles.menuItemLink}
+                            >
                                 Khuyến mãi
                             </a>
                         </li>
                     </ul>
                     <div className={styles.utilities}>
-                        <div onClick={handleClickSearch} className="cursor-pointer">
-                            <SearchIcon style={{ color: "#fff", fontSize: "28px" }} />
+                        <div
+                            onClick={handleClickSearch}
+                            className="cursor-pointer"
+                        >
+                            <SearchIcon
+                                style={{ color: "#fff", fontSize: "28px" }}
+                            />
                         </div>
                         <a href="/cart" style={{ position: "relative" }}>
                             <ShoppingBagOutlinedIcon
                                 style={{ color: "#fff", fontSize: "28px" }}
                             />
-                            <div className={styles.cartNumber}>{dataNumber}</div>
+                            <div className={styles.cartNumber}>
+                                {dataNumber}
+                            </div>
                         </a>
                         {/*<Tooltip title="Account settings">*/}
-                        {(document.cookie.indexOf('token') !== -1) ?
+                        {document.cookie.indexOf("token") !== -1 ? (
                             <IconButton
                                 onClick={handleClick}
                                 size="small"
                                 sx={{ ml: -0.2 }}
-                                aria-controls={open ? "account-menu" : undefined}
+                                aria-controls={
+                                    open ? "account-menu" : undefined
+                                }
                                 aria-haspopup="true"
                                 aria-expanded={open ? "true" : undefined}
                             >
@@ -252,15 +271,33 @@ function Header() {
                                 />*/}
 
                                 <div className={styles.userr}>
-                                    <img src={user.image.length !== 0 ? user.image[0].url : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkNjtjpEZtAtYMoeDfg6PO5DoGrpAhCA79Jg&usqp=CAU"} alt="User Image" className={styles.userr_image} />
-                                    <p className={styles.menuItemLink} style={{ color: "white" }}>{formatUserName(user.hoten)}</p>
+                                    <img
+                                        src={
+                                            user?.image?.length !== 0
+                                                ? user?.image[0]?.url
+                                                : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkNjtjpEZtAtYMoeDfg6PO5DoGrpAhCA79Jg&usqp=CAU"
+                                        }
+                                        alt="User Image"
+                                        className={styles.userr_image}
+                                    />
+                                    <p
+                                        className={styles.menuItemLink}
+                                        style={{ color: "white" }}
+                                    >
+                                        {formatUserName(user?.hoten)}
+                                    </p>
                                 </div>
-
-                            </IconButton> :
+                            </IconButton>
+                        ) : (
                             <Link to="/login">
-                                <p className={styles.menuItemLink} style={{ color: "white" }}>Đăng nhập</p>
+                                <p
+                                    className={styles.menuItemLink}
+                                    style={{ color: "white" }}
+                                >
+                                    Đăng nhập
+                                </p>
                             </Link>
-                        }
+                        )}
                         {/*</Tooltip>*/}
                         <Menu
                             anchorEl={anchorEl}
@@ -289,16 +326,26 @@ function Header() {
                                         width: 10,
                                         height: 10,
                                         bgcolor: "background.paper",
-                                        transform: "translateY(-50%) rotate(45deg)",
+                                        transform:
+                                            "translateY(-50%) rotate(45deg)",
                                         zIndex: 0,
                                     },
                                 },
                             }}
-                            transformOrigin={{ horizontal: "right", vertical: "top" }}
-                            anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
+                            transformOrigin={{
+                                horizontal: "right",
+                                vertical: "top",
+                            }}
+                            anchorOrigin={{
+                                horizontal: "right",
+                                vertical: "bottom",
+                            }}
                         >
                             <Link to="/customer/info">
-                                <MenuItem onClick={handleClose1} sx={{ fontSize: 15 }}>
+                                <MenuItem
+                                    onClick={handleClose1}
+                                    sx={{ fontSize: 15 }}
+                                >
                                     <ListItemIcon>
                                         <PersonIcon fontSize="large"></PersonIcon>
                                     </ListItemIcon>
@@ -307,34 +354,59 @@ function Header() {
                             </Link>
                             <Divider />
 
-                            {(document.cookie.indexOf('token') == -1) ?
+                            {document.cookie.indexOf("token") == -1 ? (
                                 <Link to="/login">
-                                    <MenuItem onClick={handleClose1} sx={{ fontSize: 15 }}>
+                                    <MenuItem
+                                        onClick={handleClose1}
+                                        sx={{ fontSize: 15 }}
+                                    >
                                         <ListItemIcon>
                                             <Login fontSize="large" />
                                         </ListItemIcon>
                                         Đăng nhập
                                     </MenuItem>
                                 </Link>
-                                :
-                                <MenuItem onClick={handleClose2} sx={{ fontSize: 15 }}>
+                            ) : (
+                                <MenuItem
+                                    onClick={handleClose2}
+                                    sx={{ fontSize: 15 }}
+                                >
                                     <ListItemIcon>
                                         <Logout fontSize="large" />
                                     </ListItemIcon>
                                     Đăng xuất
-                                </MenuItem>}
+                                </MenuItem>
+                            )}
                         </Menu>
                         <div className="text-white">
-                            <button className={`border-2 p-1  mr-4 w-9 h-9 hover:text-blue-600 hover:border-blue-600 ${template === 1 ? 'border-blue-600 text-blue-600' : 'border-white'}`} onClick={() => setTemplate(1)}>1</button>
-                            <button className={`border-2 p-1 w-9 h-9 hover:text-blue-600 hover:border-blue-600 ${template === 2 ? 'border-blue-600 text-blue-600' : 'border-white'}`} onClick={() => setTemplate(2)}>2</button>
+                            <button
+                                className={`border-2 p-1  mr-4 w-9 h-9 hover:text-blue-600 hover:border-blue-600 ${
+                                    template === 1
+                                        ? "border-blue-600 text-blue-600"
+                                        : "border-white"
+                                }`}
+                                onClick={() => setTemplate(1)}
+                            >
+                                1
+                            </button>
+                            <button
+                                className={`border-2 p-1 w-9 h-9 hover:text-blue-600 hover:border-blue-600 ${
+                                    template === 2
+                                        ? "border-blue-600 text-blue-600"
+                                        : "border-white"
+                                }`}
+                                onClick={() => setTemplate(2)}
+                            >
+                                2
+                            </button>
                         </div>
                     </div>
                 </div>
             </>
         );
     }
-    
-    return <HeaderSecond />
+
+    return <HeaderSecond />;
 }
 
 export default Header;

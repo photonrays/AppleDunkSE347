@@ -13,11 +13,11 @@ export function TemplateContextProvider({ children }) {
     sessionStorage.setItem("template", template)
   }, [template])
 
-  return (
-    <TemplateContext.Provider value={{ template, setTemplate }}>
-      {children}
-    </TemplateContext.Provider>
-  );
+    return (
+        <TemplateContext.Provider value={{ template, setTemplate }}>
+            {children}
+        </TemplateContext.Provider>
+    );
 }
 
-export const useTemplateContext = () => useContext(TemplateContext)
+export const useTemplateContext = () => useContext(TemplateContext);

@@ -26,9 +26,11 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import HandleApiCart from "../../Apis/HandleApiCart";
 import { useSideBarContext } from "../../contexts/sidebarContext";
+import { useTemplateContext } from "../../contexts/templateContext";
 
 import HandleApiProduct from "../../Apis/HandleApiProduct";
 import MenuItems from "../HomeSecond/Components/MenuItems";
+import Header from "../../Components/Header";
 
 function HeaderSecond() {
     const [suggestions, setSuggestions] = useState([]);
@@ -45,6 +47,7 @@ function HeaderSecond() {
     const user = JSON.parse(localStorage.getItem("user"));
     var number = 0;
     const { isSidebarOpen, setIsSidebarOpen } = useSideBarContext();
+    const { template, setTemplate } = useTemplateContext();
 
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
@@ -148,18 +151,32 @@ function HeaderSecond() {
 
                 {/* Đây là thanh search trên Header khi nào click icon search thì xuất hiện */}
                 <div
-                    onClick={() => {
-                        setSearch(1);
-                        setSuggestionsActive(false);
-                        setCategoryActive(false);
-                    }}
+                    onClick={() => setSearch(1)}
                     className={
                         search === 2
-                            ? "fixed top-[64px] left-0 bottom-0 right-0 grow bg-black opacity-70 z-10011"
+                            ? "fixed top-0 left-0 w-full h-screen grow bg-black opacity-70 z-10011"
                             : "hidden"
                     }
                 ></div>
-
+                <div
+                    className={
+                        search === 2
+                            ? "fixed h-[64px] text-center leading-[64px] w-full bg-black z-10012"
+                            : "hidden"
+                    }
+                >
+                    {inputIsVisible && (
+                        <input
+                            onKeyDown={handleEnter}
+                            ref={inputRef}
+                            placeholder="Tìm kiếm"
+                            id="search-box"
+                            className={
+                                "w-1/2 h-3/5 px-[16px] rounded-[3px] text-[16px] text-black-700 outline-none"
+                            }
+                        />
+                    )}
+                </div>
                 {/* //------------------------------------------------ */}
                 <div
                     onClick={handleClickSearch}
@@ -267,8 +284,8 @@ function HeaderSecond() {
                 </div>
                 <div className={styles.utilities}>
                     {/* <div onClick={handleClickSearch} className="cursor-pointer">
-                        <SearchIcon style={{ color: "#fff", fontSize: "28px" }} />
-                    </div> */}
+                            <SearchIcon style={{ color: "#fff", fontSize: "28px" }} />
+                        </div> */}
                     <a href="/store" className="flex items-center">
                         <LocationOnOutlinedIcon
                             style={{ color: "#fff", fontSize: "32px" }}
@@ -302,8 +319,8 @@ function HeaderSecond() {
                             aria-expanded={open ? "true" : undefined}
                         >
                             {/*<PersonOutlinedIcon
-                                    style={{ color: "#fff", fontSize: "28px" }}
-                                />*/}
+                                        style={{ color: "#fff", fontSize: "28px" }}
+                                    />*/}
 
                             <div className={styles.userr}>
                                 <img
@@ -412,6 +429,28 @@ function HeaderSecond() {
                             </MenuItem>
                         )}
                     </Menu>
+                    <div className="text-white">
+                        <button
+                            className={`border-2 p-1  mr-4 w-9 h-9 hover:text-blue-600 hover:border-blue-600 ${
+                                template === 1
+                                    ? "border-blue-600 text-blue-600"
+                                    : "border-white"
+                            }`}
+                            onClick={() => setTemplate(1)}
+                        >
+                            1
+                        </button>
+                        <button
+                            className={`border-2 p-1 w-9 h-9 hover:text-blue-600 hover:border-blue-600 ${
+                                template === 2
+                                    ? "border-blue-600 text-blue-600"
+                                    : "border-white"
+                            }`}
+                            onClick={() => setTemplate(2)}
+                        >
+                            2
+                        </button>
+                    </div>
                 </div>
             </div>
         </>
