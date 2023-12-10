@@ -5,7 +5,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import "../DetailBottom.css"
 
-function GeneralInformation({tongleState, demoProduct, layout}) {
+function GeneralInformation({tongleState, demoProduct, template}) {
     const [more, setMore] = useState(0);
 
     // Xem thêm hoặc thu gọn
@@ -19,8 +19,8 @@ function GeneralInformation({tongleState, demoProduct, layout}) {
 
     return (
         <div className={tongleState === 1 ? 
-        (layout === 1 ? "flex-1" : "flex-1 lg:border-[2px] lg:border-slate-300 lg:boder-solid lg:p-[16px] lg:rounded-[7px] mx-[10px]")
-        :(layout === 1 ? "hidden" : "lg:flex-1 lg:border-[2px] lg:border-slate-300 lg:boder-solid lg:p-[16px] lg:rounded-[7px] lg:mx-[10px] infor")}>
+        (template === 1 ? "flex-1" : "flex-1 lg:border-[2px] lg:border-slate-300 lg:boder-solid lg:p-[16px] lg:rounded-[7px] mx-[10px]")
+        :(template === 1 ? "hidden" : "lg:flex-1 lg:border-[2px] lg:border-slate-300 lg:boder-solid lg:p-[16px] lg:rounded-[7px] lg:mx-[10px] infor")}>
             <div className={more === 0? "des text-ellipsis overflow-hidden" : ""}>
             {
                 demoProduct.mota? parse(demoProduct.mota) : <>

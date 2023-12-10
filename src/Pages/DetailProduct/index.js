@@ -12,13 +12,11 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import Carousel from "./OtherComponent/Carousel";
 import "./DetailBottom.css";
+import { useTemplateContext } from "../../contexts/templateContext"
 
 function DetailProduct() {
     const [isLoading, setLoading] = useState(true);
     const params = useParams()
-    const [currentSlide,setCurrentSlide] = useState(0);
-    const mainCarouselRef = useRef(null);
-    const thumbnailCarouselRef = useRef(null);
     const [sp, setSp] = useState(null)
     const [user, setUser] = useState(JSON.parse(window.localStorage.getItem("user")))
     
@@ -28,8 +26,8 @@ function DetailProduct() {
     const [lstRam, setLstRam] = useState([])
     const [color, setColor] = useState("");
     const [lstColor, setLstColor] = useState([]);
-    const [lstManHinh, setLstManHinh] = useState([])
-    const [layout, setLayout] = useState(1)
+    const { template, setTemplate } = useTemplateContext();
+    console.log("template: ", template)
     let lstColorBG = {
         black: "bg-gray-800",
         gray: "bg-gray-400",
@@ -49,6 +47,7 @@ function DetailProduct() {
 
         axios.get(`http://localhost:3001/api/product/${params.id}`)
         .then( (response) => { 
+            console.log(template)
             if(response.data !== undefined) {
                 setSp(response.data);      
                 setLoading(false);
@@ -121,39 +120,6 @@ function DetailProduct() {
         }
     }
 
-    // const mainCarouselOptions = {
-    //     perPage: 1,
-    //     pagination: false,
-    //     arrows: false,
-    //     rewind: true,
-    //     gap: '2rem',
-    //     onMove: () => {
-    //         thumbnailCarouselRef.current.go(mainCarouselRef.current.index);
-    //     }
-    // };
-
-    // const thumbnailCarouselOptions = {
-    //     fixedWidth: 100,
-    //     fixedHeight: 100,
-    //     gap: '0.1rem',
-    //     cover: true,
-    //     pagination: false,
-    //     arrows: true,
-    //     focus: 'center',
-    //     updateOnMove: false,
-    //     perPage: 3,
-    //     breakpoints: {
-    //         768: {
-    //             fixedWidth: 66,
-    //             fixedHeight: 50,
-    //         },
-    //     },
-    // };
-    // const handleThumbnailClick = (index) => {
-    //     setCurrentSlide(index);
-    //     mainCarouselRef.current.go(index);
-    //   };
-
     const handleDungLuongClick = (i) => {
         setDungluong(i)
         // console.log(params.id)
@@ -165,157 +131,232 @@ function DetailProduct() {
     if (isLoading===false && sp!==undefined && sp!==null) {
         console.log("isLo ",isLoading)
         console.log(sp)
-        
+      
     return (
         <div className={classes.container}>
             <section className={classes.detailproduct}>
-                {/* <section className={classes.product_splide}>
-                    <Splide
-                        className={classes.mainSplide}
-                        options={mainCarouselOptions}
-                        ref={mainCarouselRef}
-                    >
-                        {
-                            sp.imageList?.map((img_item, index)=>(
-                                <SplideSlide>
-                                    <img src={img_item} alt="Hình ảnh sản phẩm" />
-                                </SplideSlide>
-                            ))
-                        }
+            {template===1?(
+                <>
+                    <div className={classes.carousel}>
+                        <Carousel sp = {sp}/>
+                    </div>
 
-                    </Splide>
+                    <div className={classes.overview}>
+                        <div className={classes.wrapped_info}>
+                            <h1>
+                                <span>{sp.tensanpham}</span>
+                            </h1>
+                            <div className={classes.wrapped_info_content}>
+                                <div className={classes.rating}>
+                                    <Rating name="size-small" defaultValue={2} size="big" />
+                                </div>
+                                <a>Đánh giá</a>
+                            <hr />
 
-                    <Splide
-                        className={classes.optionSplide}
-                        options={thumbnailCarouselOptions}
-                        ref={thumbnailCarouselRef}
-                        onFirstInit={() => {
-                            thumbnailCarouselRef.current.sync(mainCarouselRef.current);
-                        }}
-                    >
-                        {
-                            sp.imageList?.map((img_item, index)=>(
-                                <SplideSlide>
-                                    <div>
-                                        <img src={img_item} alt="Thumbnail"
-                                        onClick={() => handleThumbnailClick(index)} />
-                                    </div>
-                                </SplideSlide>
-                            ))
-                        }
-                    </Splide>
-                </section> */}
-                <div className={classes.carousel}>
-                    <Carousel sp = {sp}/>
-                </div>
+                        </div>
+                        <div className={classes.price}>
+                            <span className={classes.currentPrice}>{VND.format(sp.gia)}</span>
+                        </div>
+                        <div className={classes.attribute}>
+                            <div className={classes.detail_info}>
+                                {
+                                    (lstRom.length !== 0)&&(
+                                        <>
+                                        <label>Dung lượng</label>
+                                <ul>
+                                    {
+                                        lstRom?.map((rom_item, index) =>{
+                                            return (
+                                                <li onClick={()=> setDungluong(rom_item)}
+                                                    className={dungluong === rom_item ? classes.active : "hover:border-blue-400 hover:border-[2px] hover:text-blue-600"}>
+                                                    {rom_item}
+                                                </li>
+                                            )
+                                        } )
+                                    }
+                                    
+                                </ul>
+                                        </>
+                                    )
+                                }
 
-                <div className={classes.overview}>
-                    <div className={classes.wrapped_info}>
-                        <h1>
-                            <span>{sp.tensanpham}</span>
-                        </h1>
-                        <div className={classes.wrapped_info_content}>
-                            <div className={classes.rating}>
-                                <Rating name="size-small" defaultValue={2} size="big" />
+                                {
+                                    (lstRam.length !==0)&&(
+                                        <>
+                                        <label>RAM</label>
+                                <ul>
+                                    {
+                                        lstRam?.map((ram_item, index) =>{
+                                            return (
+                                                <li onClick={()=> setRam(ram_item)} 
+                                                    className={ram === ram_item ? classes.active : "hover:border-blue-400 hover:border-[2px] hover:text-blue-600"}>
+                                                    {ram_item}
+                                                </li>
+                                            )
+                                        } )
+                                    }
+                                    
+                                </ul>
+                                        </>
+                                    )
+                                }
+
+                                
+                            {
+                                (lstColor.length !== 0)&&(
+                                    <>
+                                    <label>Màu sắc</label>
+                            <div className={classes.itemColor}>
+                            <ul >
+                                {
+                                    lstColor?.map((color_item, index) =>{
+                                        let colorBG = lstColorBG[color_item]
+                                        
+                                        if(classes[color_item] !== undefined){
+                                            return (
+                                                <li title={color_item} className={`${color === color_item ? `${colorBG} outline outline-[2px] outline-blue-500` : classes[color_item]}`}
+                                                    onClick={()=>setColor(color_item)} value={color_item}>
+                                                </li>
+                                            )
+                                        }
+                                    } )
+                                }
+
+                            </ul>
                             </div>
-                            <a>Đánh giá</a>
-                        <hr />
-
-                    </div>
-                    <div className={classes.price}>
-                        <span className={classes.currentPrice}>{VND.format(sp.gia)}</span>
-                    </div>
-                    <div className={classes.attribute}>
-                        <div className={classes.detail_info}>
-                            {
-                                (lstRom.length !== 0)&&(
-                                    <>
-                                    <label>Dung lượng</label>
-                            <ul>
-                                {
-                                    lstRom?.map((rom_item, index) =>{
-                                        return (
-                                            <li onClick={()=> setDungluong(rom_item)}
-                                                className={dungluong === rom_item ? classes.active : "hover:border-blue-400 hover:border-[2px] hover:text-blue-600"}>
-                                                {rom_item}
-                                            </li>
-                                        )
-                                    } )
-                                }
-                                
-                            </ul>
                                     </>
                                 )
                             }
-
-                            {
-                                (lstRam.length !==0)&&(
-                                    <>
-                                    <label>RAM</label>
-                            <ul>
-                                {
-                                    lstRam?.map((ram_item, index) =>{
-                                        return (
-                                            <li onClick={()=> setRam(ram_item)} 
-                                                className={ram === ram_item ? classes.active : "hover:border-blue-400 hover:border-[2px] hover:text-blue-600"}>
-                                                {ram_item}
-                                            </li>
-                                        )
-                                    } )
-                                }
-                                
-                            </ul>
-                                    </>
-                                )
-                            }
+                            </div>
 
                             
-                           {
-                            (lstColor.length !== 0)&&(
-                                <>
-                                 <label>Màu sắc</label>
-                        <div className={classes.itemColor}>
-                        <ul >
-                            {
-                                lstColor?.map((color_item, index) =>{
-                                    let colorBG = lstColorBG[color_item]
-                                    
-                                    if(classes[color_item] !== undefined){
-                                        return (
-                                            <li title={color_item} className={`${color === color_item ? `${colorBG} outline outline-[2px] outline-blue-500` : classes[color_item]}`}
-                                                onClick={()=>setColor(color_item)} value={color_item}>
-                                            </li>
-                                        )
+                            
+                            <div className={classes.confirm}>
+                                <button onClick={()=>handleMuaNgayClick()}>MUA NGAY</button>
+                            </div>
+
+
+                        </div>
+
+
+
+                        </div>
+                    </div>
+                </>
+            ):(
+                <>
+                <div className={classes.overview}>
+                        <div className={classes.wrapped_info}>
+                            <h1>
+                                <span>{sp.tensanpham}</span>
+                            </h1>
+                            <div className={classes.wrapped_info_content}>
+                                <div className={classes.rating}>
+                                    <Rating name="size-small" defaultValue={2} size="big" />
+                                </div>
+                                <a>Đánh giá</a>
+                            <hr />
+
+                        </div>
+                        <div className={classes.price}>
+                            <span className={classes.currentPrice}>{VND.format(sp.gia)}</span>
+                        </div>
+                        <div className={classes.attribute}>
+                            <div className={classes.detail_info}>
+                                {
+                                    (lstRom.length !== 0)&&(
+                                        <>
+                                        <label>Dung lượng</label>
+                                <ul>
+                                    {
+                                        lstRom?.map((rom_item, index) =>{
+                                            return (
+                                                <li onClick={()=> setDungluong(rom_item)}
+                                                    className={dungluong === rom_item ? classes.active : "hover:border-blue-400 hover:border-[2px] hover:text-blue-600"}>
+                                                    {rom_item}
+                                                </li>
+                                            )
+                                        } )
                                     }
-                                } )
+                                    
+                                </ul>
+                                        </>
+                                    )
+                                }
+
+                                {
+                                    (lstRam.length !==0)&&(
+                                        <>
+                                        <label>RAM</label>
+                                <ul>
+                                    {
+                                        lstRam?.map((ram_item, index) =>{
+                                            return (
+                                                <li onClick={()=> setRam(ram_item)} 
+                                                    className={ram === ram_item ? classes.active : "hover:border-blue-400 hover:border-[2px] hover:text-blue-600"}>
+                                                    {ram_item}
+                                                </li>
+                                            )
+                                        } )
+                                    }
+                                    
+                                </ul>
+                                        </>
+                                    )
+                                }
+
+                                
+                            {
+                                (lstColor.length !== 0)&&(
+                                    <>
+                                    <label>Màu sắc</label>
+                            <div className={classes.itemColor}>
+                            <ul >
+                                {
+                                    lstColor?.map((color_item, index) =>{
+                                        let colorBG = lstColorBG[color_item]
+                                        
+                                        if(classes[color_item] !== undefined){
+                                            return (
+                                                <li title={color_item} className={`${color === color_item ? `${colorBG} outline outline-[2px] outline-blue-500` : classes[color_item]}`}
+                                                    onClick={()=>setColor(color_item)} value={color_item}>
+                                                </li>
+                                            )
+                                        }
+                                    } )
+                                }
+
+                            </ul>
+                            </div>
+                                    </>
+                                )
                             }
+                            </div>
 
-                        </ul>
-                        </div>
-                                </>
-                            )
-                           }
-                        </div>
+                            
+                            
+                            <div className={classes.confirm}>
+                                <button onClick={()=>handleMuaNgayClick()}>MUA NGAY</button>
+                            </div>
 
-                        
-                        
-                        <div className={classes.confirm}>
-                            <button onClick={()=>handleMuaNgayClick()}>MUA NGAY</button>
+
                         </div>
 
 
+
+                        </div>
                     </div>
-
-
-
+                    <div className={classes.carousel}>
+                        <Carousel sp = {sp}/>
                     </div>
-                </div>
+                </>
+            )}
 
             </section>
             <div>
                 {(sp!==undefined)?<DetailBottom sp = {sp}
                               user = {user}
-                                layout = {layout}
+                                template = {template}
                               />:""}
             </div>
 
