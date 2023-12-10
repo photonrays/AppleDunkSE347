@@ -11,7 +11,7 @@ import Swal from "sweetalert2";
 import axios from "axios";
 import GeneralInformation from "./OtherComponent/GeneralInformation";
 import TsktTable from "./OtherComponent/TsktTable";
-function DetailBottom({sp, user, layout}) {
+function DetailBottom({sp, user, template}) {
     const navigate = useNavigate()
     const [tongleState, setTongleState] = useState(1);
     const [filterIndex, setFilterIndex] = useState(6);
@@ -201,9 +201,9 @@ function DetailBottom({sp, user, layout}) {
  {
     return (<div className="product-bot-container mx-auto grid grid-cols-1 my-[50px]">
         
-        <div className={layout === 1 ? "des-container place-self-center" : "lg:w-full"}>
+        <div className={template === 1 ? "des-container place-self-center" : "lg:w-full"}>
                     {/* <div className="tab-bar"> */}
-                    <div className={layout === 1 ? "tab-bar" : "lg:hidden tab-bar"}>
+                    <div className={template === 1 ? "tab-bar" : "lg:hidden tab-bar"}>
                         <div className={tongleState === 1 ? "tab-item tab-item-active":"tab-item"}
                             onClick={() => tongleTab(1)}>
                             <div className="tab-item-title">Mô tả sản phẩm</div>
@@ -217,14 +217,14 @@ function DetailBottom({sp, user, layout}) {
                         <div className="line"></div>
                     </div>
                     {/* Tab content: tab thông tin chung và9+ tab thông số kỹ thuật */}
-                    <div class={layout === 1 ? "tab-content w-full" : "lg:flex lg:justify-between lg:items-start tab-content w-full"}>
+                    <div class={template === 1 ? "tab-content w-full" : "lg:flex lg:justify-between lg:items-start tab-content w-full"}>
                         <GeneralInformation tongleState = {tongleState}
                             demoProduct = {demoProduct}
-                            layout = {layout}
+                            template = {template}
                         />
                         <TsktTable tongleState = {tongleState}
                             demoProduct = {demoProduct}
-                            layout = {layout}
+                            template = {template}
                             />
                     </div>
 
