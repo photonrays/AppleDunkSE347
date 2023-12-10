@@ -1,0 +1,19 @@
+
+
+@media (max-width: 767px){
+    .avatar {
+        display: none;
+    }
+
+    .name {
+        font-size: 15px;
+    }
+
+    .right-aria-cmt {
+        padding: 0;
+    }
+
+    .bought {
+        font-size: 13px;
+    }
+}

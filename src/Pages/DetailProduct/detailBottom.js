@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./DetailBottom.css";
 import StarRating from "./StarRating";
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import RatedStar from "./RatingStar/RatedStar";
 import RatingModal from "./RatingStar/RatingModal";
 import CheckIcon from '@mui/icons-material/Check';
@@ -11,8 +9,9 @@ import StaticRatedStar from "./RatingStar/StaticRatedStar.js";
 import Comment from "./Comment/Comment";
 import Swal from "sweetalert2";
 import axios from "axios";
-import parse from 'html-react-parser'
-function DetailBottom({sp, user}) {
+import GeneralInformation from "./OtherComponent/GeneralInformation";
+import TsktTable from "./OtherComponent/TsktTable";
+function DetailBottom({sp, user, layout}) {
     const navigate = useNavigate()
     const [tongleState, setTongleState] = useState(1);
     const [filterIndex, setFilterIndex] = useState(6);
@@ -23,7 +22,6 @@ function DetailBottom({sp, user}) {
     const [dtbDG, setDtbDG] = useState("...")
     const [soluongDG, setSoLuongDG] = useState()
     const [loading, setLoading] = useState(false)
-    const [more, setMore] = useState(0);
 
     // hàm set giá trị cho tab được chon
     const tongleTab = function(index) {
@@ -53,10 +51,6 @@ function DetailBottom({sp, user}) {
         }
     }
 
-    // Xem thêm hoặc thu gọn
-    const handleOnclickMoreOrNot = (index) => {
-        setMore(index);
-    }
 
     // Lấy giá trị rating
     const [ratingOut, setRatingOut] = useState(null);
@@ -205,10 +199,11 @@ function DetailBottom({sp, user}) {
 
  if(loading)
  {
-    return (<div className="w-3/4 mx-auto grid grid-cols-1 my-[50px]">
+    return (<div className="product-bot-container mx-auto grid grid-cols-1 my-[50px]">
         
-        <div className="w-[800px] place-self-center">
-                    <div className="tab-bar">
+        <div className={layout === 1 ? "des-container place-self-center" : "lg:w-full"}>
+                    {/* <div className="tab-bar"> */}
+                    <div className={layout === 1 ? "tab-bar" : "lg:hidden tab-bar"}>
                         <div className={tongleState === 1 ? "tab-item tab-item-active":"tab-item"}
                             onClick={() => tongleTab(1)}>
                             <div className="tab-item-title">Mô tả sản phẩm</div>
@@ -221,50 +216,16 @@ function DetailBottom({sp, user}) {
 
                         <div className="line"></div>
                     </div>
-                    {/* Tab content */}
-                    <div class="tab-content w-full">
-                        <div class={tongleState === 1 ? "block":"hidden"}>
-                            <div className={more === 0? "text-ellipsis max-h-[400px] overflow-hidden":""}>
-                            {
-                                demoProduct.mota? parse(demoProduct.mota) : <>
-                                    <h1 className="text-[26px] font-bold">{demoProduct.name}</h1>
-                                <p className="text-[14px]">{demoProduct.description.moTaChung}</p>
-                        
-                                <h2 className="text-[18px] font-bold mt-[10px]">{demoProduct.description.title1}</h2>
-                                <p className="text-[14px]">{demoProduct.description.des1}</p>
-                        
-                                <h2 className="text-[18px] font-bold mt-[10px]">{demoProduct.description.title2}</h2>
-                                <p className="text-[14px]">{demoProduct.description.des2}</p>
-                                
-                                </>
-                            }                               
-                            </div>
-                            <div className="h-[50px] cursor-pointer mt-[15px]">
-                                <div className={more === 0? "shadow-lg py-[12px] text-blue-600 text-center text-[18px]":"hidden"}
-                                onClick={()=>handleOnclickMoreOrNot(1)}>
-                                    Tìm hiểu thêm
-                                    <ExpandMoreIcon sx={{ fontSize: 24 }}/>
-                                </div>
-
-                                <div className={more === 1? "shadow-lg py-[12px] text-blue-600 text-center text-[18px]":"hidden"}
-                                onClick={()=>handleOnclickMoreOrNot(0)}>
-                                    Rút gọn
-                                    <ExpandLessIcon sx={{ fontSize: 24 }}/>
-                                </div>
-                            </div>
-                        </div>
-                        <div class={tongleState === 2 ? "text-ellipsis overflow-hidden block":"hidden"}>
-                            <table className="w-full table-fixed text-[16px] text-slate-600 border-collapse border border-slate-400">
-                                <tbody>
-                                    {demoProduct.TSKT.map((tskt, index) => (
-                                        tskt?<tr className={(index % 2) === 0 ?"w-full bg-slate-200":"w-full"}>
-                                            <td className="border border-slate-300 py-[6px] px-[16px]">{tskt[0]}</td>
-                                            <td className="border border-slate-300 py-[6px] px-[16px]">{tskt[1]}</td>
-                                        </tr>:""
-                                    ))}
-                                </tbody>
-                            </table>
-                        </div>
+                    {/* Tab content: tab thông tin chung và9+ tab thông số kỹ thuật */}
+                    <div class={layout === 1 ? "tab-content w-full" : "lg:flex lg:justify-between lg:items-start tab-content w-full"}>
+                        <GeneralInformation tongleState = {tongleState}
+                            demoProduct = {demoProduct}
+                            layout = {layout}
+                        />
+                        <TsktTable tongleState = {tongleState}
+                            demoProduct = {demoProduct}
+                            layout = {layout}
+                            />
                     </div>
 
         </div>
@@ -272,9 +233,10 @@ function DetailBottom({sp, user}) {
                     <div className="place-self-center mt-[40px] w-full py-[16px] rounded-[7px] border-[2px] border-slate-300 boder-solid">
                         {/* Title */}
                         <div className="px-[16px] pb-[16px] text-[18px] text-slate-700 font-semi-bold border-b-[2px] border-slate-300">Đánh giá sản phẩm</div>
-                        <div className="grid grid-cols-3 justify-items-stretch text-[16px] py-[20px] border-b-[2px] border-slate-100">
-                            <div className="text-center">
-                                <div className="text-slate-700">Đánh giá trung bình</div>
+                        {/* grid grid-cols-3 */}
+                        <div className="rateDiv justify-items-stretch text-[16px] py-[20px] border-b-[2px] border-slate-100">
+                            <div className="rateItem text-center">
+                                <div className="average-title text-slate-700">Đánh giá trung bình</div>
                                 <div className="text-[36px] text-red-600">{dtbDG}/5</div>
                                 <div className="flex justify-center">
                                 <StaticRatedStar
@@ -283,20 +245,20 @@ function DetailBottom({sp, user}) {
                                 </div>
                                 <div>{soluongDG} đánh giá</div>
                             </div>
-                            {<div className="my-auto">
+                            {<div className="rateItem my-auto">
                                 <RatedStar allDG = {allDG}
                                         soluongDG = {soluongDG}/>
                             </div>}
-                            <div className="text-center my-auto">
-                                <div className="text-[16px] my-[10px]">Bạn đã dùng sản phẩm này</div>
+                            <div className="rateItem text-center my-auto">
+                                <div className="last-rateItem-title text-[16px] my-[10px]">Bạn đã dùng sản phẩm này</div>
                                 <button className="text-[16px] text-white bg-blue-600 rounded-[5px] font-extralight p-[10px]"
                                 onClick={()=>handleClickGuiDG(0)}>GỬI ĐÁNH GIÁ</button>
                             </div>
                         </div>
-                        <div className="px-[25px] h-[56px] text-[14px] text-slate-500 bg-slate-100 flex items-center">
-                            <div>Lọc xem theo:</div>
-                            <div className={filterIndex === 6 ? "px-[10px] py-[3px] mx-[10px] rounded-[4px] align-middle cursor-pointer border-[1px] border-blue-400 hover:bg-blue-400 hover:text-white text-blue-400" 
-                            :"px-[10px] py-[3px] mx-[10px] rounded-[4px] align-middle scursor-pointer border-[1px] border-slate-300 hover:bg-slate-300"}
+                        <div className="filter-rate text-[14px] text-slate-500 bg-slate-100 items-center">
+                            <div className="filter-title">Lọc xem theo:</div>
+                            <div className={filterIndex === 6 ? "filter-item px-[10px] py-[3px] mx-[10px] rounded-[4px] align-middle cursor-pointer border-[1px] border-blue-400 hover:bg-blue-400 hover:text-white text-blue-400" 
+                            :"filter-item px-[10px] py-[3px] mx-[10px] rounded-[4px] align-middle scursor-pointer border-[1px] border-slate-300 hover:bg-slate-300"}
                                 onClick={()=>setFilterIndex(6)}>
                                     <span className={filterIndex === 6 ? "font-bold": "hidden"}><CheckIcon fontSize="20"/></span>
                                     <span>Tất cả đánh giá</span>
@@ -304,11 +266,11 @@ function DetailBottom({sp, user}) {
 
                             {[...Array(5)].map((filterbtn, index) => {
                                 const star = index + 1;
-                                return <div className={filterIndex === star ?"px-[8px] py-[3px] mr-[10px] rounded-[4px] align-middle cursor-pointer border-[1px] border-blue-400 hover:bg-blue-400 hover:text-white text-blue-400" 
-                            :"px-[8px] py-[3px] mr-[10px] rounded-[4px] align-middle cursor-pointer border-[1px] border-slate-300 hover:bg-slate-300"}
+                                return <div className={filterIndex === star ?"filter-item px-[10px] py-[3px] mr-[10px] rounded-[4px] align-middle cursor-pointer border-[1px] border-blue-400 hover:bg-blue-400 hover:text-white text-blue-400" 
+                            :"filter-item px-[8px] py-[3px] mr-[10px] rounded-[4px] align-middle cursor-pointer border-[1px] border-slate-300 hover:bg-slate-300"}
                                 onClick={()=> setFilterIndex(star)}>
                                     <span className={filterIndex === star ? "font-bold": "hidden"}><CheckIcon fontSize="20"/></span>
-                                    <span className="">{star} sao</span>
+                                    <span>{star} sao</span>
                                 </div>
                             })}
                         </div>

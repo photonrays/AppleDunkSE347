@@ -3,6 +3,10 @@ const images = {
     notFoundGif: require("./notfound.gif"),
     ip14prm: require("./ip14prm.png"),
     airpod2: require("./airpod2.jpeg"),
+    
+    rightBanner1: require("./rightbanner1.jpg"),
+    rightBanner2: require("./rightbanner2.jpg"),
+    rightBanner3: require("./rightbanner3.jpg"),
 
     loginBG: require('./loginbg.jpg'),
     logBG: require('./logbg.jpg'),

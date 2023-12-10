@@ -1,0 +1,136 @@
+/* .container {
+    height: 64px;
+    width: 100%;
+    background-color: #515154;
+    display: flex;
+    justify-content: center;
+    position: sticky;
+    top: 0px;
+    z-index: 10000;
+} */
+
+.logo {
+    width: 172px;
+    height: 45px;
+    align-self: center;
+}
+
+.menu {
+    height: 64px;
+    display: flex;
+    justify-content: space-evenly;
+    padding: 0 10px;
+}
+
+.menuItem {
+    display: inline-block;
+    border-left: 0px;
+    align-self: center;
+}
+
+.menuItem:hover {
+    background-color: #626265;
+}
+
+.menuItemLink {
+    display: block;
+    padding: 22px 20px;
+    line-height: 20px;
+    font-size: 15px;
+    color: #d2d2d7;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.menuItemLink:hover {
+    color: #fff;
+}
+
+.utilities {
+    padding: 0 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    margin: 0 10px;
+}
+
+/* Cart number */
+.cartNumber {
+    position: absolute;
+    right: -6px;
+    bottom: -6px;
+    background-color: #fff;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+}
+
+.userr {
+    display: flex;
+    align-items: center;
+}
+.userr_image {
+    display: flex;
+    align-items: center;
+    height: 36px;
+    width: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 0px;
+}
+/* --- */
+.wrapper {
+    text-align: center;
+    position: relative;
+    width: 250px;
+}
+
+.icons {
+    color: rgb(0, 0, 0);
+    position: absolute;
+    left: 14%;
+    top: 5px;
+}
+
+/* Onfocus input -> search suggest appear */
+.searchSuggest {
+    position: absolute;
+    width: 32%;
+    top: 56px;
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0px 1px 5px rgb(90, 88, 88);
+    /* display: none; */
+    z-index: 2;
+}
+
+.bannerBottom {
+    height: 432px;
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+    .bannerBottom {
+        height: 150px;
+    }
+    .imageBannerBottom {
+        width: 100%;
+        height: 150px;
+        object-fit: fill;
+    }
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .bannerBottom {
+        height: 300px;
+    }
+    .imageBannerBottom {
+        height: 300px;
+    }
+}

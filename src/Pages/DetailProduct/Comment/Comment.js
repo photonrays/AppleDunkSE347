@@ -1,8 +1,9 @@
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import StaticRatedStar from '../RatingStar/StaticRatedStar';
+import StaticRatedStar from '../RatingStar/StaticRatedStar'; 
 import CircleIcon from '@mui/icons-material/Circle';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import moment from 'moment/moment';
+import "./Comment.css"
 function Comment ({DG}) {
     const tryFunction = () => {
         // console.log(DG.tenkh)
@@ -13,15 +14,15 @@ function Comment ({DG}) {
     const chuCaiDauTenKH = DG.tenkh.slice(lastIndexOfSpace).charAt(0)
 
     return (
-        <div className="wrapper-comment w-full p-[20px]">
+        <div className="wrapper-comment w-full lg:p-[20px] p-[10px]">
             <div className="comment flex">
                 <div className="avatar w-[48px] h-[48px] bg-slate-300 rounded-full 
-                    text-center text-[22px] font-bold text-white leading-[48px]">{chuCaiDauTenKH}</div>
-                <div className="px-[10px]">
+                    text-center text-[22px] font-bold text-white leading-[48px] md:mr-[10px]">{chuCaiDauTenKH}</div>
+                <div className="right-aria-cmt lg:px-[10px]">
                     <div className="name-aria flex">
-                        <div className="name text-[18px] ">{DG.tenkh}</div>
+                        <div className="name lg:text-[18px] md:text-[18px]">{DG.tenkh}</div>
                         <span className="text-green-600 leading-[27px] ml-[10px]"><CheckCircleIcon size="large"/></span>
-                        <span className="leading-[27px] text-[14px] text-green-600 ml-[3px]">Đã mua tại AppleDunk</span>
+                        <span className="bought leading-[27px] text-[14px] text-green-600 ml-[3px]">Đã mua tại Shop</span>
                     </div>
                     <div className="user-rating pt-[6px]">
                         <StaticRatedStar size={16}

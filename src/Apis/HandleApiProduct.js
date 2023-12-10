@@ -20,8 +20,13 @@ const getProductById = async (id)=>{
     return await axiosInstance.get(`/api/product/${id}`);
 }
 
+const getProductByName = async (name) => {
+    return await axiosInstance.get(`/api/product?tensanpham=${name}&pageSize=6`);
+}
+
 export default {
     getAllProduct,
     getAllSubCategory,
-    getProductById
+    getProductById,
+    getProductByName
 };

@@ -10,6 +10,8 @@ import HandleApiProduct from "../../Apis/HandleApiProduct";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import Carousel from "./OtherComponent/Carousel";
+import "./DetailBottom.css";
 
 function DetailProduct() {
     const [isLoading, setLoading] = useState(true);
@@ -27,6 +29,7 @@ function DetailProduct() {
     const [color, setColor] = useState("");
     const [lstColor, setLstColor] = useState([]);
     const [lstManHinh, setLstManHinh] = useState([])
+    const [layout, setLayout] = useState(1)
     let lstColorBG = {
         black: "bg-gray-800",
         gray: "bg-gray-400",
@@ -118,38 +121,38 @@ function DetailProduct() {
         }
     }
 
-    const mainCarouselOptions = {
-        perPage: 1,
-        pagination: false,
-        arrows: false,
-        rewind: true,
-        gap: '2rem',
-        onMove: () => {
-            thumbnailCarouselRef.current.go(mainCarouselRef.current.index);
-        }
-    };
+    // const mainCarouselOptions = {
+    //     perPage: 1,
+    //     pagination: false,
+    //     arrows: false,
+    //     rewind: true,
+    //     gap: '2rem',
+    //     onMove: () => {
+    //         thumbnailCarouselRef.current.go(mainCarouselRef.current.index);
+    //     }
+    // };
 
-    const thumbnailCarouselOptions = {
-        fixedWidth: 100,
-        fixedHeight: 100,
-        gap: '0.1rem',
-        cover: true,
-        pagination: false,
-        arrows: true,
-        focus: 'center',
-        updateOnMove: false,
-        perPage: 3,
-        breakpoints: {
-            768: {
-                fixedWidth: 66,
-                fixedHeight: 50,
-            },
-        },
-    };
-    const handleThumbnailClick = (index) => {
-        setCurrentSlide(index);
-        mainCarouselRef.current.go(index);
-      };
+    // const thumbnailCarouselOptions = {
+    //     fixedWidth: 100,
+    //     fixedHeight: 100,
+    //     gap: '0.1rem',
+    //     cover: true,
+    //     pagination: false,
+    //     arrows: true,
+    //     focus: 'center',
+    //     updateOnMove: false,
+    //     perPage: 3,
+    //     breakpoints: {
+    //         768: {
+    //             fixedWidth: 66,
+    //             fixedHeight: 50,
+    //         },
+    //     },
+    // };
+    // const handleThumbnailClick = (index) => {
+    //     setCurrentSlide(index);
+    //     mainCarouselRef.current.go(index);
+    //   };
 
     const handleDungLuongClick = (i) => {
         setDungluong(i)
@@ -166,7 +169,7 @@ function DetailProduct() {
     return (
         <div className={classes.container}>
             <section className={classes.detailproduct}>
-                <section className={classes.product_splide}>
+                {/* <section className={classes.product_splide}>
                     <Splide
                         className={classes.mainSplide}
                         options={mainCarouselOptions}
@@ -201,7 +204,10 @@ function DetailProduct() {
                             ))
                         }
                     </Splide>
-                </section>
+                </section> */}
+                <div className={classes.carousel}>
+                    <Carousel sp = {sp}/>
+                </div>
 
                 <div className={classes.overview}>
                     <div className={classes.wrapped_info}>
@@ -308,7 +314,9 @@ function DetailProduct() {
             </section>
             <div>
                 {(sp!==undefined)?<DetailBottom sp = {sp}
-                              user = {user}/>:""}
+                              user = {user}
+                                layout = {layout}
+                              />:""}
             </div>
 
 

@@ -5,7 +5,8 @@ import NewsCard from "./components/NewsCard";
 import { useState } from "react";
 import { useEffect } from "react";
 import api from "../../Apis/HandleApiNews";
-import { KeyboardArrowLeft, KeyboardArrowRight, KeyboardDoubleArrowLeft, KeyboardDoubleArrowRight } from "@mui/icons-material";
+import { KeyboardArrowLeft, KeyboardArrowRight, KeyboardDoubleArrowLeft, KeyboardDoubleArrowRight, GridViewOutlined, ViewAgendaOutlined } from "@mui/icons-material";
+import AnotherNewsCard from './components/AnotherNewsCard';
 
 export default function NewsCategory() {
     const location = useLocation();
@@ -16,6 +17,8 @@ export default function NewsCategory() {
     const [pageRange, setPageRange] = useState([1]);
     const [isLeftMost, setIsLeftMost] = useState(false);
     const [isRightMost, setIsRightMost] = useState(false);
+    const [itemsViewType, setItemsViewType] = useState(1);
+
     useEffect(() => {
         switch (location.pathname) {
             case "/apple-news":
@@ -105,10 +108,19 @@ export default function NewsCategory() {
         }
         setPageRange(arr);
     }, [currentPage, totalPage, type]);
+
+    let Layout = NewsCard;
+
+    if (itemsViewType === 1) {
+        Layout = NewsCard;
+    } else if (itemsViewType === -1) {
+        Layout = AnotherNewsCard;
+    }
+
     return (
         <div className='w-full bg-[#f5f5f7]'>
-            <div className='w-[1200px] m-auto min-h-[600px] flex pt-[30px] gap-[12px] pb-[30px]'>
-                <NewsSidebar type={type.category}/>
+            <div className='max-w-[1200px] m-auto min-h-[600px] flex pt-[30px] gap-[12px] pb-[30px]'>
+                <NewsSidebar type={type.category} />
                 <div className="w-full">
                     <div className="w-full text-[14px] text-[#515154] mt-[25px]">
                         <a href="/tin-tuc" className=" hover:text-[#0066CC]">
@@ -117,11 +129,40 @@ export default function NewsCategory() {
                         <span className="mx-[5px]">{">"}</span>
                         <a href={type.path}>{type.name}</a>
                     </div>
-
-                    <div className="grid grid-cols-3 mt-[24px] gap-[30px]">
-                        {data?.map((item, index) => (
-                            <NewsCard key={index} data={item} />
-                        ))}
+                    <div className='flex my-5 justify-end'>
+                        <div className={`px-2 py-1 border-2 cursor-pointer  rounded-l-xl inline-block ${itemsViewType === 1 ? 'bg-[#086ecf] border-[#086ecf]' : 'border-gray-300 hover:bg-gray-300'}`} onClick={() => setItemsViewType(1)}><GridViewOutlined sx={{ fontSize: '32px', color: `${itemsViewType === 1 ? '#ffffff' : '#666666'}` }} /></div>
+                        <div className={`px-2 py-1 border-2 cursor-pointer  rounded-r-xl inline-block ${itemsViewType === -1 ? 'bg-[#086ecf] border-[#086ecf]' : 'border-gray-300 hover:bg-gray-300'}`} onClick={() => setItemsViewType(-1)}><ViewAgendaOutlined sx={{ fontSize: '32px', color: `${itemsViewType === -1 ? '#ffffff' : '#666666'}` }} /></div>
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mt-[24px] gap-[30px] mx-5">
+                        {data ? data?.map((item, index) => (
+                            <Layout key={index} data={item} />
+                        )) :
+                            <>
+                                <div className='h-[358px] w-full bg-white rounded-2xl hover:drop-shadow-2xl'>
+                                    <div className='w-full h-[195px] rounded-t-2xl bg-slate-400 animate-pulse'></div>
+                                    <div className='h-[163px] pt-10 bg-slate-100 rounded-b-2xl'>
+                                        <div className='w-full h-8 bg-slate-400 animate-pulse mb-2'></div>
+                                        <div className='w-full h-8 bg-slate-400 animate-pulse mb-5'></div>
+                                        <div className='w-40 h-5 bg-slate-400 animate-pulse'></div>
+                                    </div>
+                                </div>
+                                <div className='h-[358px] w-full bg-white rounded-2xl hover:drop-shadow-2xl'>
+                                    <div className='w-full h-[195px] rounded-t-2xl bg-slate-400 animate-pulse'></div>
+                                    <div className='h-[163px] pt-10 bg-slate-100 rounded-b-2xl'>
+                                        <div className='w-full h-8 bg-slate-400 animate-pulse mb-2'></div>
+                                        <div className='w-full h-8 bg-slate-400 animate-pulse mb-5'></div>
+                                        <div className='w-40 h-5 bg-slate-400 animate-pulse'></div>
+                                    </div>
+                                </div>
+                                <div className='h-[358px] w-full bg-white rounded-2xl hover:drop-shadow-2xl'>
+                                    <div className='w-full h-[195px] rounded-t-2xl bg-slate-400 animate-pulse'></div>
+                                    <div className='h-[163px] pt-10 bg-slate-100 rounded-b-2xl'>
+                                        <div className='w-full h-8 bg-slate-400 animate-pulse mb-2'></div>
+                                        <div className='w-full h-8 bg-slate-400 animate-pulse mb-5'></div>
+                                        <div className='w-40 h-5 bg-slate-400 animate-pulse'></div>
+                                    </div>
+                                </div>
+                            </>}
                     </div>
                     <div className="flex items-center space-x-1 justify-center gap-[10px] mt-[30px]">
                         {!isLeftMost && (

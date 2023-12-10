@@ -30,9 +30,11 @@ import NewsCategory from "../Pages/NewsCategory";
 import BaohanhDetail from "../Pages/Customer/BaohanhDetail";
 import KhuyenMai from "../Pages/KhuyenMai";
 import Store from "../Pages/Store";
+import HomeSecond from "../SecondTemplate/HomeSecond";
 
 const publicRoutes = [
     { path: "/", component: <Home /> },
+    { path: "/home", component: <HomeSecond /> },
     { path: "/detailproduct", component: <DetailProduct /> },
     { path: "/*", component: <NotFound />, layout: null },
     { path: "/cart", component: <Order /> },

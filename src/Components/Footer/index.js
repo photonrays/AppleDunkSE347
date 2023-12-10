@@ -5,7 +5,7 @@ import image from "../../assets/image";
 function Footer() {
     return (
         <div className={classes.container}>
-            <div className={classes.footerUpper + " grid grid-cols-footer gap-4"}>
+            <div className={classes.footerUpper + " grid grid-cols-1 md:grid-cols-2 lg:grid-cols-footer gap-10 gap-y-20"}>
                 <div className={classes.followUs}>
                     <img
                         src={image.logo}
@@ -56,7 +56,7 @@ function Footer() {
                         </li>
                     </ul>
                 </div>
-                <div className={classes.information}>
+                <div className="text-center md:text-left">
                     <div className={classes.title}>Thông tin</div>
                     <ul>
                         <li>
@@ -76,7 +76,7 @@ function Footer() {
                         </li>
                     </ul>
                 </div>
-                <div className={classes.customerService}>
+                <div className="text-center md:text-left">
                     <div className={classes.title}>Chính sách</div>
                     <ul>
                         <li>
@@ -86,7 +86,7 @@ function Footer() {
                         </li>
                     </ul>
                 </div>
-                <div className={classes.myAccount}>
+                <div className="text-center md:text-left">
                     <div className={classes.title}>Địa chỉ & Liên hệ</div>
                     <ul>
                         <li>
@@ -111,21 +111,21 @@ function Footer() {
                             <ul>
                                 <li>
                                     <span
-                                        className={`${classes.listItem} ${classes.listItemLocation}`}
+                                        className={classes.listItem}
                                     >
                                         Nhánh 1: khu vực Hà Nội và các tỉnh phía bắc
                                     </span>
                                 </li>
                                 <li>
                                     <span
-                                        className={`${classes.listItem} ${classes.listItemLocation}`}
+                                        className={classes.listItem}
                                     >
                                         Nhánh 2: khu vực Hồ Chí Minh và các tỉnh phía nam
                                     </span>
                                 </li>
                                 <li>
                                     <span
-                                        className={`${classes.listItem} ${classes.listItemLocation}`}
+                                        className={classes.listItem}
                                     >
                                         Nhánh 3: Khiếu nại và góp ý
                                     </span>
