@@ -1,34 +1,99 @@
 import { Close } from "@mui/icons-material";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useSideBarContext } from "../contexts/sidebarContext";
+import * as React from "react";
+import { Link, useLocation } from "react-router-dom";
 import image from "../assets/image";
 import { IconButton } from '@mui/material';
-import { useSideBarContext } from "../contexts/sidebarContext";
-import Cookies from "js-cookie";
+
+import styles from "../Components/Header/Header.module.css";
+import {  useRef,useState } from "react";
+import Cookies from 'js-cookie';
+import { useNavigate } from "react-router-dom";
+
+import {
+  BsChevronDown,
+  BsChatLeftText,
+  BsCalendarCheck,
+  BsFiles,
+  BsServer,
+} from 'react-icons/bs';
+import {
+  MdOutlineDashboard,
+  MdAccountCircle,
+  MdAnalytics,
+  MdOutlineSettings,
+  MdLogout,
+} from 'react-icons/md';
 
 
 export default function Sidebar() {
-  let location = useLocation();
-  const { isSidebarOpen, setIsSidebarOpen } = useSideBarContext();
+  const location = useLocation();
+  const Menus = [
 
-  const user = JSON.parse(localStorage.getItem("user"));
-
-
-  const formatUserName = (tenUser) => {
-    if (tenUser?.length <= 8) {
-      return tenUser;
-    } else {
-      return tenUser?.substring(0, 8) + "...";
+    {
+      title: 'Services',
+      src: 'Services',
+      subMenus: [
+        {
+          title: 'Thông tin tài khoản',
+          src: '/customer/info',
+  
+          cName: 'sub-nav',
+        },
+        {
+          title: 'Địa chỉ đặt hàng',
+          src: '/customer/addresses',
+  
+          cName: 'sub-nav',
+        },
+        {
+          title: 'Đổi mật khẩu',
+          src: '/customer/changePassword',
+        },
+        {
+          title: 'Lịch sử bình luận',
+          src: '/customer/history',
+  
+          cName: 'sub-nav',
+        },
+        {
+          title: 'Ảnh đại diện',
+          src: '/customer/avatar',
+  
+          cName: 'sub-nav',
+        },
+        {
+          title: 'Bảo hành',
+          src: '/customer/baohanh',
+        }
+      ],
     }
-  }
 
+  ];
+  const [open, setOpen] = useState(true);
+  const [subMenuOpen, setSubMenuOpen] = useState(false);
+  
   const navigate = useNavigate();
 
-
-  const handleClose2 = () => {
-    localStorage.removeItem("user");
-    Cookies.remove('token')
-    navigate("/");
+  const user = JSON.parse(localStorage.getItem("user"));
+  const formatUserName = (tenUser) =>{
+    if (tenUser?.length <= 8) {
+        return tenUser;
+      } else {
+        return tenUser?.substring(0, 8) + "...";
+      }
+}
+const handleClose2 = () => {
+  //setAnchorEl(null);
+  localStorage.removeItem("user");
+  //localStorage.removeItem("token");
+  Cookies.remove('token')
+  navigate("/");
 };
+
+const inputRef = useRef(null);
+const { isSidebarOpen, setIsSidebarOpen } = useSideBarContext();
+
 
   return (
     <aside className={`fixed z-50 left-0 top-0 h-full bg-gray-50 shrink-0 grow-0 w-full transition-all ease-in-out duration-400 block lg:hidden ${isSidebarOpen ? 'ml-0 shadow-2xl' : 'ml-[-250px]'} max-w-[250px] overflow-y-auto`}>
@@ -87,21 +152,62 @@ export default function Sidebar() {
               Khuyến mãi
             </a>
           </li>
-        </ul>
-
+          
+        </ul>      
+        
+    
         <hr />
-        {(document.cookie.indexOf('token') !== -1) ?
-          <div className="p-6">
-            <Link to="/customer/info" className="flex items-center">
-              <img src={user.image.length !== 0 ? user.image[0].url : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkNjtjpEZtAtYMoeDfg6PO5DoGrpAhCA79Jg&usqp=CAU"} alt="User" className="w-16 h-16" />
-              <p className="block p-5 text-2xl">{formatUserName(user.hoten)}</p>
-            </Link>
-            <button className="w-full p-5 rounded-3xl mb-4 border-2 border-gray-200 cursor-pointer text-2xl mt-5 text-center hover:bg-gray-200" onClick={handleClose2}>Đăng xuất</button>
-          </div>
-          :
-          <Link to="/login" className="block w-full p-5 rounded-3xl mb-4 border-2 border-gray-200 cursor-pointer text-2xl mt-10 text-center hover:bg-gray-200">Đăng nhập</Link>
-        }
-      </div>
-    </aside >
+
+
+        {(document.cookie.indexOf('token') != -1) ?
+        <ul className="pt-0">
+          {Menus.map((Menu, index) => (
+            <>
+              <li
+                key={index}
+                className={`flex  rounded-md p-2 cursor-pointer-full hover:bg-gray-200  text-black text-sm items-center gap-x-4 
+              ${Menu.gap ? 'mt-0' : 'mt-0'}  `}
+              >
+                
+                {(document.cookie.indexOf('token') != -1) ?
+        <div className={styles.userr}>
+                                <img src={user.image.length !== 0 ? user.image[0].url : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkNjtjpEZtAtYMoeDfg6PO5DoGrpAhCA79Jg&usqp=CAU"} alt="User Image" className={styles.userr_image} />
+                                <p className={styles.menuItemLink} style={{ color: "black" }}>{formatUserName(user.hoten)}</p>
+                                <hr />
+                            </div>:<></>}
+                {Menu.subMenus && (
+                  <BsChevronDown
+                    onClick={() => setSubMenuOpen(!subMenuOpen)}
+                    className={`${subMenuOpen && 'rotate-180'}`}
+                  />
+                )}
+              </li>
+              {Menu.subMenus && subMenuOpen && open && (
+                <ul>
+                  {Menu.subMenus.map((subMenuItem, idx) => (
+                    <li
+                      key={idx}
+                      className={`w-full text-2xl hover:bg-gray-200 ${location.pathname === 'khuyenmai' && 'bg-gray-200'} p-6 rounded-2xl mb-4 block`}
+                    >
+                      <a href={subMenuItem.src}>
+                      {subMenuItem.title}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </>
+          ))}
+        </ul>
+       :<></>}
+{(document.cookie.indexOf('token') == -1) ?
+                            
+                            <button onClick={()=>{navigate("/login");setIsSidebarOpen(false);}} className="w-full p-5 rounded-3xl mb-4 border-2 border-gray-200 cursor-pointer text-2xl mt-10 hover:bg-gray-200">Đăng nhập</button>
+                        
+                        :
+                        <button className="w-full p-5 rounded-3xl mb-4 border-2 border-gray-200 cursor-pointer text-2xl mt-10 hover:bg-gray-200" onClick={handleClose2}>Đăng Xuất</button>}
+              </div>
+    </aside>
+
   );
 }
