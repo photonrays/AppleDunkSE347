@@ -322,8 +322,8 @@ const handleSignInButtonClick = () => {
             <p className="px-3 ">Hoặc</p>
             <hr className="w-full" />
           </div >
-          <div className='flex'>
-              <div id="signInDiv" style={{paddingTop:"5px", width:"50%",maxWidth:"600px",zIndex:"1"}}>        
+          <div class="flex flex-col item-center lg:flex-row">
+              <div id="signInDiv" style={{paddingTop:"5px",paddingRight:"295px", width:"50%",maxWidth:"600px",zIndex:"1"}}>        
               </div>
               <div style={{zIndex:"9"}}>
                 <LoginSocialFacebook
@@ -336,8 +336,8 @@ const handleSignInButtonClick = () => {
                 className={classes.FBbtn}
                 >
                     <FacebookLoginButton
-                    style={{height:"39px"}}>
-                    <span style={{fontSize:"14px",paddingLeft:"25px"}}>Đăng nhập với Facebook</span>
+                    style={{height:"39px",width:"300px"}}  >
+                    <span style={{fontSize:"14px",paddingLeft:"25px"}} >Đăng nhập với Facebook</span>
                     </FacebookLoginButton>
                 </LoginSocialFacebook>
               </div>

@@ -51,7 +51,11 @@
     border-color: #fff;
 }
 
-
+.FacebookLoginButton {
+     width: 100%; /* Kích thước theo chiều rộng của phần tử cha */
+     max-width: 300px; /* Đặt giới hạn chiều rộng tối đa nếu cần */
+     margin: 0 auto; /* Để nút ở giữa trang nếu chiều rộng không đạt đến giới hạn tối đa */
+   }
 
 .button:hover{
     background: #de4545;
