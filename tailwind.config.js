@@ -5,7 +5,7 @@ module.exports = {
         extend: {
             gridTemplateColumns: {
                 // Complex site-specific column configuration
-                'footer': '360px 300px 240px 300px',
+                'footer': '30% 20% 20% 30%',
             }
         },
     },

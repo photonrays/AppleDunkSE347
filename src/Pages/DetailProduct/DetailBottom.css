@@ -68,4 +68,172 @@
     display: inline-block;
 }
 
+.des-container {
+    width: 800px;
+} 
 
+.product-bot-container {
+    width: 75%;
+}
+
+.rateDiv {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.rateItem {
+    width: 33.33%;
+}
+
+.des {
+    max-height: 400px;
+}
+
+.filter-rate {
+    display: flex;
+    overflow-x: auto;
+    padding: 10px 25px;
+}
+
+/* Tùy chỉnh thanh cuộn ngang và dọc */
+.filter-rate::-webkit-scrollbar {
+    height: 2px; /* Chiều cao của thanh cuộn ngang */
+}
+
+/* Tùy chỉnh màu nền của thanh cuộn */
+.filter-rate::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Tùy chỉnh màu của thumb (phần di chuyển trên thanh cuộn) */
+.filter-rate::-webkit-scrollbar-thumb {
+    background: #ddd;
+}
+
+/* Thêm hiệu ứng hover cho thumb */
+.filter-rate::-webkit-scrollbar-thumb:hover {
+    background: #ccc;
+}
+
+.filter-item {
+    display: flex;
+}
+
+.filter-item span {
+    white-space: nowrap;
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    
+}
+
+@media (max-width: 1023px) {
+    .product-bot-container {
+        width: 100%;
+    }
+    .des-container {
+        width: 100%;
+    } 
+
+    .tskt {
+        display: none;
+    }
+
+    .infor {
+        display: none;
+    }
+    
+}
+
+@media (max-width: 767px){
+    .des-container {
+        width: 100%;
+    }
+    .product-bot-container {
+        width: 100%;
+    }
+
+    .des {
+        max-height: 320px;
+    }
+
+    .tab-item {
+        padding: 9px 6px;
+        font-size: 16px;
+        align-items: center;
+    }
+
+    .tab-content {
+        margin: 25px 0 0;
+        padding: 0 10px;
+    }
+
+    .rateDiv .rateItem{
+        padding: 0 10px;
+    }
+    .rateDiv > .rateItem:nth-child(1)
+    {
+        width: 35%;
+    }
+
+    .rateDiv > .rateItem:nth-child(2) 
+    {
+        width: 65%;
+    }
+
+    .rateDiv > .rateItem:nth-child(3)
+    {
+        width: 100%;
+        margin-top: 15px;
+    } 
+
+    .rateDiv > .rateItem:nth-child(3) button {
+        width: 100%;
+    }
+
+    .rateDiv > .rateItem:nth-child(1) .average-title {
+        display: none;
+    }
+
+    .last-rateItem-title {
+        display: none;
+    }
+
+    .filter-title {
+        display: none;
+    }
+
+    .moreBtn {
+        margin-top: 20px;
+        box-shadow: 0 -20px 15px #eee;
+        background-color: rgba(255, 255, 255, 0.7);
+    }
+    .filter-rate {
+        margin-right: 10px;
+        margin-left: 10px;
+        padding: 10px 0;
+    }
+
+    /* .tab-item {
+        display: inline-block;
+        font-size: 16px;
+        padding: 12px 10px;
+        margin: 10px;
+        height: 48px;
+        color: black;
+        width: 180px;
+        border: 2px solid rgba(0, 0, 0, 0.1);
+        border-radius: 3px;
+    }
+    
+    .tab-item-title {
+        margin: auto;
+        text-align: center;
+    }
+    
+    .tab-item-active {
+        color: rgb(0, 102, 204);
+        border: 2px solid rgb(0, 102, 204);
+        border-radius: 4px;
+    } */
+}

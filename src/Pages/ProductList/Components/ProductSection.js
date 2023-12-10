@@ -8,9 +8,6 @@ import api from '../../../Apis/HandleApiProduct'
 import { convertToSlug } from '../../../utils'
 import { KeyboardArrowLeft, KeyboardArrowRight, KeyboardDoubleArrowLeft, KeyboardDoubleArrowRight, GridViewOutlined, ViewAgendaOutlined } from "@mui/icons-material";
 import ProductCardList from './ProductCardList';
-import { IconButton } from '@mui/material';
-
-
 
 
 const accessoryNavigation = [

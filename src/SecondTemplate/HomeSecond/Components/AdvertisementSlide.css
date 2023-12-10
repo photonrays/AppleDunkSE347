@@ -1,0 +1,58 @@
+/* .splide__arrow {
+    color: #8A0000 !important;
+    background-color: transparent;
+    border: 1px solid #8A0000;
+    width: 3.2rem;
+    height: 3.2rem;
+} */
+
+.SecondCarouselPagination .splide__arrow svg {
+    fill: #fff;
+    width: 4.2rem;
+    height: 4.2rem;
+}
+
+.SecondCarouselPagination .splide__arrow.splide__arrow--next {
+    right: 6rem;
+    width: 48px;
+    height: 48px;
+    background-color: #515154;
+    border: none;
+    opacity: 0.2;
+}
+
+.SecondCarouselPagination .splide__arrow.splide__arrow--prev {
+    background-color: #515154;
+    left: 6rem;
+    width: 48px;
+    height: 48px;
+    border: none;
+    opacity: 0.2;
+}
+.SecondCarouselPagination .splide__arrow.splide__arrow--prev:hover {
+    opacity: 0.5;
+}
+.SecondCarouselPagination .splide__arrow.splide__arrow--next:hover {
+    opacity: 0.5;
+}
+.mainSlider .splide__pagination__page.is-active {
+    background: #555555 !important;
+}
+
+.mainSlider .splide__pagination__page {
+    background: #ccc !important;
+    margin: 0 8px;
+    bottom: 0.8em !important;
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .SecondCarouselPagination .splide__arrow.splide__arrow--next {
+        right: 21rem;
+    }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+
+}

@@ -1,17 +1,14 @@
-import styles from "./Home.module.css";
+import styles from "./HomeSecond.module.css";
 import AdvertisementSlide from "./Components/AdvertisementSlide";
 import AdvertisementItem from "./Components/AdvertisementItem";
 import ItemComponent from "./Components/ItemComponent";
 import images from "../../assets/image";
-import SubcribeSection from "../ProductList/Components/SubcribeSection";
+import SubcribeSection from "../../Pages/ProductList/Components/SubcribeSection";
 import { useEffect, useState } from "react";
 import HandleApiProduct from "../../Apis/HandleApiProduct.js";
 import HandleApiNews from "../../Apis/HandleApiNews";
 
-import { useTemplateContext } from "../../contexts/templateContext";
-import HomeSecond from "../../SecondTemplate/HomeSecond/index.js";
-
-function Home() {
+function HomeSecond() {
     const [dataIphoneProduct, setDataIphoneProduct] = useState([]);
     const [dataIpadProduct, setDataIpadProduct] = useState([]);
     const [dataMacProduct, setDataMacProduct] = useState([]);
@@ -25,7 +22,6 @@ function Home() {
     const dataWatchFromAPI = HandleApiProduct.getAllProduct("Watch");
     const dataAmThanhFromAPI = HandleApiProduct.getAllProduct("Âm thanh");
     const dataNewsFromAPI = HandleApiNews.getAllNews(1, 3);
-    const { template, setTemplate } = useTemplateContext();
 
     useEffect(() => {
         dataIphoneFromAPI.then((data) => {
@@ -166,35 +162,31 @@ function Home() {
         datas: dataNews,
         link: "/tin-tuc",
     };
-    if (template === 1) {
-        return (
-            <div className="w-full bg-gray-100">
-                <AdvertisementSlide />
-                <AdvertisementItem />
-                {itemUI.map((item, index) => (
-                    <ItemComponent data={item} key={index} />
-                ))}
-                <div className="flex justify-center">
-                    <a
-                        href="/tin-tuc"
-                        className={`block m-8 + ${styles.bannerBottom}`}
-                    >
-                        <img
-                            className={`${styles.imageBannerBottom}`}
-                            src={images.BannerBottom}
-                            alt={images.BannerBottom}
-                        ></img>
-                    </a>
-                </div>
-                <ItemComponent data={tintucUI} />
-                {/* <div className="my-[-80px]">
-                 <SubcribeSection/>
-           </div> */}
+    return (
+        <div className="w-full bg-gray-100">
+            <AdvertisementSlide />
+            <AdvertisementItem />
+            {itemUI.map((item, index) => (
+                <ItemComponent data={item} key={index} />
+            ))}
+            <div className="flex justify-center">
+                <a
+                    href="/tin-tuc"
+                    className={`block m-8 + ${styles.bannerBottom}`}
+                >
+                    <img
+                        className={`${styles.imageBannerBottom}`}
+                        src={images.BannerBottom}
+                        alt={images.BannerBottom}
+                    ></img>
+                </a>
             </div>
-        );
-    }
-
-    return <HomeSecond />;
+            <ItemComponent data={tintucUI} />
+            {/* <div className="my-[-80px]">
+             <SubcribeSection/>
+       </div> */}
+        </div>
+    );
 }
 
-export default Home;
+export default HomeSecond;

@@ -1,6 +1,6 @@
 import styles from "../KhuyenMai.module.css";
 
-export default ({khuyenmai})=>{
+const KhuyenMaiItem = ({khuyenmai})=>{
 
     const formatCurrency = (value) => {
         const formattedValue = value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
@@ -14,9 +14,9 @@ export default ({khuyenmai})=>{
     const formattedDatekt = `${datekt.getDate()}/${datekt.getMonth() + 1}/${datekt.getFullYear()}`;
 
     return (
-        <div className={styles.bg_white+" rounded grid grid-cols-3 justify-items-center p-4 drop-shadow-lg"}>
-            <div className="flex justify-center">
-                <img src={khuyenmai.image} alt="hình ảnh khuyến mãi" width={200} height={300} className=""/>
+        <div className={styles.bg_white + " "+ styles.item +"  rounded lg:grid grid-cols-3  p-4 drop-shadow-lg"}>
+            <div className="flex justify-center col-span-1">
+                <img src={khuyenmai.image} alt="hình ảnh khuyến mãi"  className={`${styles.imageKM}`}/>
             </div>
             <div className="col-span-2 px-4">
                 <strong className="text-3xl my-4">{khuyenmai.title}</strong>
@@ -41,3 +41,5 @@ export default ({khuyenmai})=>{
         </div>
     )
 }
+
+export default KhuyenMaiItem;
