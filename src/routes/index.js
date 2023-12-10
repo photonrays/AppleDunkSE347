@@ -30,6 +30,9 @@ import NewsCategory from "../Pages/NewsCategory";
 import BaohanhDetail from "../Pages/Customer/BaohanhDetail";
 import KhuyenMai from "../Pages/KhuyenMai";
 import Store from "../Pages/Store";
+import Baohanh2 from "../SecondTemplate/Customer/Baohanh";
+import ProductReviews2 from "../SecondTemplate/Customer/ProductReviews";
+import Addaddress2 from "../SecondTemplate/Customer/addAddress";
 
 const publicRoutes = [
     { path: "/", component: <Home /> },
@@ -68,11 +71,14 @@ const publicRoutes = [
     { path: "/customer/info2", component: <Info2 /> },
     { path: "/customer/addresses", component: <Addresses /> },
     { path: "/customer/addAddress", component: <Addaddress /> },
+    { path: "/customer/addAddress2", component: <Addaddress2 /> },
     { path: "/customer/history", component: <History /> },
     { path: "/customer/changePassword", component: <ChangePassword /> },
     { path: "/customer/avatar", component: <Avatar /> },
     { path: "/customer/productReviews", component: <ProductReviews /> },
+    { path: "/customer/productReviews2", component: <ProductReviews2 /> },
     { path: "/customer/baohanh", component: <Baohanh /> },
+    { path: "/customer/baohanh2", component: <Baohanh2 /> },
     { path: "/customer/baohanh/detail/:id", component: <BaohanhDetail /> },
     { path: "/khuyenmai", component: <KhuyenMai /> },
 

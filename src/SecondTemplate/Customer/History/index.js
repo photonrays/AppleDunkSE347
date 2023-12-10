@@ -13,7 +13,7 @@ import HandleApiOrder from "../../../Apis/HandleApiOrder";
 import { KeyboardArrowLeft, KeyboardArrowRight, KeyboardDoubleArrowLeft, KeyboardDoubleArrowRight } from "@mui/icons-material";
 import { useState,useEffect } from "react";
 
-function History () {
+function History2 () {
     const user = JSON.parse(localStorage.getItem("user"));
     const [orderlist, setOrderlist] = useState([]); //lưu thông tin order
 

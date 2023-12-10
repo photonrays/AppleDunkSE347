@@ -39,7 +39,7 @@ function Addresses () {
                     </div>
                     <div className="flex justify-center">
                         <button className="border-2 rounded-lg px-4 py-4 bg-sky-600 text-white">
-                            <Link to="/customer/addAddress">Thêm mới địa chỉ nhận hàng</Link>
+                            <Link to="/customer/addAddress2">Thêm mới địa chỉ nhận hàng</Link>
                         </button>
                     </div>
                 </div>

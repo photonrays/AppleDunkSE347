@@ -12,10 +12,12 @@ import GppGoodIcon from '@mui/icons-material/GppGood';
 import { KeyboardArrowLeft, KeyboardArrowRight, KeyboardDoubleArrowLeft, KeyboardDoubleArrowRight } from "@mui/icons-material"; 
 import HandleApiBaohanh from "../../../Apis/HandleApiBaohanh";
 import { useState,useEffect } from "react";
+import {  useNavigate } from "react-router-dom";
 
-function Baohanh () {
+function Baohanh2 () {
     const user = JSON.parse(localStorage.getItem("user"));
     const [data, setData] = useState([]);
+    const navigate = useNavigate();
 
     const pagesize = 5; // mỗi trang có bao nhiêu phần tử
     const [currentPage, setCurrentPage] = useState(1); //trang hiện tại
@@ -82,25 +84,14 @@ function Baohanh () {
 
     return (
         <div>
-            <div className={styles.bg_primary + " flex justify-evenly text-2xl relative"}>
-                <div className={styles.bg_white +" rounded-lg w-1/4 my-12 lg:block hidden"}>
-                    <NavTag DivCss={"px-4 py-8"} setHref={"/customer/info"} spanCss={"mx-6"} spanContent={"Thông tin tài khoản"}
-                        aCss={"mx-4 my-4"} setIcon={<PersonIcon sx={{ fontSize: 30 }}></PersonIcon>} />
-                    <NavTag DivCss={"px-4 py-8"} setHref={"/customer/addresses"} spanCss={"mx-4"} spanContent={"Địa chỉ nhận hàng"}
-                        aCss={"mx-4 my-4"} setIcon={<LocationOnIcon sx={{ fontSize: 30 }}></LocationOnIcon>} />
-                    <NavTag DivCss={"px-4 py-8"} setHref={"/customer/history"} spanCss={"mx-6"} spanContent={"Đơn đặt hàng"}
-                        aCss={"mx-4 my-4"} setIcon={<AssignmentIcon sx={{ fontSize: 30 }}></AssignmentIcon>} />
-                    <NavTag DivCss={"px-4 py-8"} setHref={"/customer/changePassword"} spanCss={"mx-6"} spanContent={"Đổi mặt khẩu"}
-                        aCss={"mx-4 my-4"} setIcon={<LockIcon sx={{ fontSize: 30 }}></LockIcon>} />
-                    <NavTag DivCss={"px-4 py-8"} setHref={"/customer/avatar"} spanCss={"mx-6"} spanContent={"Ảnh đại diện"}
-                        aCss={"mx-4 my-4"} setIcon={<CropOriginalIcon sx={{ fontSize: 30 }}></CropOriginalIcon>} />
-                    <NavTag DivCss={"px-4 py-8"} setHref={"/customer/productReviews"} spanCss={"mx-6"} spanContent={"Lịch sử đánh giá sản phẩm"}
-                        aCss={"mx-4 my-4"} setIcon={<HistoryIcon sx={{ fontSize: 30 }}></HistoryIcon>} />
-                    <NavTag DivCss={styles.bg_blue +" rounded-lg px-4 py-8 mx-6 my-8  mb-8"}  setHref={"#"} spanCss={"mx-6"} spanContent={"Bảo hành"}
-                        aCss={styles.text_blue} setIcon={<GppGoodIcon sx={{ fontSize: 30, color: blue[700] }}></GppGoodIcon>} />
-                </div>
-                <div className={"lg:w-2/5 my-12"}>
-                    {(data === undefined || data.length===0)? (<div className="flex justify-center">Bạn chưa mua hàng</div>
+            <button type="button" onClick={()=>navigate(-1)} class=" mt-36 mx-10 w-full flex items-center justify-center w-1/2 px-5 py-2 text-lg text-gray-700 transition-colors duration-200 bg-white border rounded-lg gap-x-2 sm:w-auto dark:hover:bg-gray-800 dark:bg-gray-900 hover:bg-gray-100 dark:text-gray-200 dark:border-gray-700">
+    <svg class="w-5 h-5 rtl:rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18" />
+    </svg>
+    <span>Go back to setting page</span>
+</button>
+                <div className={" mb-12"}>
+                    {(data === undefined || data.length===0)? (<div className="flex justify-center pt-5 pb-96">Bạn chưa mua hàng</div>
                     ) : (
                         <>
                             {/* <div className="relative">
@@ -149,8 +140,8 @@ function Baohanh () {
                     }
                 </div>
             </div>
-        </div>
+       
     );
 }
 
-export default Baohanh;
+export default Baohanh2;
