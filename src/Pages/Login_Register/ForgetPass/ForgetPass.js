@@ -105,7 +105,7 @@ const ForgetPass = (props) => {
                     )}
                     <p style={{ textAlign: "center", fontSize: "16px" }}>
                         <button
-                            className='mb-5 p-64 active:scale-[.98] active:duration-75 transition-all hover:scale-[1.01]  ease-in-out transform py-4 bg-violet-500 rounded-xl text-white font-bold text-2xl'
+                        className='text-2xl active:scale-[.98] active:duration-75 transition-all hover:scale-[1.01]  ease-in-out transform py-4 bg-violet-500 rounded-xl text-white font-bold '
                             id="sub_btn"
                             type="submit"
                             onClick={submitEmail}

@@ -35,36 +35,36 @@ export default function Sidebar() {
       src: 'Services',
       subMenus: [
         {
-          title: 'Service 1',
+          title: 'Thông tin tài khoản',
           src: '/customer/info',
   
           cName: 'sub-nav',
         },
         {
-          title: 'Service 2',
+          title: 'Địa chỉ đặt hàng',
+          src: '/customer/addresses',
+  
+          cName: 'sub-nav',
+        },
+        {
+          title: 'Đổi mật khẩu',
+          src: '/customer/changePassword',
+        },
+        {
+          title: 'Lịch sử bình luận',
           src: '/customer/history',
   
           cName: 'sub-nav',
         },
         {
-          title: 'Service 3',
-          src: '/services/services3',
-        },
-        {
-          title: 'Service 1',
-          src: '/services/services1',
+          title: 'Ảnh đại diện',
+          src: '/customer/avatar',
   
           cName: 'sub-nav',
         },
         {
-          title: 'Service 2',
-          src: '/services/services2',
-  
-          cName: 'sub-nav',
-        },
-        {
-          title: 'Service 3',
-          src: '/services/services3',
+          title: 'Bảo hành',
+          src: '/customer/baohanh',
         }
       ],
     }
