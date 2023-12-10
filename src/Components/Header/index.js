@@ -192,76 +192,103 @@ function Header() {
                             className="h-[45px] w-[180px] object-cover"
                         />
                     </a>
-
-
-                    {(document.cookie.indexOf('token') !== -1) ?
-                        <IconButton
-                            onClick={handleClick}
-                            size="small"
-                            sx={{ ml: -0.2 }}
-                            aria-controls={open ? "account-menu" : undefined}
-                            aria-haspopup="true"
-                            aria-expanded={open ? "true" : undefined}
+                    <ul className={styles.menu}>
+                        <li className={styles.menuItem}>
+                            <a href="/iphone" className={styles.menuItemLink}>
+                                iPhone
+                            </a>
+                        </li>
+                        <li className={styles.menuItem}>
+                            <a href="/ipad" className={styles.menuItemLink}>
+                                iPad
+                            </a>
+                        </li>
+                        <li className={styles.menuItem}>
+                            <a href="/mac" className={styles.menuItemLink}>
+                                Mac
+                            </a>
+                        </li>
+                        <li className={styles.menuItem}>
+                            <a href="/watch" className={styles.menuItemLink}>
+                                Watch
+                            </a>
+                        </li>
+                        <li className={styles.menuItem}>
+                            <a href="/am-thanh" className={styles.menuItemLink}>
+                                Âm thanh
+                            </a>
+                        </li>
+                        <li className={styles.menuItem}>
+                            <a href="/phu-kien" className={styles.menuItemLink}>
+                                Phụ kiện
+                            </a>
+                        </li>
+                        <li className={styles.menuItem}>
+                            <a href="/tin-tuc" className={styles.menuItemLink}>
+                                Tin tức
+                            </a>
+                        </li>
+                        <li className={styles.menuItem}>
+                            <a
+                                href="/khuyenmai"
+                                className={styles.menuItemLink}
+                            >
+                                Khuyến mãi
+                            </a>
+                        </li>
+                    </ul>
+                    <div className={styles.utilities}>
+                        <div
+                            onClick={handleClickSearch}
+                            className="cursor-pointer"
                         >
-
-                            <div className={styles.userr}>
-                                <img src={user.image.length !== 0 ? user.image[0].url : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkNjtjpEZtAtYMoeDfg6PO5DoGrpAhCA79Jg&usqp=CAU"} alt="User Image" className={styles.userr_image} />
-                                <p className={styles.menuItemLink} style={{ color: "white" }}>{formatUserName(user.hoten)}</p>
+                            <SearchIcon
+                                style={{ color: "#fff", fontSize: "28px" }}
+                            />
+                        </div>
+                        <a href="/cart" style={{ position: "relative" }}>
+                            <ShoppingBagOutlinedIcon
+                                style={{ color: "#fff", fontSize: "28px" }}
+                            />
+                            <div className={styles.cartNumber}>
+                                {dataNumber}
                             </div>
+                        </a>
+                        {/*<Tooltip title="Account settings">*/}
+                        {document.cookie.indexOf("token") !== -1 ? (
+                            <IconButton
+                                onClick={handleClick}
+                                size="small"
+                                sx={{ ml: -0.2 }}
+                                aria-controls={
+                                    open ? "account-menu" : undefined
+                                }
+                                aria-haspopup="true"
+                                aria-expanded={open ? "true" : undefined}
+                            >
+                                {/*<PersonOutlinedIcon
+                                    style={{ color: "#fff", fontSize: "28px" }}
+                                />*/}
 
-                        </IconButton> :
-                        <Link to="/login">
-                            <p className={styles.menuItemLink} style={{ color: "white" }}>Đăng nhập</p>
-                        </Link>
-                    }
-
-                    <Menu
-                        anchorEl={anchorEl}
-                        id="account-menu"
-                        open={open}
-                        onClose={handleClose1}
-                        onClick={handleClose1}
-                        PaperProps={{
-                            elevation: 0,
-                            sx: {
-                                overflow: "visible",
-                                filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
-                                mt: 0,
-                                "& .MuiAvatar-root": {
-                                    width: 40,
-                                    height: 32,
-                                    ml: 0,
-                                    mr: 1,
-                                },
-                                "&:before": {
-                                    content: '""',
-                                    display: "block",
-                                    position: "absolute",
-                                    top: 0,
-                                    right: 80,
-                                    width: 10,
-                                    height: 10,
-                                    bgcolor: "background.paper",
-                                    transform: "translateY(-50%) rotate(45deg)",
-                                    zIndex: 0,
-                                },
-                            },
-                        }}
-                        transformOrigin={{ horizontal: "right", vertical: "top" }}
-                        anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
-                    >
-                        <Link to="/customer/info">
-                            <MenuItem onClick={handleClose1} sx={{ fontSize: 15 }}>
-                                <ListItemIcon>
-                                    <PersonIcon fontSize="large"></PersonIcon>
-                                </ListItemIcon>
-                                Trang cá nhân
-                            </MenuItem>
-                        </Link>
-                        <Divider />
-
-                        {(document.cookie.indexOf('token') == -1) ?
-
+                                <div className={styles.userr}>
+                                    <img
+                                        src={
+                                            user?.image?.length !== 0
+                                                ? user?.image[0]?.url
+                                                : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkNjtjpEZtAtYMoeDfg6PO5DoGrpAhCA79Jg&usqp=CAU"
+                                        }
+                                        alt="User Image"
+                                        className={styles.userr_image}
+                                    />
+                                    <p
+                                        className={styles.menuItemLink}
+                                        style={{ color: "white" }}
+                                    >
+                                        {formatUserName(user?.hoten)}
+                                    </p>
+                                </div>
+                            </IconButton>
+                        ) : (
                             <Link to="/login">
                                 <p
                                     className={styles.menuItemLink}

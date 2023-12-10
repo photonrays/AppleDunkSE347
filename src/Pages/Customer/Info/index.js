@@ -14,8 +14,12 @@ import GppGoodIcon from '@mui/icons-material/GppGood';
 import HandleApiCustomer from "../../../Apis/HandleApiCustomer";
 import Swal from "sweetalert2";
 
+import { useTemplateContext } from "../../../contexts/templateContext"
+import Info2 from "../../../SecondTemplate/Customer/Info";
+
 function Info(){
     const user = JSON.parse(localStorage.getItem("user"));
+    const { template, setTemplate } = useTemplateContext();
     const [selectedGender, setSelectedGender] = useState(user.gioitinh? user.gioitinh : "Nam");
 
     const hienThiNgaySinh = () => {
@@ -88,7 +92,7 @@ function Info(){
             console.log(err);
         })
       }
-    
+      if (template === 1) {
     return (
         <div>
             <div className={styles.bg_primary + " flex justify-evenly text-2xl"}>
@@ -141,7 +145,9 @@ function Info(){
                 </div>
             </div>
         </div>
-    );
+    );}
+    else
+    {return <Info2 /> }
 }
 
 export default Info;

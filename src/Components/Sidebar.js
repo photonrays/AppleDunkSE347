@@ -1,14 +1,15 @@
 import { Close } from "@mui/icons-material";
-
+import { useSideBarContext } from "../contexts/sidebarContext";
 import * as React from "react";
 import { Link, useLocation } from "react-router-dom";
 import image from "../assets/image";
 import { IconButton } from '@mui/material';
-import { useMultiContext } from "../contexts/multiContext";
+
 import styles from "../Components/Header/Header.module.css";
 import {  useRef,useState } from "react";
 import Cookies from 'js-cookie';
 import { useNavigate } from "react-router-dom";
+
 import {
   BsChevronDown,
   BsChatLeftText,
@@ -26,6 +27,7 @@ import {
 
 
 export default function Sidebar() {
+  const location = useLocation();
   const Menus = [
 
     {
@@ -90,7 +92,7 @@ const handleClose2 = () => {
 };
 
 const inputRef = useRef(null);
-  const { isSidebarOpen, setIsSidebarOpen } = useMultiContext();
+const { isSidebarOpen, setIsSidebarOpen } = useSideBarContext();
 
 
   return (
