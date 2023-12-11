@@ -6,9 +6,11 @@ import image from "../assets/image";
 import { IconButton } from '@mui/material';
 
 import styles from "../Components/Header/Header.module.css";
-import {  useRef,useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import Cookies from 'js-cookie';
 import { useNavigate } from "react-router-dom";
+import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
+
 
 import {
   BsChevronDown,
@@ -24,6 +26,7 @@ import {
   MdOutlineSettings,
   MdLogout,
 } from 'react-icons/md';
+import HandleApiCart from "../Apis/HandleApiCart";
 
 
 export default function Sidebar() {
@@ -37,13 +40,13 @@ export default function Sidebar() {
         {
           title: 'Thông tin tài khoản',
           src: '/customer/info',
-  
+
           cName: 'sub-nav',
         },
         {
           title: 'Địa chỉ đặt hàng',
           src: '/customer/addresses',
-  
+
           cName: 'sub-nav',
         },
         {
@@ -53,13 +56,13 @@ export default function Sidebar() {
         {
           title: 'Lịch sử bình luận',
           src: '/customer/history',
-  
+
           cName: 'sub-nav',
         },
         {
           title: 'Ảnh đại diện',
           src: '/customer/avatar',
-  
+
           cName: 'sub-nav',
         },
         {
@@ -72,27 +75,45 @@ export default function Sidebar() {
   ];
   const [open, setOpen] = useState(true);
   const [subMenuOpen, setSubMenuOpen] = useState(false);
-  
+  const [dataNumber, setDataNumber] = useState(0);
+  const user = JSON.parse(localStorage.getItem("user"));
+  var number = 0;
   const navigate = useNavigate();
 
-  const user = JSON.parse(localStorage.getItem("user"));
-  const formatUserName = (tenUser) =>{
-    if (tenUser?.length <= 8) {
-        return tenUser;
-      } else {
-        return tenUser?.substring(0, 8) + "...";
-      }
-}
-const handleClose2 = () => {
-  //setAnchorEl(null);
-  localStorage.removeItem("user");
-  //localStorage.removeItem("token");
-  Cookies.remove('token')
-  navigate("/");
-};
+  // render total numbers of cart
+  useEffect(() => {
+    // var number = 0;
+    HandleApiCart.getCartByMaKH(user?.makh)
+      .then((data) => {
+        // console.log(data.productCart);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        number = data?.productCart.reduce((acc, currentValue) => {
+          return acc + currentValue.soluong;
+        }, 0);
+        setDataNumber(number);
+      })
+      .catch((err) => console.log(err));
+  });
 
-const inputRef = useRef(null);
-const { isSidebarOpen, setIsSidebarOpen } = useSideBarContext();
+
+
+  const formatUserName = (tenUser) => {
+    if (tenUser?.length <= 8) {
+      return tenUser;
+    } else {
+      return tenUser?.substring(0, 8) + "...";
+    }
+  }
+  const handleClose2 = () => {
+    //setAnchorEl(null);
+    localStorage.removeItem("user");
+    //localStorage.removeItem("token");
+    Cookies.remove('token')
+    navigate("/");
+  };
+
+  const inputRef = useRef(null);
+  const { isSidebarOpen, setIsSidebarOpen } = useSideBarContext();
 
 
   return (
@@ -152,61 +173,73 @@ const { isSidebarOpen, setIsSidebarOpen } = useSideBarContext();
               Khuyến mãi
             </a>
           </li>
-          
-        </ul>      
-        
-    
-        <hr />
 
+        </ul>
+
+
+        <hr />
+        {(document.cookie.indexOf('token') != -1) ? 
+        <a href="/cart" className="mt-4 mb-2 flex items-center gap-6 text-2xl hover:bg-gray-200 px-2 py-4 rounded-2xl">
+          <span className="relative block mt-2">
+            <ShoppingBagOutlinedIcon
+              style={{ color: "#000000", fontSize: "32px", position: "relative", marginBottom: "5px" }}
+            />
+            <div className={styles.cartNumber + " bg-gray-500 text-white bottom-[1px]"}>
+              {dataNumber}
+            </div>
+          </span> 
+          Giỏ hàng
+        </a>
+        : <></>}
 
         {(document.cookie.indexOf('token') != -1) ?
-        <ul className="pt-0">
-          {Menus.map((Menu, index) => (
-            <>
-              <li
-                key={index}
-                className={`flex  rounded-md p-2 cursor-pointer-full hover:bg-gray-200  text-black text-sm items-center gap-x-4 
+          <ul className="pt-0">
+            {Menus.map((Menu, index) => (
+              <>
+                <li
+                  key={index}
+                  className={`flex  rounded-md p-2 cursor-pointer-full hover:bg-gray-200  text-black text-sm items-center gap-x-4 
               ${Menu.gap ? 'mt-0' : 'mt-0'}  `}
-              >
-                
-                {(document.cookie.indexOf('token') != -1) ?
-        <div className={styles.userr}>
-                                <img src={user.image.length !== 0 ? user.image[0].url : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkNjtjpEZtAtYMoeDfg6PO5DoGrpAhCA79Jg&usqp=CAU"} alt="User Image" className={styles.userr_image} />
-                                <p className={styles.menuItemLink} style={{ color: "black" }}>{formatUserName(user.hoten)}</p>
-                                <hr />
-                            </div>:<></>}
-                {Menu.subMenus && (
-                  <BsChevronDown
-                    onClick={() => setSubMenuOpen(!subMenuOpen)}
-                    className={`${subMenuOpen && 'rotate-180'}`}
-                  />
+                >
+
+                  {(document.cookie.indexOf('token') != -1) ?
+                    <div className={styles.userr}>
+                      <img src={user.image.length !== 0 ? user.image[0].url : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkNjtjpEZtAtYMoeDfg6PO5DoGrpAhCA79Jg&usqp=CAU"} alt="User Image" className={styles.userr_image} />
+                      <p className={styles.menuItemLink} style={{ color: "black" }}>{formatUserName(user.hoten)}</p>
+                      <hr />
+                    </div> : <></>}
+                  {Menu.subMenus && (
+                    <BsChevronDown
+                      onClick={() => setSubMenuOpen(!subMenuOpen)}
+                      className={`${subMenuOpen && 'rotate-180'}`}
+                    />
+                  )}
+                </li>
+                {Menu.subMenus && subMenuOpen && open && (
+                  <ul>
+                    {Menu.subMenus.map((subMenuItem, idx) => (
+                      <li
+                        key={idx}
+                        className={`w-full text-2xl hover:bg-gray-200 ${location.pathname === 'khuyenmai' && 'bg-gray-200'} p-6 rounded-2xl mb-4 block`}
+                      >
+                        <a href={subMenuItem.src}>
+                          {subMenuItem.title}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
                 )}
-              </li>
-              {Menu.subMenus && subMenuOpen && open && (
-                <ul>
-                  {Menu.subMenus.map((subMenuItem, idx) => (
-                    <li
-                      key={idx}
-                      className={`w-full text-2xl hover:bg-gray-200 ${location.pathname === 'khuyenmai' && 'bg-gray-200'} p-6 rounded-2xl mb-4 block`}
-                    >
-                      <a href={subMenuItem.src}>
-                      {subMenuItem.title}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </>
-          ))}
-        </ul>
-       :<></>}
-{(document.cookie.indexOf('token') == -1) ?
-                            
-                            <button onClick={()=>{navigate("/login");setIsSidebarOpen(false);}} className="w-full p-5 rounded-3xl mb-4 border-2 border-gray-200 cursor-pointer text-2xl mt-10 hover:bg-gray-200">Đăng nhập</button>
-                        
-                        :
-                        <button className="w-full p-5 rounded-3xl mb-4 border-2 border-gray-200 cursor-pointer text-2xl mt-10 hover:bg-gray-200" onClick={handleClose2}>Đăng Xuất</button>}
-              </div>
+              </>
+            ))}
+          </ul>
+          : <></>}
+        {(document.cookie.indexOf('token') == -1) ?
+
+          <button onClick={() => { navigate("/login"); setIsSidebarOpen(false); }} className="w-full p-5 rounded-3xl mb-4 border-2 border-gray-200 cursor-pointer text-2xl mt-10 hover:bg-gray-200">Đăng nhập</button>
+
+          :
+          <button className="w-full p-5 rounded-3xl mb-4 border-2 border-gray-200 cursor-pointer text-2xl mt-10 hover:bg-gray-200" onClick={handleClose2}>Đăng Xuất</button>}
+      </div>
     </aside>
 
   );
