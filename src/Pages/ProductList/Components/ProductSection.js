@@ -130,7 +130,6 @@ export default function ProductSection({ type, currentCategory = null }) {
     }, [location])
 
     useEffect(() => {
-        console.log(sort)
         api.getAllProduct(type, currentPage, 12, currentCategory, sort).then(result => { console.log(result); setData(result.listProducts); setTotalPage(result.totalPages); })
     }, [currentCategory, type, currentPage, sort])
 
