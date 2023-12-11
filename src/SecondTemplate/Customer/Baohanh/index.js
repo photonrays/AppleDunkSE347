@@ -88,7 +88,7 @@ function Baohanh2 () {
     <svg class="w-5 h-5 rtl:rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18" />
     </svg>
-    <span>Go back to setting page</span>
+    <span>Quay trở lại trang trước</span>
 </button>
                 <div className={" mb-12"}>
                     {(data === undefined || data.length===0)? (<div className="flex justify-center pt-5 pb-96">Bạn chưa mua hàng</div>
