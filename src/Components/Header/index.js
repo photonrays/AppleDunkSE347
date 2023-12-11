@@ -33,7 +33,7 @@ function Header() {
     const { isSidebarOpen, setIsSidebarOpen } = useSideBarContext();
     // const { template, setTemplate } = useTemplateContext();
     const { template, setTemplate } = useTemplateContext();
-
+    console.log("template a" + template);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);

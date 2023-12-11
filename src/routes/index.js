@@ -37,7 +37,7 @@ import Addaddress2 from "../SecondTemplate/Customer/addAddress";
 
 const publicRoutes = [
     { path: "/", component: <Home /> },
-    { path: "/home", component: <HomeSecond /> },
+    // { path: "/home", component: <HomeSecond /> },
     { path: "/detailproduct", component: <DetailProduct /> },
     { path: "/*", component: <NotFound />, layout: null },
     { path: "/cart", component: <Order /> },
@@ -70,7 +70,7 @@ const publicRoutes = [
     { path: "/tin-khac", component: <NewsCategory /> },
 
     { path: "/customer/info", component: <Info /> },
-    { path: "/customer/info2", component: <Info2 /> },
+    // { path: "/customer/info2", component: <Info2 /> },
     { path: "/customer/addresses", component: <Addresses /> },
     { path: "/customer/addAddress", component: <Addaddress /> },
     { path: "/customer/addAddress2", component: <Addaddress2 /> },
