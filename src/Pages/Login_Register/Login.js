@@ -80,7 +80,7 @@ const Login = () => {
         console.log("Login failed: ", response);
     };
 
-    useLayoutEffect(() => {
+    /*useLayoutEffect(() => {
         window.google.accounts.id.renderButton(
           document.getElementById('signInDiv'),
           {
@@ -92,7 +92,7 @@ const Login = () => {
             text: 'continue_with',
           }
         );
-      }, [buttonWidth]);
+      }, [buttonWidth]);*/
     useEffect(() => {
         updateButtonSize();
         window.addEventListener('resize', updateButtonSize);
@@ -101,7 +101,7 @@ const Login = () => {
         return () => window.removeEventListener('resize', updateButtonSize);
       }, []);
 
-    useEffect(()=>{
+      useEffect(()=>{
         /* global google */
         console.log(window.google);
         /**/
@@ -111,7 +111,16 @@ const Login = () => {
                 callback: handleCallbackResponse
             });
             
-           
+             window.google.accounts.id.renderButton(
+                document.getElementById("signInDiv"),
+                { type: "standard",
+                theme: "filled_blue",
+                size: "large",
+                width: "305px",
+                height: "9px",
+                color: "#444",
+                Text:"continue_with" }
+             )
          }else{
             setfirst(first+1)
          }
@@ -358,7 +367,7 @@ const handleSignInButtonClick = () => {
                 className={classes.FBbtn}
                 >
                     <FacebookLoginButton
-                    style={{height:"39px",width:{buttonWidth}}}  
+                    style={{height:"39px",width:"305px"}}  
                     >
                         
                     <span style={{fontSize:"14px",paddingLeft:"25px"}} >Đăng nhập với Facebook</span>
