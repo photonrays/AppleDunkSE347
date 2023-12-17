@@ -6,7 +6,7 @@ export const TemplateContext = createContext(null);
 
 export function TemplateContextProvider({ children }) {
   const [template, setTemplate] = useState(() => {
-    return sessionStorage.getItem("template") || 1
+    return parseInt(sessionStorage.getItem("template")) || 1
   });
 
   useEffect(() => {
