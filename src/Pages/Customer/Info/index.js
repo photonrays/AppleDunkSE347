@@ -92,7 +92,7 @@ function Info(){
             console.log(err);
         })
       }
-      if (template != 1) {
+      if (template === 1) {
     return (
         <div>
             <div className={styles.bg_primary + " flex justify-evenly text-2xl"}>
