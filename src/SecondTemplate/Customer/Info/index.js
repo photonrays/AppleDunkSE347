@@ -235,7 +235,7 @@ function Info2(){
             </div>
             <Addresses></Addresses>
           </div>}{
-         <div style={{width:"100%",marginLeft:"100px",justifyItems:"center"}}>
+         <div style={{width:"100%",marginLeft:"45px",justifyItems:"center"}}>
 
 
 
