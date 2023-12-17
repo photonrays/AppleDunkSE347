@@ -3,7 +3,6 @@ import "react-image-gallery/styles/css/image-gallery.css";
 import "./Carousel.css"
 
 function Carousel(props) {
-
     const images = props.sp.imageList.map(img => 
             (
                 {
@@ -12,17 +11,11 @@ function Carousel(props) {
                 }
             )
           );
-
-    
-
     return(
             <ImageGallery
              class="image-gallery"
              items={images}
              showFullscreenButton={false}
-            //  showBullets={true}
-            //  disableThumbnailScroll={false}
-            //  disableSwipe={false}
              showPlayButton={false}
              />
     );

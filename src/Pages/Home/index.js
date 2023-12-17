@@ -187,9 +187,6 @@ function Home() {
                     </a>
                 </div>
                 <ItemComponent data={tintucUI} />
-                {/* <div className="my-[-80px]">
-                 <SubcribeSection/>
-           </div> */}
             </div>
         );
     }

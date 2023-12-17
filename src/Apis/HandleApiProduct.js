@@ -21,7 +21,7 @@ const getProductById = async (id)=>{
 }
 
 const getProductByName = async (name) => {
-    return await axiosInstance.get(`/api/product?tensanpham=${name}&pageSize=6`);
+    return await axiosInstance.get(`/api/product?tensanpham=${name}`);
 }
 
 export default {
