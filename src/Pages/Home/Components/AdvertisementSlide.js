@@ -46,7 +46,10 @@ function AdvertisementSlide(){
                     {data.map((product, index) => (
                         <SplideSlide key={index}>
                             <div className="mobile cursor-pointer">
-                                <img  className="h-full" src={product.image} alt={product.image}></img>
+                                <img className="h-full" 
+                                     src={product.image} 
+                                     alt={product.image}>
+                                </img>
                             </div>
                         </SplideSlide>
                     ))}
