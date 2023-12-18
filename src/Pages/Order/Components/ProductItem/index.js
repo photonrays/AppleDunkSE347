@@ -203,9 +203,7 @@ function ProductItem({
                     />
                 </IconButton>
             </td>
-            <div>
-                
-            </div>
+            
         </tr>
     );
 }
