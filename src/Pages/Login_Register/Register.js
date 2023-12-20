@@ -209,16 +209,18 @@ const Register = () => {
         icon: 'error',
         title: 'Email đã tồn tại',
       });*/
-      alert('Email đã tồn tại!');
+      // alert('Email đã tồn tại!');
+      alert(err.response.data);
       console.log(err);})
     const data = await res.data;
-    console.log(data);
+    // console.log(data);
     return data;
   }
   const handleSubmit = (e) => {
+    console.log(errors);
     if (errors.emailError !== "" || errors.passwordError !== "") {
       e.preventDefault();
-      alert("Register failed!");
+      alert("Vui lòng nhập đầy đủ thông tin!");
     } else {
         e.preventDefault();
       console.log(inputs);
@@ -239,9 +241,7 @@ const Register = () => {
     <div>
       <div className="flex flex-col items-center min-h-screen pt-6 sm:justify-center sm:pt-0 bg-gray-50" style={{backgroundImage: `url(${images.registerbg})`,backgroundRepeat:"no-repeat",backgroundPosition:"center",backgroundSize:"cover", padding:"30px"}}>
         <div className="">
-          <a href="/">
-            <h3 className="text-7xl font-bold text-purple-800">APPLEDUNK</h3>
-          </a>
+            <h3 className="text-7xl font-bold text-purple-800">Đăng ký</h3>
         </div>
         <div className="w-full px-6 py-4 mt-6 overflow-hidden bg-white bg-opacity-90 shadow-md sm:max-w-4xl sm:rounded-lg">
           <form>
@@ -275,10 +275,10 @@ const Register = () => {
                   value="Nữ"
                   checked={inputs.gioitinh === "Nữ"}
                   onChange={handleChange}
-                  className="ml-10"
+                  className="ml-10 mr-2"
                 />
                 <label
-                  htmlFor="unemployed"
+                  htmlFor="nu"
                   className="block text-2xl font-medium text-gray-700 undefined"
                 >
                   Nữ
@@ -287,15 +287,15 @@ const Register = () => {
 
                 <input
                   type="radio"
-                  id="nu"
+                  id="nam"
                   name="gioitinh"
                   value="Nam"
                   checked={inputs.gioitinh === "Nam"}
                     onChange={handleChange}
-                    className="ml-10"
+                    className="ml-10 mr-2"
                 />
                 <label
-                  htmlFor="part-time"
+                  htmlFor="nam"
                   className="block text-2xl font-medium text-gray-700 undefined"
                 >
                   Nam
