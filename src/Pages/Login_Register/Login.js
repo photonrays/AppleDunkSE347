@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState,useEffect,useLayoutEffect } from "react";
 import classes from "./Login.module.css";
 import jwt_decode from "jwt-decode";
 import axios from "axios";
@@ -17,6 +17,18 @@ import axiosInstance from "../../Apis/axiosInstance";
 
 const Login = () => {
     const [isChecked, setIsChecked] = useState(false);
+    const [buttonWidth, setButtonWidth] = useState('305px');
+
+    // Hàm để cập nhật kích thước nút dựa trên kích thước cửa sổ
+    const updateButtonSize = () => {
+      if (window.matchMedia('(max-width: 767px)').matches) {
+        setButtonWidth('305px'); // Kích thước cho màn hình nhỏ
+      } else if (window.matchMedia('(min-width: 768px) and (max-width: 1023px)').matches) {
+        setButtonWidth('305px'); // Kích thước cho màn hình trung bình
+      } else {
+        setButtonWidth('305px'); // Kích thước mặc định
+      }
+    };
     const handleCheckboxChange = () => {
         setIsChecked(!isChecked);
       };
@@ -68,9 +80,28 @@ const Login = () => {
         console.log("Login failed: ", response);
     };
 
+    /*useLayoutEffect(() => {
+        window.google.accounts.id.renderButton(
+          document.getElementById('signInDiv'),
+          {
+            type: 'standard',
+            theme: 'filled_blue',
+            size: 'large',
+            width: buttonWidth, // Sử dụng giá trị từ trạng thái
+            height: '40px', // Đặt một chiều cao hợp lý
+            text: 'continue_with',
+          }
+        );
+      }, [buttonWidth]);*/
+    useEffect(() => {
+        updateButtonSize();
+        window.addEventListener('resize', updateButtonSize);
+    
+        // Dọn dẹp event listener
+        return () => window.removeEventListener('resize', updateButtonSize);
+      }, []);
 
-
-    useEffect(()=>{
+      useEffect(()=>{
         /* global google */
         console.log(window.google);
         /**/
@@ -322,10 +353,10 @@ const handleSignInButtonClick = () => {
             <p className="px-3 ">Hoặc</p>
             <hr className="w-full" />
           </div >
-          <div class="flex flex-col item-center lg:flex-row">
+          <div class="flex flex-col md:flex-row items-center">
               <div id="signInDiv" style={{paddingTop:"5px",paddingRight:"295px", width:"50%",maxWidth:"600px",zIndex:"1"}}>        
               </div>
-              <div style={{zIndex:"9"}}>
+              <div style={{zIndex:"9", paddingBottom:"30px",justifyItems:"center"}}>
                 <LoginSocialFacebook
                 appId="918062536004658"
                 onResolve={(response)=>
@@ -336,7 +367,9 @@ const handleSignInButtonClick = () => {
                 className={classes.FBbtn}
                 >
                     <FacebookLoginButton
-                    style={{height:"39px",width:"300px"}}  >
+                    style={{height:"39px",width:"305px"}}  
+                    >
+                        
                     <span style={{fontSize:"14px",paddingLeft:"25px"}} >Đăng nhập với Facebook</span>
                     </FacebookLoginButton>
                 </LoginSocialFacebook>

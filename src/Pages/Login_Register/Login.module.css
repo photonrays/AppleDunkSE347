@@ -162,3 +162,15 @@
     height: 10px;
     z-index: 999;
 }
+
+
+.signInDivv {
+    padding-right: 0px; /* giá trị padding-right mặc định */
+
+}
+
+@media   (max-width:1023px)  {
+  .signInDivv {
+    padding-right: 295px; /* thay đổi padding-right khi chiều rộng dưới 1023px */
+  }
+}

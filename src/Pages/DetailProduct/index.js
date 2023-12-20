@@ -1,13 +1,10 @@
 import DetailBottom from "./detailBottom";
-import { Splide, SplideSlide } from "@splidejs/react-splide";
 import { useRef, useState, useEffect } from "react";
-import images from "../../assets/image";
 import classes from "./DetailProduct.module.css";
 import Rating from "@mui/material/Rating";
-import StoreIcon from '@mui/icons-material/Store';
 import { useParams } from "react-router-dom";
-import HandleApiProduct from "../../Apis/HandleApiProduct";
-import axios from "axios";
+import HandleApiProduct from "../../Apis/HandleApiProduct.js";
+import HandleApiCart from "../../Apis/HandleApiCart.js";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import Carousel from "./OtherComponent/Carousel";
@@ -44,17 +41,15 @@ function DetailProduct() {
 
     useEffect( ()=>{
 
-
-        axios.get(`http://localhost:3001/api/product/${params.id}`)
+        HandleApiProduct.getProductById(params.id)
         .then( (response) => { 
             console.log(template)
-            if(response.data !== undefined) {
-                setSp(response.data);      
+            if(response !== undefined) {
+                setSp(response);      
                 setLoading(false);
-                // lstColor = response.data?response.data.mausac.split(",").map(item => item.trim()):0
-                setLstColor(response.data.mausac.split(",").map(item => item.trim().toLowerCase()))
-                setLstRom(response.data.rom.split(",").map(item => item.trim().toUpperCase()))
-                setLstRam(response.data.ram.split(",").map(item => item.trim().toUpperCase()))
+                setLstColor(response.mausac.split(",").map(item => item.trim().toLowerCase()))
+                setLstRom(response.rom.split(",").map(item => item.trim().toUpperCase()))
+                setLstRam(response.ram.split(",").map(item => item.trim().toUpperCase()))
             }
         })
         .catch(error => console.log(error));
@@ -66,18 +61,14 @@ function DetailProduct() {
             Swal.fire({
                 title: 'Vui lòng lựa chọn dung lượng!',
                 icon: 'warning',
-                // showCancelButton: true,
                 confirmButtonText: 'OK',
-                // cancelButtonText: 'Đóng',
             })
         }
         else if(ram === "" && lstRam.length !== 0) {
             Swal.fire({
                 title: 'Vui lòng lựa chọn ram!',
                 icon: 'warning',
-                // showCancelButton: true,
                 confirmButtonText: 'OK',
-                // cancelButtonText: 'Đóng',
             })
         }
         else if(color === "" && lstColor.length !== 0) {
@@ -85,7 +76,6 @@ function DetailProduct() {
                 title: 'Vui lòng lựa chọn màu sắc!',
                 icon: 'warning',
                 confirmButtonText: 'OK',
-                // cancelButtonText: 'Đóng',
             })
         } else if(!user) {
             Swal.fire({
@@ -111,7 +101,7 @@ function DetailProduct() {
             }
 
             console.log(cartData)
-            axios.post(`http://localhost:3001/api/cart`,cartData)
+            HandleApiCart.addSpToCart(cartData)
             .then( (response) => { 
                 console.log(response)
                 navigate("/cart")
@@ -122,12 +112,13 @@ function DetailProduct() {
 
     const handleDungLuongClick = (i) => {
         setDungluong(i)
-        // console.log(params.id)
     }
+
     const VND = new Intl.NumberFormat('vi-VN', {
-    style: 'currency',
-    currency: 'VND',
+        style: 'currency',
+        currency: 'VND',
     });
+    
     if (isLoading===false && sp!==undefined && sp!==null) {
         console.log("isLo ",isLoading)
         console.log(sp)
@@ -151,9 +142,8 @@ function DetailProduct() {
                                     <Rating name="size-small" defaultValue={2} size="big" />
                                 </div>
                                 <a>Đánh giá</a>
-                            <hr />
-
-                        </div>
+                                <hr />
+                            </div>
                         <div className={classes.price}>
                             <span className={classes.currentPrice}>{VND.format(sp.gia)}</span>
                         </div>
@@ -162,84 +152,74 @@ function DetailProduct() {
                                 {
                                     (lstRom.length !== 0)&&(
                                         <>
-                                        <label>Dung lượng</label>
-                                <ul>
-                                    {
-                                        lstRom?.map((rom_item, index) =>{
-                                            return (
-                                                <li onClick={()=> setDungluong(rom_item)}
-                                                    className={dungluong === rom_item ? classes.active : "hover:border-blue-400 hover:border-[2px] hover:text-blue-600"}>
-                                                    {rom_item}
-                                                </li>
-                                            )
-                                        } )
-                                    }
-                                    
-                                </ul>
+                                            <label>Dung lượng</label>
+                                            <ul>
+                                                {
+                                                    lstRom?.map((rom_item, index) =>{
+                                                        return (
+                                                            <li onClick={()=> setDungluong(rom_item)}
+                                                                className={dungluong === rom_item ? classes.active 
+                                                                : "hover:border-blue-400 hover:border-[2px] hover:text-blue-600"}>
+                                                                {rom_item}
+                                                            </li>
+                                                        )
+                                                    } )
+                                                }     
+                                            </ul>
                                         </>
                                     )
                                 }
-
                                 {
                                     (lstRam.length !==0)&&(
                                         <>
-                                        <label>RAM</label>
-                                <ul>
-                                    {
-                                        lstRam?.map((ram_item, index) =>{
-                                            return (
-                                                <li onClick={()=> setRam(ram_item)} 
-                                                    className={ram === ram_item ? classes.active : "hover:border-blue-400 hover:border-[2px] hover:text-blue-600"}>
-                                                    {ram_item}
-                                                </li>
-                                            )
-                                        } )
-                                    }
-                                    
-                                </ul>
+                                            <label>RAM</label>
+                                            <ul>
+                                                {
+                                                    lstRam?.map((ram_item, index) =>{
+                                                        return (
+                                                            <li onClick={()=> setRam(ram_item)} 
+                                                                className={ram === ram_item ? classes.active 
+                                                                : "hover:border-blue-400 hover:border-[2px] hover:text-blue-600"}>
+                                                                {ram_item}
+                                                            </li>
+                                                        )
+                                                    } )
+                                                }                 
+                                            </ul>
+                                        </>
+                                    )
+                                }     
+                                {
+                                    (lstColor.length !== 0)&&(
+                                        <>
+                                            <label>Màu sắc</label>
+                                            <div className={classes.itemColor}>
+                                                <ul >
+                                                    {
+                                                        lstColor?.map((color_item, index) =>{
+                                                            let colorBG = lstColorBG[color_item]
+                                                            
+                                                            if(classes[color_item] !== undefined){
+                                                                return (
+                                                                    <li title={color_item} className={`${color === color_item ?
+                                                                    `${colorBG} outline outline-[2px] outline-blue-500` 
+                                                                    : classes[color_item]}`}
+                                                                        onClick={()=>setColor(color_item)} value={color_item}>
+                                                                    </li>
+                                                                )
+                                                            }
+                                                        } )
+                                                    }
+                                                </ul>
+                                            </div>
                                         </>
                                     )
                                 }
-
-                                
-                            {
-                                (lstColor.length !== 0)&&(
-                                    <>
-                                    <label>Màu sắc</label>
-                            <div className={classes.itemColor}>
-                            <ul >
-                                {
-                                    lstColor?.map((color_item, index) =>{
-                                        let colorBG = lstColorBG[color_item]
-                                        
-                                        if(classes[color_item] !== undefined){
-                                            return (
-                                                <li title={color_item} className={`${color === color_item ? `${colorBG} outline outline-[2px] outline-blue-500` : classes[color_item]}`}
-                                                    onClick={()=>setColor(color_item)} value={color_item}>
-                                                </li>
-                                            )
-                                        }
-                                    } )
-                                }
-
-                            </ul>
-                            </div>
-                                    </>
-                                )
-                            }
-                            </div>
-
-                            
-                            
+                            </div> 
                             <div className={classes.confirm}>
                                 <button onClick={()=>handleMuaNgayClick()}>MUA NGAY</button>
                             </div>
-
-
                         </div>
-
-
-
                         </div>
                     </div>
                 </>
@@ -256,7 +236,6 @@ function DetailProduct() {
                                 </div>
                                 <a>Đánh giá</a>
                             <hr />
-
                         </div>
                         <div className={classes.price}>
                             <span className={classes.currentPrice}>{VND.format(sp.gia)}</span>
@@ -266,84 +245,75 @@ function DetailProduct() {
                                 {
                                     (lstRom.length !== 0)&&(
                                         <>
-                                        <label>Dung lượng</label>
-                                <ul>
-                                    {
-                                        lstRom?.map((rom_item, index) =>{
-                                            return (
-                                                <li onClick={()=> setDungluong(rom_item)}
-                                                    className={dungluong === rom_item ? classes.active : "hover:border-blue-400 hover:border-[2px] hover:text-blue-600"}>
-                                                    {rom_item}
-                                                </li>
-                                            )
-                                        } )
-                                    }
-                                    
-                                </ul>
+                                            <label>Dung lượng</label>
+                                            <ul>
+                                                {
+                                                    lstRom?.map((rom_item, index) =>{
+                                                        return (
+                                                            <li onClick={()=> setDungluong(rom_item)}
+                                                                className={dungluong === rom_item ? classes.active : 
+                                                                "hover:border-blue-400 hover:border-[2px] hover:text-blue-600"}>
+                                                                {rom_item}
+                                                            </li>
+                                                        )
+                                                    } )
+                                                }
+                                            </ul>
                                         </>
                                     )
                                 }
-
                                 {
                                     (lstRam.length !==0)&&(
                                         <>
-                                        <label>RAM</label>
-                                <ul>
-                                    {
-                                        lstRam?.map((ram_item, index) =>{
-                                            return (
-                                                <li onClick={()=> setRam(ram_item)} 
-                                                    className={ram === ram_item ? classes.active : "hover:border-blue-400 hover:border-[2px] hover:text-blue-600"}>
-                                                    {ram_item}
-                                                </li>
-                                            )
-                                        } )
-                                    }
-                                    
-                                </ul>
+                                            <label>RAM</label>
+                                            <ul>
+                                                {
+                                                    lstRam?.map((ram_item, index) =>{
+                                                        return (
+                                                            <li onClick={()=> setRam(ram_item)} 
+                                                                className={ram === ram_item ? classes.active : 
+                                                                "hover:border-blue-400 hover:border-[2px] hover:text-blue-600"}>
+                                                                {ram_item}
+                                                            </li>
+                                                        )
+                                                    } )
+                                                }
+                                                
+                                            </ul>
+                                        </>
+                                    )
+                                }        
+                                {
+                                    (lstColor.length !== 0)&&(
+                                        <>
+                                            <label>Màu sắc</label>
+                                            <div className={classes.itemColor}>
+                                            <ul >
+                                                {
+                                                    lstColor?.map((color_item, index) =>{
+                                                        let colorBG = lstColorBG[color_item]
+                                                        
+                                                        if(classes[color_item] !== undefined){
+                                                            return (
+                                                                <li title={color_item} className={`${color === color_item ? 
+                                                                `${colorBG} outline outline-[2px] outline-blue-500` 
+                                                                : classes[color_item]}`}
+                                                                    onClick={()=>setColor(color_item)} value={color_item}>
+                                                                </li>
+                                                            )
+                                                        }
+                                                    } )
+                                                }
+                                            </ul>
+                                            </div>
                                         </>
                                     )
                                 }
-
-                                
-                            {
-                                (lstColor.length !== 0)&&(
-                                    <>
-                                    <label>Màu sắc</label>
-                            <div className={classes.itemColor}>
-                            <ul >
-                                {
-                                    lstColor?.map((color_item, index) =>{
-                                        let colorBG = lstColorBG[color_item]
-                                        
-                                        if(classes[color_item] !== undefined){
-                                            return (
-                                                <li title={color_item} className={`${color === color_item ? `${colorBG} outline outline-[2px] outline-blue-500` : classes[color_item]}`}
-                                                    onClick={()=>setColor(color_item)} value={color_item}>
-                                                </li>
-                                            )
-                                        }
-                                    } )
-                                }
-
-                            </ul>
                             </div>
-                                    </>
-                                )
-                            }
-                            </div>
-
-                            
-                            
                             <div className={classes.confirm}>
                                 <button onClick={()=>handleMuaNgayClick()}>MUA NGAY</button>
                             </div>
-
-
                         </div>
-
-
-
                         </div>
                     </div>
                     <div className={classes.carousel}>
@@ -359,8 +329,6 @@ function DetailProduct() {
                                 template = {template}
                               />:""}
             </div>
-
-
         </div>
     )}
 }

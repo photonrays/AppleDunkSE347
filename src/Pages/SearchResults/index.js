@@ -5,14 +5,11 @@ import Pagination from "./Pagination";
 import { useEffect } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
+import HandleApiProduct from "../../Apis/HandleApiProduct";
 function SearchResults() {
    
     const [searchParams, setSearchParams] = useSearchParams();
-    
     const [searchKey, setSearchKey] = useState(searchParams.get("q"));
-
-    const [searchKeyStatic, setSearchKeyStatic] = useState(searchParams.get("q"));
-
     const [items, setItems] = useState([]);
     const [staticItems, setStaticItems] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
@@ -20,13 +17,12 @@ function SearchResults() {
 
     // Hàm lấy dữ liệu theo từ khóa
     useEffect(()=>{
-        axios.get(`http://localhost:3001/api/product?tensanpham=${searchKey}`)
+        HandleApiProduct.getProductByName(searchKey)
         .then( (response) => { 
-            if(response.data !== undefined) {
-                setItems(response.data.listProducts); 
-                setStaticItems(response.data.listProducts)     
-                // setLoading(false);
-                console.log(response.data)
+            if(response !== undefined) {
+                setItems(response.listProducts); 
+                setStaticItems(response.listProducts)     
+                console.log(response)
             }
         })
         .catch(error => console.log(error));
@@ -106,22 +102,19 @@ function SearchResults() {
 
     return ( <div className="grid grid-cols-1 justify-items-center pt-[30px] bg-gray-100">
         <div className="lg:w-3/4 w-full px-[20px]">
-
-            {/* <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p> */}
             <h1 className="text-[24px] font-semibold text-center py-[16px]">Tìm kiếm</h1>
             <div className="search-box flex justify-center">
+                <div className="grid grid-cols-1 justify-items bg-white px-[40px] py-[30px] rounded-[7px] w-full">
+                    <label className="text-3xl">Tìm từ khóa:</label>
 
-            <div className="grid grid-cols-1 justify-items bg-white px-[40px] py-[30px] rounded-[7px] w-full">
-                <label className="text-3xl">Tìm từ khóa:</label>
+                    <input id="search-key" onChange={handleOnChange} onKeyDown={handleEnter}
+                    value={searchKey} className="w-full rounded-[7px] my-[10px] px-[16px] h-[48px] text-[16px]
+                    border-[2px] border-solid border-gray-300 outline-blue-500" placeholder="iphone"></input>
 
-                <input id="search-key" onChange={handleOnChange} onKeyDown={handleEnter}
-                value={searchKey} className="w-full rounded-[7px] my-[10px] px-[16px] h-[48px] text-[16px]
-                border-[2px] border-solid border-gray-300 outline-blue-500" placeholder="iphone"></input>
-
-                <button onClick={handleOnclickSearchBtn} className="w-[170px] h-[38px] bg-blue-500 rounded-[4px] text-[18px] text-white
-                mt-[16px] justify-self-center">Tìm kiếm</button>
-            </div>
-
+                    <button onClick={handleOnclickSearchBtn} 
+                            className="w-[170px] h-[38px] bg-blue-500 rounded-[4px] text-[18px] text-white
+                    mt-[16px] justify-self-center">Tìm kiếm</button>
+                </div>
             </div>
 
             {items.length === 0 ?"" : <div className="products-filter my-[40px] text-[16px] flex">
@@ -138,8 +131,8 @@ function SearchResults() {
                 <div className="products-per-page ml-[20px]">
                 <span className="mr-[8px]">Hiển thị</span>
                     <select id="products-orderby" name="products-orderby" form="sortform"
-                    className="h-[32px] border-[1px] border-solid border-gray-300 rounded-[4px]" 
-                    onClick={handleSelectedSize}>
+                        className="h-[32px] border-[1px] border-solid border-gray-300 rounded-[4px]" 
+                        onClick={handleSelectedSize}>
                         <option value="8">8</option>
                         <option value="12">12</option>
                         <option value="16">16</option>
@@ -165,8 +158,9 @@ function SearchResults() {
                 nextPage={nextPage}
             />
             
-
-            <div className={items.length === 0 ? "text-center my-[30px] text-blue-800 text-[18px]" : " hidden"}>Không tìm thấy sản phẩm nào khớp với từ khóa tìm kiếm.</div>
+            <div className={items.length === 0 ? "text-center my-[30px] text-blue-800 text-[18px]" : " hidden"}>
+                Không tìm thấy sản phẩm nào khớp với từ khóa tìm kiếm.
+            </div>
             
         </div>
     </div>);

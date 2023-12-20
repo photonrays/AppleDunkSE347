@@ -401,16 +401,16 @@ const Register = () => {
           </div>
           
 
-          <div className='flex'>
+          <div class="flex flex-col md:flex-row items-center">
           
-          <div id="signInDiv" style={{paddingTop:"5px", width:"50%",maxWidth:"600px",zIndex:"1"}}>
+          <div id="signInDiv" className={classes.signInDivv} style={{paddingTop:"5px", width:"50%",maxWidth:"600px",zIndex:"1"}}> 
                   
                   </div>
             
             <div class="flex items-center justify-center">
   
 </div>
-<div>
+<div style={{paddingBottom:"30px",justifyItems:"center"}}>
                 <LoginSocialFacebook
                 appId="918062536004658"
                 onResolve={(response)=>

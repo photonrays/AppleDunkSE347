@@ -60,15 +60,6 @@ const RatingModal = (props) => {
         }
     }
 
-    // const dgData = {
-    //     // makh: props.user.makh,
-    //     makh: "abc",
-    //     masp: "",
-    //     tenkh: props.user.hoten,
-    //     binhluan: danhGia,
-    //     rating: ratingValue,
-    // }
-
     const product = {
             image: "https://shopdunk.com/images/thumbs/0007808_iphone-14-pro-max-128gb_420.png",
             name: "iPhone 14 Pro Max 128GB",
@@ -160,9 +151,9 @@ const RatingModal = (props) => {
         <div className="px-[20px] py-[16px]">
             {/* Phần trên của body */}
             <div className="text-center text-slate-600">
-                <img src={product.image}
+                <img src={props.sp.imageList[0]}
                 className="w-[96px] block mx-auto"/>
-                <div className=" my-[10px]">{product.name}</div>
+                <div className=" my-[10px]">{props.sp.tensanpham}</div>
                 
             </div>
 

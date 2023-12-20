@@ -25,7 +25,7 @@ function ItemProduct(props){
                 <div className="h-[50px] flex justify-end pr-4">
                     <img className="w-[100px]" src={props.data.note} alt={props.data.note}></img>
                 </div>
-                <img className="p-[16px]" src={props.data.image} alt={props.data.image}></img>
+                <img className="p-[16px] w-[280px] h-[240px] object-contain" src={props.data.image} alt={props.data.image}></img>
                 <h3 className="text-[18px] flex-1 font-bold text-left px-8">
                     {
                         props.data.name

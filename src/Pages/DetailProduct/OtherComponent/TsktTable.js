@@ -15,7 +15,10 @@ function TsktTable({tongleState, demoProduct, template}) {
                 <tbody>
                     {demoProduct.TSKT.map((tskt, index) => (
                         tskt?<tr className={(index % 2) === 0 ?"w-full bg-slate-200":"w-full"}>
-                            <td className={template === 1 ? "border border-slate-300 py-[6px] px-[16px]" : "border border-slate-300 py-[6px] px-[16px] lg:w-1/3"}>{tskt[0]}</td>
+                            <td className={template === 1 ? "border border-slate-300 py-[6px] px-[16px]" 
+                                                        : "border border-slate-300 py-[6px] px-[16px] lg:w-1/3"}>
+                                {tskt[0]}
+                            </td>
                             <td className="border border-slate-300 py-[6px] px-[16px]">{tskt[1]}</td>
                         </tr>:""
                     ))}
