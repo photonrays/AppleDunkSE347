@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import ProductSection from './ProductSection';
-import SubcribeSection from './SubcribeSection';
 import TopSection from './TopSection';
 import { useParams } from 'react-router-dom'
 import api from '../../../Apis/HandleApiProduct'
@@ -28,7 +27,6 @@ export default function AnotherProductList({ type }) {
                 <TopSection type={type} currentCategory={currentCategory} slug={slug} />
                 <ProductSection type={type} currentCategory={currentCategory} />
                 </>}
-            {/* <SubcribeSection /> */}
         </div >
     )
 }

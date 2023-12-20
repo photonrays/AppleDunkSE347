@@ -3,7 +3,6 @@ import AdvertisementSlide from "./Components/AdvertisementSlide";
 import AdvertisementItem from "./Components/AdvertisementItem";
 import ItemComponent from "./Components/ItemComponent";
 import images from "../../assets/image";
-import SubcribeSection from "../../Pages/ProductList/Components/SubcribeSection";
 import { useEffect, useState } from "react";
 import HandleApiProduct from "../../Apis/HandleApiProduct.js";
 import HandleApiNews from "../../Apis/HandleApiNews";
@@ -182,9 +181,6 @@ function HomeSecond() {
                 </a>
             </div>
             <ItemComponent data={tintucUI} />
-            {/* <div className="my-[-80px]">
-             <SubcribeSection/>
-       </div> */}
         </div>
     );
 }

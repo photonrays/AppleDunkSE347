@@ -11,7 +11,6 @@ export default function ProductList({ type }) {
             <Banner type={type} />
             <ProductSection type={type} />
             <DetailSection type={type} />
-            {/* <SubcribeSection /> */}
         </div >
     )
 }
