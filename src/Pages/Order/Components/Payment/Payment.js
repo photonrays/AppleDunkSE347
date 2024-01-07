@@ -34,9 +34,9 @@ function Payment(props) {
         email,
         selectedProvince,
         selectedDistrict,
-        method,
-        selectedStore,
         selectedWard,
+        selectedStore,
+        method,
         address,
         payment,
     };
@@ -375,7 +375,7 @@ function Payment(props) {
                                 </div>
                                 <input
                                     type="text"
-                                    // value="Trung"
+                                    value={address}
                                     onChange={handleAddressChange}
                                     placeholder="Nhập số nhà, tên đường"
                                     required

@@ -10,7 +10,7 @@ const getKMByID = async(id) =>{
 }
 
 const getKMByIdCached = async(id) =>{
-    return await axiosInstance.get(`/api/khuyenmai/${id}`); // add cached
+    return await axiosInstance.get(`/api/khuyenmai/cached/${id}`); // add cached
 }
 
 const getKMByApdung =async (apdung) => {
