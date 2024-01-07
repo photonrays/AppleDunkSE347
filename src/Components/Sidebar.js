@@ -204,8 +204,8 @@ export default function Sidebar() {
 
                   {(document.cookie.indexOf('token') != -1) ?
                     <div className={styles.userr}>
-                      <img src={user.image.length !== 0 ? user.image[0].url : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkNjtjpEZtAtYMoeDfg6PO5DoGrpAhCA79Jg&usqp=CAU"} alt="User Image" className={styles.userr_image} />
-                      <p className={styles.menuItemLink} style={{ color: "black" }}>{formatUserName(user.hoten)}</p>
+                      <img src={user?.image.length !== 0 ? user?.image[0].url : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkNjtjpEZtAtYMoeDfg6PO5DoGrpAhCA79Jg&usqp=CAU"} alt="User Image" className={styles.userr_image} />
+                      <p className={styles.menuItemLink} style={{ color: "black" }}>{formatUserName(user?.hoten)}</p>
                       <hr />
                     </div> : <></>}
                   {Menu.subMenus && (

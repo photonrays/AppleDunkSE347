@@ -15,8 +15,8 @@ function PromotionItem({
     const handleSelectItem = () => {
         HandleApiKM.getKMByIdCached(item._id)
             .then((res) => {
-                // setPromotion(res.data.phantramkm);
-                setPromotion(res.phantramkm);
+                setPromotion(res.data.phantramkm);
+                // setPromotion(res.phantramkm);
             })
             .catch((err) => console.log("err"));
 

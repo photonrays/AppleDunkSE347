@@ -422,13 +422,12 @@ function Order() {
                                 </div> */}
                             </div>
                             {/* Gợi ý sản phẩm */}
-                            {/* <div className={styles.productHint + " col-span-2"}>
+                            <div className={styles.productHint + " col-span-2"}>
                                 <label className="text-[24px] font-semibold">
                                     Gợi ý sản phẩm bán chạy
                                 </label>
                                 <ProductHint />
                             </div>
-                            <div></div> */}
                             {/* Thông tin thanh toán */}
                             <div className={styles.payment + " col-span-2"}>
                                 <label className="text-[24px] font-semibold text-center md:text-left block">

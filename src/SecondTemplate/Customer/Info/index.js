@@ -170,7 +170,7 @@ function Info2(){
       />
       <label htmlFor="avatarInput">
         <img
-          className="rounded-full border-2 w-60 h-60"
+          className="rounded-full border-2 w-60 h-60 object-cover"
           src={user.image.length !== 0? user.image[0].url: "https://img.freepik.com/premium-vector/apple-background-flat-illustration_598748-19.jpg?w=2000"}
           alt="profile image"
           onClick={() => inputRef.current.click()}
