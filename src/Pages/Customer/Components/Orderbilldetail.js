@@ -7,7 +7,6 @@ import Status from "./Status";
 import HandleApiThanhToan from "../../../Apis/HandleApiThanhtoan"
 import HandleApiOrder from "../../../Apis/HandleApiOrder";
 import HandleApiProduct from "../../../Apis/HandleApiProduct";
-import "./BillTemplate/index.js"
 
 //import hai file script thêm font chữ roboto hỗ trợ tiếng Việt vào trong jspdf
 import "./Roboto-Bold.js";
@@ -222,8 +221,6 @@ export default function Orderbilldetail({ order }) {
                     <div className='grid grid-cols-2 items-center pb-10 z-10'>
                         <div>
                             <img src={images.logo} alt='logo' className='-ml-10' />
-                            <p><span className='font-semibold'>Địa chỉ:</span> Quận Hoàn Kiếm, Thành phố Hà Nội, APPLEDUNK Số 418, đường Quang Trung, TP. Hà Nội</p>
-                            <p><span className='font-semibold'>Điện thoại:</span> 0826132302</p>
                             <p><span className='font-semibold'>Website:</span> https://appledunk.com</p>
                         </div>
                         <div className='text-center'>
@@ -246,7 +243,6 @@ export default function Orderbilldetail({ order }) {
                                     <th>Tên sản phẩm</th>
                                     <th>Số lượng</th>
                                     <th>Đơn giá</th>
-                                    <th>Thành tiền</th>
                                 </tr>
                             </thead>
                             <tbody className=''>
@@ -258,18 +254,17 @@ export default function Orderbilldetail({ order }) {
                                             <td>{p[0]}</td>
                                             <td>{p[1]}</td>
                                             <td>{p[2]}</td>
-                                            <td>{p[3]}</td>
                                         </tr>
                                     )
                                 })}
                                 <tr>
                                     <td colSpan={2} className='text-center'>Tổng cộng</td>
                                     <td>{productData.length}</td>
-                                    <td colSpan={2}>{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(thanhTien)}</td>
+                                    <td>{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(order.tongtrigia)}</td>
                                 </tr>
                             </tbody>
                         </table>
-                        <p><span className='font-semibold'>Số tiền bằng chữ:</span> <span className="capitalize">{to_vietnamese(thanhTien)}</span></p>
+                        <p><span className='font-semibold'>Số tiền bằng chữ:</span> <span className="capitalize">{to_vietnamese(order.tongtrigia)}</span></p>
                     </div>
                 </div>
             </div>

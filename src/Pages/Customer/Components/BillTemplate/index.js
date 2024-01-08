@@ -16,8 +16,6 @@ export default function BillTemplate({ order, user, products, day, month, year }
             <div className='grid grid-cols-2 items-center pb-10 '>
                 <div>
                     <img src={images.logo} alt='logo' className='-ml-10' />
-                    <p><span className='font-semibold'>Địa chỉ:</span> Quận Hoàn Kiếm, Thành phố Hà Nội, APPLEDUNK Số 418, đường Quang Trung, TP. Hà Nội</p>
-                    <p><span className='font-semibold'>Điện thoại:</span> 0826132302</p>
                     <p><span className='font-semibold'>Website:</span> https:appledunk.com</p>
                 </div>
                 <div className='text-center'>
