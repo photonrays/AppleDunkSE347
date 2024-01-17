@@ -217,7 +217,7 @@ export default function Orderbilldetail({ order }) {
                 </ul>
             </div>
             <div className="absolute opacity-0 bottom-0 -z-10">
-                <div className='p-5 text-2xl leading-10 container' id="bill-detail">
+                <div className='p-5 text-2xl leading-10 container w-[794px] h-[1123px]' id="bill-detail">
                     <div className='grid grid-cols-2 items-center pb-10 z-10'>
                         <div>
                             <img src={images.logo} alt='logo' className='-ml-10' />
