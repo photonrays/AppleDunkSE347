@@ -216,8 +216,9 @@ export default function Orderbilldetail({ order }) {
                     </li>
                 </ul>
             </div>
-            <div className="absolute opacity-0 bottom-0 -z-10">
-                <div className='p-5 text-2xl leading-10 container w-[794px] h-[1123px]' id="bill-detail">
+            {/* <div className="absolute bg-white opacity-0 bottom-0 -z-10"> */}
+            <div className="absolute bg-white">
+                <div className='p-5 text-2xl leading-10 container w-[803px] h-[1132px]' id="bill-detail">
                     <div className='grid grid-cols-2 items-center pb-10 z-10'>
                         <div>
                             <img src={images.logo} alt='logo' className='-ml-10' />
@@ -236,30 +237,29 @@ export default function Orderbilldetail({ order }) {
                         </div>
                         <p><span className='font-semibold'>Địa chỉ:</span> {order?.address || "Chưa thiết lập"}</p>
                         <p className='pb-5'><span className='font-semibold'>Phương thức thanh toán:</span> {order?.paymentMethod || "Chưa thiết lập"}</p>
-                        <table class="table-auto w-full m-4 text-center border-2 border-gray-700 pb-5">
-                            <thead className='bg-blue-500'>
+                        <table class="table-auto w-[750px] m-4 text-center pb-5">
+                            <thead className='bg-blue-500 pb-4 border-2 border-black'>
                                 <tr className='text-3xl text-white'>
-                                    <th className='p-4'>STT</th>
-                                    <th>Tên sản phẩm</th>
-                                    <th>Số lượng</th>
-                                    <th>Đơn giá</th>
+                                    <th className='p-4 border-r-2 border-black'>STT</th>
+                                    <th className="border-r-2 border-black">Tên sản phẩm</th>
+                                    <th className="border-r-2 border-black">Số lượng</th>
+                                    <th >Đơn giá</th>
                                 </tr>
                             </thead>
-                            <tbody className=''>
-
+                            <tbody className='border-x-2 border-b-2 border-black'>
                                 {productData.map((p, key) => {
                                     return (
-                                        <tr>
-                                            <td>{key + 1}</td>
-                                            <td>{p[0]}</td>
-                                            <td>{p[1]}</td>
+                                        <tr className="h-16 border-b-2 border-black">
+                                            <td className="border-r-2 border-black">{key + 1}</td>
+                                            <td className="border-r-2 border-black">{p[0]}</td>
+                                            <td className="border-r-2 border-black">{p[1]}</td>
                                             <td>{p[2]}</td>
                                         </tr>
                                     )
                                 })}
-                                <tr>
-                                    <td colSpan={2} className='text-center'>Tổng cộng</td>
-                                    <td>{productData.length}</td>
+                                <tr className="h-16">
+                                    <td colSpan={2} className='text-center border-r-2 border-black'>Tổng cộng</td>
+                                    <td className="border-r-2 border-black">{productData.length}</td>
                                     <td>{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(order.tongtrigia)}</td>
                                 </tr>
                             </tbody>
