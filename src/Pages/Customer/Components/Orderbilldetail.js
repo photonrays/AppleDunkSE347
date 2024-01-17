@@ -216,8 +216,8 @@ export default function Orderbilldetail({ order }) {
                     </li>
                 </ul>
             </div>
-            {/* <div className="absolute bg-white opacity-0 bottom-0 -z-10"> */}
-            <div className="absolute bg-white">
+            <div className="absolute bg-white opacity-0 bottom-0 -z-10">
+            {/* <div className="absolute bg-white"> */}
                 <div className='p-5 text-2xl leading-10 container w-[803px] h-[1132px]' id="bill-detail">
                     <div className='grid grid-cols-2 items-center pb-10 z-10'>
                         <div>
