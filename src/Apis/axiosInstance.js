@@ -2,7 +2,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 
 const axiosInstance = axios.create({
-    baseURL: "https://relieved-cummerbund-eel.cyclic.app/",
+    baseURL: "https://appledunkse347be.onrender.com/",
     // baseURL: "/",
     headers: {
         "Content-Type": "application/json",
